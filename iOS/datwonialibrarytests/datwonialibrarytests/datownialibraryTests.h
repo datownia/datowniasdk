@@ -9,5 +9,10 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 @interface datownialibraryTests : SenTestCase
+{
+    NSString *testApp;
+    NSString *testAppSecret;
+    NSString *testAppKey;
+}
 
 @end
