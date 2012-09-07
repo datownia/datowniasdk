@@ -7,7 +7,8 @@
 //
 
 #import "datownialibraryTests.h"
-#import "AppService.h"
+#import "DLAppService.h"
+#import "testmacros.h"
 
 @implementation datownialibraryTests
 
@@ -25,16 +26,16 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testAppService
 {
-    AppService *service = [[AppService alloc] init];
-    service.user = @"leiths";
-    service.appKey = @"bd4d9s3j8rjfnc9d33";
-    service.appSecret = @"jd8d74htkggf7f73jc";
+    DLAppService *service = [[DLAppService alloc] init];
+    service.user = TESTAPPLITERAL;
+    service.appKey = TESTAPPKEYLITERAL;
+    service.appSecret = TESTAPPSECRETLITERAL;
     
     [service downloadApp];
 
-    
+    //TODO:enter tests here for your data
 }
 
 @end

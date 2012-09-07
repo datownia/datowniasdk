@@ -121,6 +121,7 @@
 		F38FB00815F9E78200B7759F /* DownloaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloaderDelegate.h; sourceTree = "<group>"; };
 		F38FB00915F9E78200B7759F /* ExcludeFromBackupKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcludeFromBackupKey.h; sourceTree = "<group>"; };
 		F38FB00A15F9E78200B7759F /* FileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDownloader.h; sourceTree = "<group>"; };
+		F38FB02915F9FA2A00B7759F /* testmacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = testmacros.h; path = ../datownialibrary/testmacros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +208,7 @@
 		F38FAE9E15F8F39100B7759F /* datownialibraryTests */ = {
 			isa = PBXGroup;
 			children = (
+				F38FB02915F9FA2A00B7759F /* testmacros.h */,
 				F38FAEA415F8F39100B7759F /* datownialibraryTests.h */,
 				F38FAEA515F8F39100B7759F /* datownialibraryTests.m */,
 				F38FAE9F15F8F39100B7759F /* Supporting Files */,
@@ -513,8 +515,17 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "datownialibrary/datownialibrary-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					"TESTAPP=\"$(TESTAPP)\"",
+					"TESTAPPKEY=\"$(TESTAPPKEY)\"",
+					"TESTAPPSECRET=\"$(TESTAPPSECRET)\"",
+				);
 				INFOPLIST_FILE = "datownialibraryTests/datownialibraryTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TESTAPP = "\"leiths\"";
+				TESTAPPKEY = "\"bd4d9s3j8rjfnc9d33\"";
+				TESTAPPSECRET = "\"jd8d74htkggf7f73jc\"";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -528,8 +539,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "datownialibrary/datownialibrary-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "datownialibraryTests/datownialibraryTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TESTAPP = "\"leiths\"";
+				TESTAPPKEY = "\"bd4d9s3j8rjfnc9d33\"";
+				TESTAPPSECRET = "\"jd8d74htkggf7f73jc\"";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
