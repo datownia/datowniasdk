@@ -5,6 +5,7 @@
 //  Created by Luke Redpath on 14/05/2010.
 //  Copyright 2010 LJR Software Limited. All rights reserved.
 //
+// Modified to support client_credentials grant flow by Ian Cox 2012. Release Consulting Ltd
 
 #import <UIKit/UIKit.h>
 #import "LROAuth2ClientDelegate.h"

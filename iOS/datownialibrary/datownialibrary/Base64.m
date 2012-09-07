@@ -1,9 +1,7 @@
 //
 //  Base64.m
-//  TabReader
 //
-//  Created by Ian Cox on 24/02/2010.
-//  Copyright 2010 Release Consulting Ltd. All rights reserved.
+//  Based on code found on the internet. Not sure who original author was
 //
 
 #import "Base64.h"

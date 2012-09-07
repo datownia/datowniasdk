@@ -8,15 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		F38FAE8815F8F39100B7759F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FAE8715F8F39100B7759F /* Foundation.framework */; };
-		F38FAE8F15F8F39100B7759F /* datownialibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAE8E15F8F39100B7759F /* datownialibrary.m */; };
 		F38FAE9715F8F39100B7759F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FAE9615F8F39100B7759F /* SenTestingKit.framework */; };
 		F38FAE9915F8F39100B7759F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FAE9815F8F39100B7759F /* UIKit.framework */; };
 		F38FAE9A15F8F39100B7759F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FAE8715F8F39100B7759F /* Foundation.framework */; };
 		F38FAE9D15F8F39100B7759F /* libdatownialibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FAE8415F8F39100B7759F /* libdatownialibrary.a */; };
 		F38FAEA315F8F39100B7759F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F38FAEA115F8F39100B7759F /* InfoPlist.strings */; };
 		F38FAEA615F8F39100B7759F /* datownialibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAEA515F8F39100B7759F /* datownialibraryTests.m */; };
-		F38FAF7B15F8F6BC00B7759F /* AppService.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAF5F15F8F6BC00B7759F /* AppService.m */; };
-		F38FAF7C15F8F6BC00B7759F /* AppService.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAF5F15F8F6BC00B7759F /* AppService.m */; };
+		F38FAF7B15F8F6BC00B7759F /* DLAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAF5F15F8F6BC00B7759F /* DLAppService.m */; };
+		F38FAF7C15F8F6BC00B7759F /* DLAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAF5F15F8F6BC00B7759F /* DLAppService.m */; };
 		F38FAF7D15F8F6BC00B7759F /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAF6115F8F6BC00B7759F /* Base64.m */; };
 		F38FAF7E15F8F6BC00B7759F /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAF6115F8F6BC00B7759F /* Base64.m */; };
 		F38FAF7F15F8F6BC00B7759F /* ExcludeFromBackupKey.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAF6415F8F6BC00B7759F /* ExcludeFromBackupKey.m */; };
@@ -42,6 +41,21 @@
 		F38FAFBB15F8F72000B7759F /* NSURL+QueryInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAFAA15F8F72000B7759F /* NSURL+QueryInspector.m */; };
 		F38FAFBC15F8F72000B7759F /* NSURL+QueryInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAFAA15F8F72000B7759F /* NSURL+QueryInspector.m */; };
 		F38FAFF415F8F8D500B7759F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FAFF315F8F8D500B7759F /* UIKit.framework */; };
+		F38FB00C15F9EAB000B7759F /* datownialibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00715F9E78200B7759F /* datownialibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB00D15F9EAB100B7759F /* DLAppService.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00515F9E78200B7759F /* DLAppService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB00E15F9EAD500B7759F /* LROAuth2ClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFD15F9E77300B7759F /* LROAuth2ClientDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB00F15F9EADF00B7759F /* DownloaderDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00815F9E78200B7759F /* DownloaderDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01015F9EAE000B7759F /* FileDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00A15F9E78200B7759F /* FileDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01115F9EAE200B7759F /* ExcludeFromBackupKey.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00915F9E78200B7759F /* ExcludeFromBackupKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01215F9EAE300B7759F /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00615F9E78200B7759F /* Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01315F9EAE600B7759F /* NSURL+QueryInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00415F9E77300B7759F /* NSURL+QueryInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01415F9EAE800B7759F /* NSString+QueryString.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00315F9E77300B7759F /* NSString+QueryString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01515F9EAE900B7759F /* NSRunLoop+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00215F9E77300B7759F /* NSRunLoop+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01615F9EAEB00B7759F /* NSObject+Tap.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00115F9E77300B7759F /* NSObject+Tap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01715F9EAEC00B7759F /* NSDictionary+QueryString.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00015F9E77300B7759F /* NSDictionary+QueryString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01815F9EAEE00B7759F /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFF15F9E77300B7759F /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01915F9EAEF00B7759F /* LRURLRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFE15F9E77300B7759F /* LRURLRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F38FB01A15F9EAF200B7759F /* LROAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFC15F9E77300B7759F /* LROAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +84,6 @@
 		F38FAE8415F8F39100B7759F /* libdatownialibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdatownialibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38FAE8715F8F39100B7759F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F38FAE8B15F8F39100B7759F /* datownialibrary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "datownialibrary-Prefix.pch"; sourceTree = "<group>"; };
-		F38FAE8E15F8F39100B7759F /* datownialibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = datownialibrary.m; sourceTree = "<group>"; };
 		F38FAE9515F8F39100B7759F /* datownialibraryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = datownialibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38FAE9615F8F39100B7759F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F38FAE9815F8F39100B7759F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -78,7 +91,7 @@
 		F38FAEA215F8F39100B7759F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F38FAEA415F8F39100B7759F /* datownialibraryTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = datownialibraryTests.h; sourceTree = "<group>"; };
 		F38FAEA515F8F39100B7759F /* datownialibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = datownialibraryTests.m; sourceTree = "<group>"; };
-		F38FAF5F15F8F6BC00B7759F /* AppService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppService.m; sourceTree = "<group>"; };
+		F38FAF5F15F8F6BC00B7759F /* DLAppService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAppService.m; sourceTree = "<group>"; };
 		F38FAF6115F8F6BC00B7759F /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		F38FAF6415F8F6BC00B7759F /* ExcludeFromBackupKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcludeFromBackupKey.m; sourceTree = "<group>"; };
 		F38FAF6615F8F6BC00B7759F /* FileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDownloader.m; sourceTree = "<group>"; };
@@ -91,23 +104,23 @@
 		F38FAFA615F8F72000B7759F /* NSRunLoop+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRunLoop+Additions.m"; sourceTree = "<group>"; };
 		F38FAFA815F8F72000B7759F /* NSString+QueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+QueryString.m"; sourceTree = "<group>"; };
 		F38FAFAA15F8F72000B7759F /* NSURL+QueryInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryInspector.m"; sourceTree = "<group>"; };
-		F38FAFBE15F8F7AA00B7759F /* AppService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppService.h; sourceTree = "<group>"; };
-		F38FAFBF15F8F7AA00B7759F /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
-		F38FAFC015F8F7AA00B7759F /* datownialibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datownialibrary.h; sourceTree = "<group>"; };
-		F38FAFC115F8F7AA00B7759F /* DownloaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloaderDelegate.h; sourceTree = "<group>"; };
-		F38FAFC215F8F7AA00B7759F /* ExcludeFromBackupKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcludeFromBackupKey.h; sourceTree = "<group>"; };
-		F38FAFC315F8F7AA00B7759F /* FileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDownloader.h; sourceTree = "<group>"; };
-		F38FAFC515F8F7AA00B7759F /* LROAuth2AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LROAuth2AccessToken.h; sourceTree = "<group>"; };
-		F38FAFC615F8F7AA00B7759F /* LROAuth2Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LROAuth2Client.h; sourceTree = "<group>"; };
-		F38FAFC715F8F7AA00B7759F /* LROAuth2ClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LROAuth2ClientDelegate.h; sourceTree = "<group>"; };
-		F38FAFC815F8F7AA00B7759F /* LRURLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRURLRequestOperation.h; sourceTree = "<group>"; };
-		F38FAFC915F8F7AA00B7759F /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		F38FAFCA15F8F7AA00B7759F /* NSDictionary+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+QueryString.h"; sourceTree = "<group>"; };
-		F38FAFCB15F8F7AA00B7759F /* NSObject+Tap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Tap.h"; sourceTree = "<group>"; };
-		F38FAFCC15F8F7AA00B7759F /* NSRunLoop+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRunLoop+Additions.h"; sourceTree = "<group>"; };
-		F38FAFCD15F8F7AA00B7759F /* NSString+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+QueryString.h"; sourceTree = "<group>"; };
-		F38FAFCE15F8F7AA00B7759F /* NSURL+QueryInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QueryInspector.h"; sourceTree = "<group>"; };
 		F38FAFF315F8F8D500B7759F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F38FAFFB15F9E77300B7759F /* LROAuth2AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LROAuth2AccessToken.h; sourceTree = "<group>"; };
+		F38FAFFC15F9E77300B7759F /* LROAuth2Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LROAuth2Client.h; sourceTree = "<group>"; };
+		F38FAFFD15F9E77300B7759F /* LROAuth2ClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LROAuth2ClientDelegate.h; sourceTree = "<group>"; };
+		F38FAFFE15F9E77300B7759F /* LRURLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRURLRequestOperation.h; sourceTree = "<group>"; };
+		F38FAFFF15F9E77300B7759F /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		F38FB00015F9E77300B7759F /* NSDictionary+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+QueryString.h"; sourceTree = "<group>"; };
+		F38FB00115F9E77300B7759F /* NSObject+Tap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Tap.h"; sourceTree = "<group>"; };
+		F38FB00215F9E77300B7759F /* NSRunLoop+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRunLoop+Additions.h"; sourceTree = "<group>"; };
+		F38FB00315F9E77300B7759F /* NSString+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+QueryString.h"; sourceTree = "<group>"; };
+		F38FB00415F9E77300B7759F /* NSURL+QueryInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QueryInspector.h"; sourceTree = "<group>"; };
+		F38FB00515F9E78200B7759F /* DLAppService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAppService.h; sourceTree = "<group>"; };
+		F38FB00615F9E78200B7759F /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		F38FB00715F9E78200B7759F /* datownialibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datownialibrary.h; sourceTree = "<group>"; };
+		F38FB00815F9E78200B7759F /* DownloaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloaderDelegate.h; sourceTree = "<group>"; };
+		F38FB00915F9E78200B7759F /* ExcludeFromBackupKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcludeFromBackupKey.h; sourceTree = "<group>"; };
+		F38FB00A15F9E78200B7759F /* FileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDownloader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,13 +180,17 @@
 		F38FAE8915F8F39100B7759F /* datownialibrary */ = {
 			isa = PBXGroup;
 			children = (
-				F38FAFBD15F8F7AA00B7759F /* datowniaheaders */,
 				F38FAF9715F8F72000B7759F /* LROAuth2 */,
-				F38FAF5F15F8F6BC00B7759F /* AppService.m */,
+				F38FB00515F9E78200B7759F /* DLAppService.h */,
+				F38FAF5F15F8F6BC00B7759F /* DLAppService.m */,
+				F38FB00615F9E78200B7759F /* Base64.h */,
 				F38FAF6115F8F6BC00B7759F /* Base64.m */,
+				F38FB00915F9E78200B7759F /* ExcludeFromBackupKey.h */,
 				F38FAF6415F8F6BC00B7759F /* ExcludeFromBackupKey.m */,
+				F38FB00A15F9E78200B7759F /* FileDownloader.h */,
 				F38FAF6615F8F6BC00B7759F /* FileDownloader.m */,
-				F38FAE8E15F8F39100B7759F /* datownialibrary.m */,
+				F38FB00715F9E78200B7759F /* datownialibrary.h */,
+				F38FB00815F9E78200B7759F /* DownloaderDelegate.h */,
 				F38FAE8A15F8F39100B7759F /* Supporting Files */,
 			);
 			path = datownialibrary;
@@ -209,51 +226,55 @@
 		F38FAF9715F8F72000B7759F /* LROAuth2 */ = {
 			isa = PBXGroup;
 			children = (
+				F38FAFFB15F9E77300B7759F /* LROAuth2AccessToken.h */,
 				F38FAF9915F8F72000B7759F /* LROAuth2AccessToken.m */,
+				F38FAFFC15F9E77300B7759F /* LROAuth2Client.h */,
 				F38FAF9B15F8F72000B7759F /* LROAuth2Client.m */,
+				F38FAFFD15F9E77300B7759F /* LROAuth2ClientDelegate.h */,
+				F38FAFFE15F9E77300B7759F /* LRURLRequestOperation.h */,
 				F38FAF9E15F8F72000B7759F /* LRURLRequestOperation.m */,
+				F38FAFFF15F9E77300B7759F /* NSData+Base64.h */,
 				F38FAFA015F8F72000B7759F /* NSData+Base64.m */,
+				F38FB00015F9E77300B7759F /* NSDictionary+QueryString.h */,
 				F38FAFA215F8F72000B7759F /* NSDictionary+QueryString.m */,
+				F38FB00115F9E77300B7759F /* NSObject+Tap.h */,
 				F38FAFA415F8F72000B7759F /* NSObject+Tap.m */,
+				F38FB00215F9E77300B7759F /* NSRunLoop+Additions.h */,
 				F38FAFA615F8F72000B7759F /* NSRunLoop+Additions.m */,
+				F38FB00315F9E77300B7759F /* NSString+QueryString.h */,
 				F38FAFA815F8F72000B7759F /* NSString+QueryString.m */,
+				F38FB00415F9E77300B7759F /* NSURL+QueryInspector.h */,
 				F38FAFAA15F8F72000B7759F /* NSURL+QueryInspector.m */,
 			);
 			path = LROAuth2;
 			sourceTree = "<group>";
 		};
-		F38FAFBD15F8F7AA00B7759F /* datowniaheaders */ = {
-			isa = PBXGroup;
-			children = (
-				F38FAFBE15F8F7AA00B7759F /* AppService.h */,
-				F38FAFBF15F8F7AA00B7759F /* Base64.h */,
-				F38FAFC015F8F7AA00B7759F /* datownialibrary.h */,
-				F38FAFC115F8F7AA00B7759F /* DownloaderDelegate.h */,
-				F38FAFC215F8F7AA00B7759F /* ExcludeFromBackupKey.h */,
-				F38FAFC315F8F7AA00B7759F /* FileDownloader.h */,
-				F38FAFC415F8F7AA00B7759F /* LROAuth2 */,
-				F38FAFC515F8F7AA00B7759F /* LROAuth2AccessToken.h */,
-				F38FAFC615F8F7AA00B7759F /* LROAuth2Client.h */,
-				F38FAFC715F8F7AA00B7759F /* LROAuth2ClientDelegate.h */,
-				F38FAFC815F8F7AA00B7759F /* LRURLRequestOperation.h */,
-				F38FAFC915F8F7AA00B7759F /* NSData+Base64.h */,
-				F38FAFCA15F8F7AA00B7759F /* NSDictionary+QueryString.h */,
-				F38FAFCB15F8F7AA00B7759F /* NSObject+Tap.h */,
-				F38FAFCC15F8F7AA00B7759F /* NSRunLoop+Additions.h */,
-				F38FAFCD15F8F7AA00B7759F /* NSString+QueryString.h */,
-				F38FAFCE15F8F7AA00B7759F /* NSURL+QueryInspector.h */,
-			);
-			path = datowniaheaders;
-			sourceTree = "<group>";
-		};
-		F38FAFC415F8F7AA00B7759F /* LROAuth2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LROAuth2;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F38FB00B15F9EAAA00B7759F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F38FB00C15F9EAB000B7759F /* datownialibrary.h in Headers */,
+				F38FB00D15F9EAB100B7759F /* DLAppService.h in Headers */,
+				F38FB01715F9EAEC00B7759F /* NSDictionary+QueryString.h in Headers */,
+				F38FB00E15F9EAD500B7759F /* LROAuth2ClientDelegate.h in Headers */,
+				F38FB01915F9EAEF00B7759F /* LRURLRequestOperation.h in Headers */,
+				F38FB01415F9EAE800B7759F /* NSString+QueryString.h in Headers */,
+				F38FB01A15F9EAF200B7759F /* LROAuth2Client.h in Headers */,
+				F38FB01815F9EAEE00B7759F /* NSData+Base64.h in Headers */,
+				F38FB01515F9EAE900B7759F /* NSRunLoop+Additions.h in Headers */,
+				F38FB01615F9EAEB00B7759F /* NSObject+Tap.h in Headers */,
+				F38FB01215F9EAE300B7759F /* Base64.h in Headers */,
+				F38FB01315F9EAE600B7759F /* NSURL+QueryInspector.h in Headers */,
+				F38FB00F15F9EADF00B7759F /* DownloaderDelegate.h in Headers */,
+				F38FB01115F9EAE200B7759F /* ExcludeFromBackupKey.h in Headers */,
+				F38FB01015F9EAE000B7759F /* FileDownloader.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		F38FAE8315F8F39100B7759F /* datownialibrary */ = {
@@ -263,6 +284,7 @@
 				F38FAE8015F8F39100B7759F /* Sources */,
 				F38FAE8115F8F39100B7759F /* Frameworks */,
 				F38FAE8215F8F39100B7759F /* CopyFiles */,
+				F38FB00B15F9EAAA00B7759F /* Headers */,
 			);
 			buildRules = (
 			);
@@ -351,8 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F38FAE8F15F8F39100B7759F /* datownialibrary.m in Sources */,
-				F38FAF7B15F8F6BC00B7759F /* AppService.m in Sources */,
+				F38FAF7B15F8F6BC00B7759F /* DLAppService.m in Sources */,
 				F38FAF7D15F8F6BC00B7759F /* Base64.m in Sources */,
 				F38FAF7F15F8F6BC00B7759F /* ExcludeFromBackupKey.m in Sources */,
 				F38FAF8115F8F6BC00B7759F /* FileDownloader.m in Sources */,
@@ -373,7 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F38FAEA615F8F39100B7759F /* datownialibraryTests.m in Sources */,
-				F38FAF7C15F8F6BC00B7759F /* AppService.m in Sources */,
+				F38FAF7C15F8F6BC00B7759F /* DLAppService.m in Sources */,
 				F38FAF7E15F8F6BC00B7759F /* Base64.m in Sources */,
 				F38FAF8015F8F6BC00B7759F /* ExcludeFromBackupKey.m in Sources */,
 				F38FAF8215F8F6BC00B7759F /* FileDownloader.m in Sources */,
@@ -465,6 +486,7 @@
 				GCC_PREFIX_HEADER = "datownialibrary/datownialibrary-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -477,6 +499,7 @@
 				GCC_PREFIX_HEADER = "datownialibrary/datownialibrary-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

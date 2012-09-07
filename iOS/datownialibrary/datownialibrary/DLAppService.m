@@ -1,24 +1,24 @@
 //
-//  AppService.m
-//  LeithsCookeryApp
+//  AppService.h
+//  datownia sdk
 //
 //  Created by Simon McFarlane on 16/08/2012.
 //  Copyright (c) 2012 Release Consulting. All rights reserved.
 //
 
-#import "AppService.h"
+#import "DLAppService.h"
 #import "LROAuth2Client.h"
 #import "LROAuth2AccessToken.h"
 #import "LRURLRequestOperation.h"
 #import "FileDownloader.h"
 
-@interface AppService()
+@interface DLAppService()
 
 - (void)httpGet:(NSURL *)endpoint accesstoken:(LROAuth2AccessToken *)accessToken;
 
 @end
 
-@implementation AppService
+@implementation DLAppService
 
 @synthesize user, appKey, appSecret;
 

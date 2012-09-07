@@ -1,8 +1,8 @@
 //
 //  AppService.h
-//  LeithsCookeryApp
+//  datownialibrary
 //
-//  Created by Simon McFarlane on 16/08/2012.
+//  Created by Ian Cox on 07/09/2012.
 //  Copyright (c) 2012 Release Consulting. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "LROAuth2ClientDelegate.h"
 #import "DownloaderDelegate.h"
  
-@interface AppService : NSObject <LROAuth2ClientDelegate, DownloaderDelegate>
+@interface DLAppService : NSObject <LROAuth2ClientDelegate, DownloaderDelegate>
 {
     BOOL requesting;
 }

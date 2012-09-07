@@ -7,7 +7,4 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface datownialibrary : NSObject
-
-@end
+#import <datownialibrary/AppService.h>
