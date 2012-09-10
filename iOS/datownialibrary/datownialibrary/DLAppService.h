@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "LROAuth2ClientDelegate.h"
 #import "DownloaderDelegate.h"
+#import "DLAppConfiguration.h"
+#import "DLService.h"
  
-@interface DLAppService : NSObject <LROAuth2ClientDelegate, DownloaderDelegate>
+@interface DLAppService : DLService
 {
-    BOOL requesting;
+    
+    
 }
 
-@property (strong) NSString *appKey;
-@property (strong) NSString *appSecret;
-@property (strong) NSString *user;
-
+- (void) synchronizeTables;
 - (void) downloadApp;
 
 @end

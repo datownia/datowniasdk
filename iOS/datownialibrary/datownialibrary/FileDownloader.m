@@ -6,7 +6,6 @@
 
 #import "FileDownloader.h"
 #import "Base64.h"
-#import "ExcludeFromBackupKey.h"
 
 @interface FileDownloader()
 
@@ -64,21 +63,16 @@
     
     if ([fileMgr removeItemAtPath:filePath error:&error] != YES)
     {
-        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+        DLog(@"Unable to delete file: %@", [error localizedDescription]);
     }
     else
     {
-        NSLog(@"!!! .tmp file was deleted successfully !!!");
+        DLog(@"!!! .tmp file was deleted successfully !!!");
     }
 }
 
 -(void) download
 {
-	NSURL *serviceUrl = [NSURL URLWithString:urlString];
-	
-	
-
-
 //	NSString *userPass = @"Basic digiclefclient:fhX6t5n";
 //	NSData* data = [userPass dataUsingEncoding:NSUTF8StringEncoding];
 //	NSString *encodedUserPass = [Base64 encode:data];					  
@@ -101,7 +95,7 @@
 //	[[NSURLCredentialStorage sharedCredentialStorage]  setDefaultCredential:credential
 //														forProtectionSpace:protectionSpace];
 
-	NSLog(@"starting request: %@", serviceUrl);
+	DLog(@"starting request: %@", self.request.URL);
     //self.lastProgressDate = [NSDate date];
     
 	NSURLConnection *theConnection = [NSURLConnection  connectionWithRequest:self.request delegate:self];
@@ -118,7 +112,7 @@
         //delete the temp file if it already exists
         [self deleteFileAtPath:[self tempFileName]]; //Simon
         
-        NSLog(@"Creating temp download file: %@", [self tempFileName]);
+        DLog(@"Creating temp download file: %@", [self tempFileName]);
         
         [[NSFileManager defaultManager] createFileAtPath:[self tempFileName] contents:nil attributes:nil];
         self.fileHandle = [NSFileHandle fileHandleForWritingAtPath:[self tempFileName]];
@@ -127,7 +121,7 @@
 	} else {
 		
 		// inform the user that the download could not be made
-		NSLog(@"Connection could not be made");
+		DLog(@"Connection could not be made");
 		complete = YES;
 		[delegate fileDownloadError:DownloadResult_ConnectionFailed source:self];
 		
@@ -265,8 +259,6 @@
 
 		contentFound = YES;
 
-        NSURL *itemFileURL = [NSURL fileURLWithPath:outputPath];
-        [ExcludeFromBackupKey addSkipBackupAttributeToItemAtURL:itemFileURL];
 	}
 	else 
 	{

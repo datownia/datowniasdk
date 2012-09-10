@@ -13,6 +13,7 @@
 		F38FB05615FA031400B7759F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F38FB05415FA031400B7759F /* InfoPlist.strings */; };
 		F38FB07115FA040B00B7759F /* datownialibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB07015FA040B00B7759F /* datownialibraryTests.m */; };
 		F38FB0A515FA048C00B7759F /* libdatownialibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FB0A015FA047C00B7759F /* libdatownialibrary.a */; };
+		F3CF2E2615FDF2BA009BE218 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3CF2E2515FDF2BA009BE218 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,7 @@
 /* Begin PBXFileReference section */
 		F38FB03A15FA031400B7759F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F38FB03E15FA031400B7759F /* datwonialibrarytests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "datwonialibrarytests-Prefix.pch"; sourceTree = "<group>"; };
-		F38FB04815FA031400B7759F /* datwonialibrarytestsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = datwonialibrarytestsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F38FB04815FA031400B7759F /* datwonialibrarytestsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = datwonialibrarytestsTests.octest; path = datwonialibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38FB04915FA031400B7759F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F38FB04B15FA031400B7759F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		F38FB05315FA031400B7759F /* datwonialibrarytestsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "datwonialibrarytestsTests-Info.plist"; sourceTree = "<group>"; };
@@ -43,6 +44,7 @@
 		F38FB06F15FA040B00B7759F /* datownialibraryTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datownialibraryTests.h; sourceTree = "<group>"; };
 		F38FB07015FA040B00B7759F /* datownialibraryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = datownialibraryTests.m; sourceTree = "<group>"; };
 		F38FB09A15FA047B00B7759F /* datownialibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = datownialibrary.xcodeproj; path = ../datownialibrary/datownialibrary.xcodeproj; sourceTree = "<group>"; };
+		F3CF2E2515FDF2BA009BE218 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3CF2E2615FDF2BA009BE218 /* libsqlite3.dylib in Frameworks */,
 				F38FB0A515FA048C00B7759F /* libdatownialibrary.a in Frameworks */,
 				F38FB04A15FA031400B7759F /* SenTestingKit.framework in Frameworks */,
 				F38FB04C15FA031400B7759F /* UIKit.framework in Frameworks */,
@@ -63,6 +66,7 @@
 		F38FB02C15FA031400B7759F = {
 			isa = PBXGroup;
 			children = (
+				F3CF2E2515FDF2BA009BE218 /* libsqlite3.dylib */,
 				F38FB09A15FA047B00B7759F /* datownialibrary.xcodeproj */,
 				F38FB03C15FA031400B7759F /* datwonialibrarytests */,
 				F38FB05115FA031400B7759F /* datwonialibrarytestsTests */,
@@ -359,6 +363,7 @@
 				F38FB06115FA031400B7759F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

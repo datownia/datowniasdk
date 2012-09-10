@@ -7,7 +7,9 @@
 //
 
 #import "datownialibraryTests.h"
-#import <datownialibrary/DLAppService.h>
+#import <datownialibrary/datownialibrary.h>
+#import <datownialibrary/FMDatabase.h>
+#import <datownialibrary/DLDbManager.h>
 
 @implementation datownialibraryTests
 
@@ -49,16 +51,63 @@
     [super tearDown];
 }
 
-- (void)testAppService
+- (NSString *)getDbPath
 {
-    DLAppService *service = [[DLAppService alloc] init];
-    service.user = testApp;
-    service.appKey = testAppKey;
-    service.appSecret = testAppSecret;
-    
-    [service downloadApp];
+    //TODO: when have proper test account to call then we can do proper tests to ensure we are getting correct data back
+    //as well as doing update tests with expected results
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *pathToFile = [NSString stringWithFormat:@"%@/test.sqlite", documentsDirectory];
+    return pathToFile;
+}
 
-    //TODO:enter tests here for your data
+//- (void)ignoretestAppService
+//{
+//    DLAppService *service = [[DLAppService alloc] init];
+//    service.user = testApp;
+//    service.appKey = testAppKey;
+//    service.appSecret = testAppSecret;
+//    
+//    [service downloadApp];
+//    
+////    while (service.requesting) {
+////        [[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] dateByAddingTimeInterval:2]];
+////    }
+//
+//    //TODO:enter tests here for your data
+//}
+
+- (void) testOfflineApiDownloadOnce
+{
+    NSString *pathToFile = [self getDbPath];
+    
+    DLOfflineApiDataSync *manager = [[DLOfflineApiDataSync alloc] init];
+    
+    DLAppConfiguration *configuration = [[DLAppConfiguration alloc] init];
+    configuration.userName = testApp;
+    configuration.appKey = testAppKey;
+    configuration.appSecret = testAppSecret;
+    configuration.checkChangesFrequencySeconds = 1;
+    configuration.dbPath = pathToFile;
+    
+    [manager start:configuration onAppDownloaded:^(){[manager stop];}];
+    
+    while(manager.running)
+    {
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:2]];
+    }
+    
+    //now test sequence
+    [self sequenceTest];
+}
+
+- (void) sequenceTest
+{
+    FMDatabase *db = [DLDbManager openDb:[self getDbPath]];
+    
+    NSString *sql = @"update table_def set seq = 0;";
+
+    [db executeUpdate:sql];
 }
 
 @end

@@ -46,6 +46,7 @@
 - (void)dealloc;
 {
   [_networkQueue cancelAllOperations];
+
 }
 
 #pragma mark -

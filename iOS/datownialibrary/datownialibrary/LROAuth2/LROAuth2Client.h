@@ -33,7 +33,7 @@
 @property (nonatomic, copy) NSURL *cancelURL;
 @property (nonatomic, copy) NSURL *userURL;
 @property (nonatomic, copy) NSURL *tokenURL;
-@property (nonatomic, readonly) LROAuth2AccessToken *accessToken;
+@property (nonatomic, strong) LROAuth2AccessToken *accessToken;
 @property (nonatomic, unsafe_unretained) id<LROAuth2ClientDelegate> delegate;
 @property (nonatomic, assign) BOOL debug;
 

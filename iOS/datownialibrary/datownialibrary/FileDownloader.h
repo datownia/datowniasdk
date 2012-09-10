@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) NSString *outputPath;
-@property (nonatomic, unsafe_unretained) id<DownloaderDelegate> delegate; //weak
+@property (nonatomic, assign) id<DownloaderDelegate> delegate; //weak
 @property (nonatomic, readonly) BOOL complete;
 @property (weak, nonatomic, readonly) NSError *lastError;
 @property (nonatomic, strong) NSMutableURLRequest *request;

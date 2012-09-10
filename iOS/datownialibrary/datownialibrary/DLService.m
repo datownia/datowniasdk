@@ -1,0 +1,204 @@
+//
+//  DLService.m
+//  datownialibrary
+//
+//  Created by Ian Cox on 10/09/2012.
+//  Copyright (c) 2012 datownia. All rights reserved.
+//
+
+#import "DLService.h"
+#import "LROAuth2/LROAuth2AccessToken.h"
+#import "TextDownloader.h"
+#import "JSONKit.h"
+
+@interface DLService()
+
+
+@end
+
+@implementation DLService
+
+@synthesize configuration;
+@synthesize requesting;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (id) initWithConfiguration:(DLAppConfiguration *)aConfiguration
+{
+    self = [self init];
+    if (self) {
+        self.configuration = aConfiguration;
+        [self ensureClient];
+    }
+    return self;
+}
+
+- (void)ensureClient
+{
+    NSAssert(self.configuration, @"configuration required");
+    
+    if (!client)
+    {
+        client = [[LROAuth2Client alloc] initWithClientID:self.configuration.appKey secret:self.configuration.appSecret redirectURL:nil];
+        client.delegate = self;
+        client.tokenURL = [NSURL URLWithString:@"https://192.168.42.211/oauth2/token"];
+    }
+}
+
+- (NSString *) accessTokenKeyName:(NSString *)scope
+{
+    return [NSString stringWithFormat:@"accessToken_%@", scope];
+}
+
+
+- (void)requestAccessTokenIfNeeded:(NSString *)scope
+{
+    //client.tokenURL = [NSURL URLWithString:@"https://192.168.42.11/oauth2/token"]; //@"https://apimakersandbox.cloudapp.net/oauth2/token"];
+    
+    //if already have an unexpired access token then use it
+//    if (client.accessToken)
+//    {
+//        if (!client.accessToken.hasExpired)
+//            return; // use the one we already have
+//    }
+//    else
+//    {
+        //try and restore access token from defaults
+        //if it has not expired then use it
+        id savedValue = [[NSUserDefaults standardUserDefaults] objectForKey:[self accessTokenKeyName:scope]];
+        
+        if (savedValue)
+        {
+            client.accessToken = [NSKeyedUnarchiver unarchiveObjectWithData:savedValue];
+            
+            if (!client.accessToken.hasExpired)
+                return;
+        }
+        
+//    }
+    
+    requesting = true;
+    [client requestAccessTokenClientCredentials:scope];
+    
+    //save to documents
+    
+    while (requesting) {
+        [[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] dateByAddingTimeInterval:2]];
+    }
+    
+    NSAssert(client.accessToken, @"An error must have occurred getting the token");
+    
+    //save the token for later use
+    NSData *accessTokenAsNSData = [NSKeyedArchiver archivedDataWithRootObject:client.accessToken];
+    [[NSUserDefaults standardUserDefaults] setObject:accessTokenAsNSData forKey:[self accessTokenKeyName:scope]];
+}
+
+- (NSString *)getAuth:(NSString *)scope
+{
+    NSAssert(self.configuration, @"dbPath required");
+    
+    [self requestAccessTokenIfNeeded:scope];
+    
+    requesting = true;
+    
+    NSString *auth = [NSString stringWithFormat:@"Bearer %@",client.accessToken.accessToken];
+    return auth;
+}
+
+- (NSString *) httpGetRawString:(NSURL *)endpoint scope:(NSString *)scope
+{
+    NSData *data = [self httpGetJson:endpoint scope:scope];
+
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+}
+
+- (NSData *) httpGetData:(NSURL *)endpoint scope:(NSString *)scope
+{
+    lastError = nil;
+    lastScope = scope;
+    
+    NSString *auth = [self getAuth:scope];
+    
+    TextDownloader *downloader = [[TextDownloader alloc] initWithUrl:endpoint withDelegate:self];
+    [downloader.request setHTTPMethod:@"GET"];
+    [downloader.request setValue:self.configuration.appKey forHTTPHeaderField:@"client_id"];
+    [downloader.request setValue:auth forHTTPHeaderField:@"Authorization"];
+    
+    [downloader download];
+    
+    while (requesting) {
+        [[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] dateByAddingTimeInterval:2]];
+    }
+    
+    return downloader.receivedData;
+}
+
+- (id) httpGetJson:(NSURL *)endpoint scope:(NSString *)scope
+{
+    return [[self httpGetData:endpoint scope:scope] objectFromJSONData];
+}
+
+#pragma mark -
+#pragma mark LROAuth2ClientDelegate
+
+- (void)oauthClientDidReceiveAccessToken:(LROAuth2Client *)client
+{
+    NSLog(@"wow! a token");
+    requesting = false;
+    
+}
+
+- (void)oauthClientDidRefreshAccessToken:(LROAuth2Client *)client
+{
+    NSLog(@"wow! a token refresh");
+    requesting = false;
+    
+}
+
+- (void)oauthClientError:(LROAuth2Client *)client
+{
+    NSLog(@"auth error");
+    requesting = false;
+}
+
+
+
+#pragma mark -
+#pragma mark DownloaderDelegate
+
+-(void) fileDownloadComplete:(id)source contentFound:(BOOL)contentFound
+{
+    requesting = false;
+}
+
+-(void) fileDownloadProgress:(NSNumber *)progressFraction source:(id)source
+{
+    
+}
+
+-(void) fileDownloadError:(enum DownloadResult) result source:(id)source
+{
+    requesting = false;
+
+    lastError = [source lastError];
+    
+    //if unauthorised remove access token stored for this scope so that next time it will generate a new one
+    if ([lastError code] == 401)
+    {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self accessTokenKeyName:lastScope]];
+
+    }
+    
+    //TODO: notification that we errored, so client can decide to requery if it wants
+    
+    
+}
+
+@end
