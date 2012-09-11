@@ -44,7 +44,7 @@
     
     [self requestAccessTokenIfNeeded:[self scope]];
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://192.168.42.211/api/app/%@/%@.sqlite", self.configuration.userName, self.configuration.appKey]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/api/app/%@/%@.sqlite", self.configuration.host, self.configuration.userName, self.configuration.appKey]];
     //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://192.168.42.11/api/app/%@/%@.sqlite", self.user, self.appKey]];
     //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://apimakersandbox.cloudapp.net/api/app/%@/%@.sqlite", self.user, self.appKey]];
     
@@ -54,8 +54,8 @@
         [[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] dateByAddingTimeInterval:2]];
     }
     
-    //note: this is just temporary, app service will in future create a table_def table that contains the seq values
-    [self storeSeq];
+//    //note: this is just temporary, app service will in future create a table_def table that contains the seq values
+//    [self storeSeq];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:DLAppDownloadedNotification object:self];
 }
@@ -72,10 +72,10 @@
     
     NSMutableArray *docs = [NSMutableArray array];
     
-    DLDocService *docService = [[DLDocService alloc] initWithConfiguration:self.configuration];
-    
     while ([rs next])
     {
+        DLDocService *docService = [[DLDocService alloc] initWithConfiguration:self.configuration];
+        
         NSString *tableName = [rs stringForColumnIndex:0];
         
         NSArray *parts = [tableName componentsSeparatedByString:@"_"];
@@ -133,12 +133,17 @@
     
     FMResultSet *rs = [db executeQuery:sql];
     
-    DLDocService *docService = [[DLDocService alloc] initWithConfiguration:self.configuration];
-    
     NSMutableArray *sqlLines = [NSMutableArray array];
     while ([rs next])
     {
+        DLDocService *docService = [[DLDocService alloc] initWithConfiguration:self.configuration];
+        
         NSString *tableName = [rs stringForColumnIndex:0];
+        
+        if ([tableName isEqualToString:@"table_def"])
+            continue;
+        
+        NSUInteger seq = [rs intForColumnIndex:1];
         
         NSArray *parts = [tableName componentsSeparatedByString:@"_"];
         
@@ -148,11 +153,14 @@
         NSArray *pathParts = [parts objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]];
         NSString *doc = [pathParts componentsJoinedByString:@"_"];
         
-        NSString *sql = [docService httpGetDeltaSql:doc version:version];
+        NSString *sql = [docService httpGetDeltaSql:doc version:version seq:seq];
         
         if ([sql length] > 0)
         {
-            [sqlLines addObject:sql];
+            NSMutableArray *lines = [NSMutableArray arrayWithArray:[sql componentsSeparatedByString:@"\n"]];
+            if (![lines lastObject]|| [[lines lastObject] length] == 0)
+                [lines removeLastObject];
+            [sqlLines addObjectsFromArray:lines];
             DLog(@"%@",sql);
         }
         
@@ -160,8 +168,15 @@
     }
 
     for (NSString *sqlLine in sqlLines) {
-        [db executeUpdate:sqlLine];
-        //TODO: if fails, what do we do
+        BOOL success = [db executeUpdate:sqlLine];
+        
+        if (!success)
+        {
+           //TODO: if fails, what do we do
+            DLog(@"update failed %@", [db lastErrorMessage]);
+
+        }
+        
     }
 }
 

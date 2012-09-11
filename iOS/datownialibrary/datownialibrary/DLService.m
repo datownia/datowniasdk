@@ -48,7 +48,7 @@
     {
         client = [[LROAuth2Client alloc] initWithClientID:self.configuration.appKey secret:self.configuration.appSecret redirectURL:nil];
         client.delegate = self;
-        client.tokenURL = [NSURL URLWithString:@"https://192.168.42.211/oauth2/token"];
+        client.tokenURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/oauth2/token", self.configuration.host]];
     }
 }
 
@@ -114,7 +114,7 @@
 
 - (NSString *) httpGetRawString:(NSURL *)endpoint scope:(NSString *)scope
 {
-    NSData *data = [self httpGetJson:endpoint scope:scope];
+    NSData *data = [self httpGetData:endpoint scope:scope];
 
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }

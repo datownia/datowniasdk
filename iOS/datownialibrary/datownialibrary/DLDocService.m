@@ -30,15 +30,15 @@
 - (DLDocument *)httpGetDocument:(NSString *)doc version:(NSString *)version
 {
     NSString *scope = [self scope:doc];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://192.168.42.211/api/doc/%@/v%@/%@?metadataonly=true", self.configuration.userName, version, doc]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/api/doc/%@/v%@/%@?metadataonly=true", self.configuration.host, self.configuration.userName, version, doc]];
     
     return [self httpGetDocumentByUrl:url scope:scope];
 }
 
-- (NSString *)httpGetDeltaSql:(NSString *)doc version:(NSString *)version
+- (NSString *)httpGetDeltaSql:(NSString *)doc version:(NSString *)version seq:(NSUInteger)seq
 {
     NSString *scope = [self scope:doc];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://192.168.42.211/api/doc/%@/v%@/delta/%@.sql", self.configuration.userName, version, doc]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/api/doc/%@/v%@/delta/%@.sql?seq=%i", self.configuration.host, self.configuration.userName, version, doc, seq]];
     
     return [self httpGetRawString:url scope:scope];
 }

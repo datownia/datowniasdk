@@ -14,6 +14,6 @@
 
 - (DLDocument *)httpGetDocumentByUrl:(NSURL *)endpoint scope:(NSString *)scope;
 - (DLDocument *)httpGetDocument:(NSString *)doc version:(NSString *)version;
-- (NSString *)httpGetDeltaSql:(NSString *)doc version:(NSString *)version;
+- (NSString *)httpGetDeltaSql:(NSString *)doc version:(NSString *)version seq:(NSUInteger)seq;
 
 @end

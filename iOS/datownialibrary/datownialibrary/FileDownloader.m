@@ -57,9 +57,8 @@
     // Create file manager
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     
-//    // Point to Document directory
-//    NSString *documentsDirectory = [NSHomeDirectory() 
-//                                    stringByAppendingPathComponent:@"Documents"];
+    if (![fileMgr fileExistsAtPath:filePath])
+        return;
     
     if ([fileMgr removeItemAtPath:filePath error:&error] != YES)
     {

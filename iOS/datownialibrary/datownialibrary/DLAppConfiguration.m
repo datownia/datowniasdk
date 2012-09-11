@@ -10,6 +10,6 @@
 
 @implementation DLAppConfiguration
 
-@synthesize userName, appKey, appSecret, dbPath, checkChangesFrequencySeconds;
+@synthesize userName, appKey, appSecret, dbPath, checkChangesFrequencySeconds, host;
 
 @end

@@ -58,6 +58,8 @@
         
         //TODO:when done get the seq value for each table and store
         //TODO:api will change to incorporate seq without these additional calls
+        
+        [self createTimer:configuration freq:configuration.checkChangesFrequencySeconds];
         return;
     }
 
@@ -67,6 +69,13 @@
     
     //TODO: a method to check if our local copy is really up to date
     //possibly try to create the overall checksum based on the row _ids
+    
+    [self createTimer:configuration freq:configuration.checkChangesFrequencySeconds];
+}
+
+- (void) createTimer:(DLAppConfiguration *)aConfiguration freq:(NSTimeInterval)interval
+{
+    timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(startSync:) userInfo:aConfiguration repeats:NO];
 }
 
 - (void) start:(DLAppConfiguration *)aConfiguration onAppDownloaded:(event_block_t)onAppDownloadedHandler
@@ -83,7 +92,7 @@
     backgroundQueue = dispatch_queue_create("com.datownia.offlineapi.queue", NULL);
     
     dispatch_async(backgroundQueue, ^void{
-        timer = [NSTimer scheduledTimerWithTimeInterval:aConfiguration.checkChangesFrequencySeconds target:self selector:@selector(startSync:) userInfo:aConfiguration repeats:YES];
+        [self createTimer:aConfiguration freq:0.5f];
         
         [[NSRunLoop currentRunLoop] run];  
     });

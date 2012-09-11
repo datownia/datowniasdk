@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSString *appSecret;
 @property (nonatomic, strong) NSString *dbPath;
 @property (nonatomic) double checkChangesFrequencySeconds;
+@property (nonatomic, strong) NSString *host;
 
 @end
