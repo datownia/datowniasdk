@@ -129,7 +129,7 @@
 {
     FMDatabase *db = [DLDbManager openDb:configuration.dbPath];
     
-    NSString *sql = @"SELECT name FROM sqlite_master WHERE type='table'";
+    NSString *sql = @"SELECT tablename, seq FROM table_def";
     
     FMResultSet *rs = [db executeQuery:sql];
     
@@ -139,9 +139,6 @@
         DLDocService *docService = [[DLDocService alloc] initWithConfiguration:self.configuration];
         
         NSString *tableName = [rs stringForColumnIndex:0];
-        
-        if ([tableName isEqualToString:@"table_def"])
-            continue;
         
         NSUInteger seq = [rs intForColumnIndex:1];
         

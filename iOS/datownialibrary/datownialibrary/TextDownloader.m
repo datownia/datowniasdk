@@ -15,6 +15,7 @@
 @synthesize delegate;
 @synthesize complete;
 @synthesize lastError;
+@synthesize request;
 
 -(id) initWithUrl:(NSURL *)aUrl withDelegate:(id<DownloaderDelegate>)aDelegate
 {

@@ -23,7 +23,7 @@
 
 @implementation DLDocument
 
-@synthesize contents, numRows;
+@synthesize contents, numRows, seq;
 
 @dynamic docId;
 

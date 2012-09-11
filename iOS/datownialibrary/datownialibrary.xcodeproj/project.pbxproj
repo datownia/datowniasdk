@@ -54,7 +54,6 @@
 		F38FB01A15F9EAF200B7759F /* LROAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFC15F9E77300B7759F /* LROAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F38FB0A815FA161100B7759F /* DLOfflineApiDataSync.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0A615FA161000B7759F /* DLOfflineApiDataSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F38FB0A915FA161100B7759F /* DLOfflineApiDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0A715FA161000B7759F /* DLOfflineApiDataSync.m */; };
-		F38FB0AD15FA175B00B7759F /* GCDSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0AC15FA175B00B7759F /* GCDSingleton.h */; };
 		F38FB0B015FA18F700B7759F /* DLAppConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0AE15FA18F600B7759F /* DLAppConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F38FB0B115FA18F700B7759F /* DLAppConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0AF15FA18F700B7759F /* DLAppConfiguration.m */; };
 		F38FB0B415FA342900B7759F /* DLConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0B215FA342900B7759F /* DLConstants.h */; };
@@ -134,7 +133,6 @@
 		F38FB00A15F9E78200B7759F /* FileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDownloader.h; sourceTree = "<group>"; };
 		F38FB0A615FA161000B7759F /* DLOfflineApiDataSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLOfflineApiDataSync.h; sourceTree = "<group>"; };
 		F38FB0A715FA161000B7759F /* DLOfflineApiDataSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLOfflineApiDataSync.m; sourceTree = "<group>"; };
-		F38FB0AC15FA175B00B7759F /* GCDSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDSingleton.h; path = "../../../../../../../Downloads/gist1057420-c35c40bed05976febdb08782ddb13e7df451b79c/GCDSingleton.h"; sourceTree = "<group>"; };
 		F38FB0AE15FA18F600B7759F /* DLAppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAppConfiguration.h; sourceTree = "<group>"; };
 		F38FB0AF15FA18F700B7759F /* DLAppConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAppConfiguration.m; sourceTree = "<group>"; };
 		F38FB0B215FA342900B7759F /* DLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLConstants.h; sourceTree = "<group>"; };
@@ -232,7 +230,6 @@
 				F38FB0A615FA161000B7759F /* DLOfflineApiDataSync.h */,
 				F38FB0A715FA161000B7759F /* DLOfflineApiDataSync.m */,
 				F308A34115FDFD0700B650BE /* macro.h */,
-				F38FB0AC15FA175B00B7759F /* GCDSingleton.h */,
 				F38FB0B215FA342900B7759F /* DLConstants.h */,
 				F38FB0B315FA342900B7759F /* DLConstants.m */,
 				F38FAE8A15F8F39100B7759F /* Supporting Files */,
@@ -318,7 +315,6 @@
 				F38FB0B015FA18F700B7759F /* DLAppConfiguration.h in Headers */,
 				F38FB0A815FA161100B7759F /* DLOfflineApiDataSync.h in Headers */,
 				F38FB01015F9EAE000B7759F /* FileDownloader.h in Headers */,
-				F38FB0AD15FA175B00B7759F /* GCDSingleton.h in Headers */,
 				F38FB0B415FA342900B7759F /* DLConstants.h in Headers */,
 				F308A31515FDF76100B650BE /* JSONKit.h in Headers */,
 				F308A33315FDF7CC00B650BE /* DLContentItem.h in Headers */,

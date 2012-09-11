@@ -18,7 +18,7 @@
 
 @implementation DLOfflineApiDataSync
 
-@synthesize timer;
+@synthesize timer, running;
 
 //+ (id) sharedInstance
 //{
