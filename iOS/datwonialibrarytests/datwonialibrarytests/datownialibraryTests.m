@@ -89,7 +89,7 @@
     configuration.appSecret = testAppSecret;
     configuration.checkChangesFrequencySeconds = 1;
     configuration.dbPath = pathToFile;
-    configuration.host = @"192.168.42.47";
+    configuration.host = @"192.168.42.211";
     
     [manager start:configuration onAppDownloaded:^(){[manager stop];}];
     
