@@ -1,6 +1,6 @@
 #datownia sdk
 
-This repository contains the datownia SDK and code samples showing how to use datownia without the SDK.
+This repository contains the datownia SDK and code samples showing how to use datownia directly without the SDK.
 
 ##API Information Guide
 
@@ -30,7 +30,7 @@ Note: There is currently a limit of 200 for the number of data rows that can be 
 request. Therefore, multiple requests may be needed in order to fulfil a particular function in an
 application
 
-# 2. API URL Format
+### 2. API URL Format
 
 The URL of the API is formatted as follows:
 
