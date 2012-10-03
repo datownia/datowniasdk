@@ -26,3 +26,15 @@ profile
 
 *.orig
 
+# java
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#eclipse
+.metadata/
+.project
+.classpath
