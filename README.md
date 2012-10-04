@@ -1,6 +1,6 @@
 #datownia sdk
 
-This repository contains the datownia SDK and code samples showing how to use datownia directly without the SDK.
+The repository contains the datownia SDK and code samples showing how to use datownia directly without the SDK.
 
 ##API Information Guide
 
