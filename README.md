@@ -1,4 +1,4 @@
-#datownia sdk
+#datownia SDK
 
 The repository contains the datownia SDK and code samples showing how to use datownia directly without the SDK.
 
