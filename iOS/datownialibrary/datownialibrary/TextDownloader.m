@@ -3,7 +3,7 @@
 //  TabReader
 //
 //  Created by Ian Cox on 17/02/2010.
-//  Copyright 2010 Release Consultng Ltd.. All rights reserved.
+//  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import "TextDownloader.h"
@@ -42,7 +42,7 @@
 
 -(void) download
 {
-	DLog(@"starting request: %@", self.request.URL);
+	//DLog(@"starting request: %@", self.request.URL);
 	
 	if (postData) //for now it only supports xml bodies
 	{
@@ -52,7 +52,7 @@
 		[self.request setHTTPMethod:@"POST"];
 		[self.request setValue:[NSString stringWithFormat:@"text/xml"] forHTTPHeaderField:@"Content-Type"];
 		[self.request setHTTPBody:requestData];
-		DLog(@"post data:%@", postData);
+		//DLog(@"post data:%@", postData);
 	}
 	
 	NSURLConnection *theConnection = [NSURLConnection  connectionWithRequest:self.request delegate:self];
@@ -171,7 +171,7 @@
 	
     // receivedData is declared as a method instance elsewhere
 	
-    DLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
+    //DLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
 	
 	complete = YES;
 	

@@ -45,6 +45,8 @@
 //start sync process
 - (void) startSync:(NSTimer *)aTimer
 {
+    //TODO: add error handling so sync errors do not crash the app
+    
     DLAppConfiguration* configuration = aTimer.userInfo;
     DLAppService *service = [[DLAppService alloc] initWithConfiguration:configuration];
     
