@@ -3,7 +3,7 @@
 //  datownia sdk
 //
 //  Created by Simon McFarlane on 16/08/2012.
-//  Copyright (c) 2012 Release Consulting Ltd. All rights reserved.
+//  Copyright (c) 2012 Release Consulting. All rights reserved.
 //
 
 #import "DLAppService.h"
@@ -156,7 +156,7 @@
             if (![lines lastObject]|| [[lines lastObject] length] == 0)
                 [lines removeLastObject];
             [sqlLines addObjectsFromArray:lines];
-            DLog(@"%@",sql);
+            //DLog(@"%@",sql);
         }
         
         
