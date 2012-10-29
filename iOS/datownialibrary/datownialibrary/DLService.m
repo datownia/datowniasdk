@@ -42,7 +42,11 @@
 
 - (void)ensureClient
 {
-    NSAssert(self.configuration, @"configuration required");
+    if (!self.configuration)
+    {
+        DLog(@"CONFIGURATION MISSING");
+        return;
+    }
     
     if (!client)
     {
@@ -58,7 +62,7 @@
 }
 
 
-- (void)requestAccessTokenIfNeeded:(NSString *)scope
+- (BOOL)requestAccessTokenIfNeeded:(NSString *)scope
 {
     //try and restore access token from defaults
     //if it has not expired then use it
@@ -69,7 +73,7 @@
         client.accessToken = [NSKeyedUnarchiver unarchiveObjectWithData:savedValue];
         
         if (!client.accessToken.hasExpired)
-            return;
+            return YES;
     }
 
     
@@ -82,17 +86,28 @@
         [[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] dateByAddingTimeInterval:2]];
     }
     
-    NSAssert(client.accessToken, @"An error must have occurred getting the token");
+    if (client.accessToken == NULL)
+    {
+        DLog(@"An error must have occurred getting the token");
+        return NO;;
+    }
+    
     
     //save the token for later use
     NSData *accessTokenAsNSData = [NSKeyedArchiver archivedDataWithRootObject:client.accessToken];
     [[NSUserDefaults standardUserDefaults] setObject:accessTokenAsNSData forKey:[self accessTokenKeyName:scope]];
+    
+    return YES;
 }
 
 - (NSString *)getAuth:(NSString *)scope
 {
-    NSAssert(self.configuration, @"dbPath required");
-    
+    if (!self.configuration.dbPath)
+    {
+        DLog(@"dbPath required in configuration");
+        return nil;
+    }
+   
     [self requestAccessTokenIfNeeded:scope];
     
     requesting = true;

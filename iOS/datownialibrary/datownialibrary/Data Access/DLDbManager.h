@@ -16,7 +16,7 @@
 
 //+ (NSString *) getLibraryDbPath;
 //+ (NSString *) getContentDbPath:(NSString *)dbName;
-+ (NSString *) getUserCataloguePath;
-+ (NSString *) getDatabasePath;
-+ (FMDatabase *) openDb: (NSString *) dbPath ;
+//+ (NSString *) getDocumentsDbPath;
+//+ (NSString *) getDatabasePath;
++ (FMDatabase *) openSyncedDb: (NSString *) dbPath ;
 @end

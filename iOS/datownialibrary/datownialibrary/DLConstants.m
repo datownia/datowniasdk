@@ -9,3 +9,4 @@
 #import "DLConstants.h"
 
 NSString * const DLAppDownloadedNotification = @"appDownloaded";
+NSString * const DLAppDownloadFailedNotification = @"appDownloadFailed";

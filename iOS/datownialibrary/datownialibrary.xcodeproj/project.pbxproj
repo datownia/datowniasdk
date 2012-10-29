@@ -66,6 +66,8 @@
 		F38FB0C715FDDB0500B7759F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0BF15FDDB0500B7759F /* FMDatabaseAdditions.m */; };
 		F38FB0C815FDDB0500B7759F /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0C015FDDB0500B7759F /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F38FB0C915FDDB0500B7759F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0C115FDDB0500B7759F /* FMResultSet.m */; };
+		F3D423DB163EA99E004C66CB /* FMSyncedDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = F3D423D9163EA99E004C66CB /* FMSyncedDatabase.h */; };
+		F3D423DC163EA99E004C66CB /* FMSyncedDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D423DA163EA99E004C66CB /* FMSyncedDatabase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -145,6 +147,8 @@
 		F38FB0BF15FDDB0500B7759F /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
 		F38FB0C015FDDB0500B7759F /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		F38FB0C115FDDB0500B7759F /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		F3D423D9163EA99E004C66CB /* FMSyncedDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMSyncedDatabase.h; sourceTree = "<group>"; };
+		F3D423DA163EA99E004C66CB /* FMSyncedDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMSyncedDatabase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +286,8 @@
 				F38FB0BF15FDDB0500B7759F /* FMDatabaseAdditions.m */,
 				F38FB0C015FDDB0500B7759F /* FMResultSet.h */,
 				F38FB0C115FDDB0500B7759F /* FMResultSet.m */,
+				F3D423D9163EA99E004C66CB /* FMSyncedDatabase.h */,
+				F3D423DA163EA99E004C66CB /* FMSyncedDatabase.m */,
 			);
 			path = "Data Access";
 			sourceTree = "<group>";
@@ -323,6 +329,7 @@
 				F308A33C15FDF84E00B650BE /* NSString+Extras.h in Headers */,
 				F308A33F15FDFCB800B650BE /* TextDownloader.h in Headers */,
 				F308A34215FDFD0700B650BE /* macro.h in Headers */,
+				F3D423DB163EA99E004C66CB /* FMSyncedDatabase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +412,7 @@
 				F308A34015FDFCB800B650BE /* TextDownloader.m in Sources */,
 				F308A34A15FE08BA00B650BE /* DLDocService.m in Sources */,
 				F308A34E15FE08CD00B650BE /* DLService.m in Sources */,
+				F3D423DC163EA99E004C66CB /* FMSyncedDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

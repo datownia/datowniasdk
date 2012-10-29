@@ -91,7 +91,7 @@
     configuration.dbPath = pathToFile;
     configuration.host = @"www.datownia.com";
     
-    [manager start:configuration onAppDownloaded:^(){[manager stop];}];
+    [manager start:configuration onAppDownloaded:^(){[manager stop];} onFailure:^(){[manager stop];}];
     
     while(manager.running)
     {
@@ -104,7 +104,7 @@
 
 - (void) sequenceTest
 {
-    FMDatabase *db = [DLDbManager openDb:[self getDbPath]];
+    FMDatabase *db = [DLDbManager openSyncedDb:[self getDbPath]];
     
     NSString *sql = @"update table_def set seq = 0;";
 
