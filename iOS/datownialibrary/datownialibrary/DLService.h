@@ -30,7 +30,7 @@
 
 - (id) initWithConfiguration:(DLAppConfiguration *)configuration;
 
-- (void)requestAccessTokenIfNeeded:(NSString *)scope;
+- (BOOL)requestAccessTokenIfNeeded:(NSString *)scope;
 - (void)ensureClient;
 
 - (id) httpGetJson:(NSURL *)endpoint scope:(NSString *)scope;

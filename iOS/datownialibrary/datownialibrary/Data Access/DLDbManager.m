@@ -7,30 +7,30 @@
 //
 
 #import "DLDbManager.h"
-#import "FMDatabase.h"
+#import "FMSyncedDatabase.h"
 
 @implementation DLDbManager
 
-+ (NSString *) getDatabasePath 
-{
-	NSString *userPath;
-	userPath = [self getUserCataloguePath];
-	
-    return userPath;
-	
-}
+//+ (NSString *) getDatabasePath 
+//{
+//	NSString *userPath;
+//	userPath = [self getDocumentsDbPath];
+//	
+//    return userPath;
+//	
+//}
+//
+//+ (NSString *) getDocumentsDbPath 
+//{
+//	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//	NSString *documentsDir = [paths objectAtIndex:0];
+//	NSString *userPath = [documentsDir stringByAppendingPathComponent:@"test.sqlite"]; //catalogue.db
+//	return userPath;
+//}
 
-+ (NSString *) getUserCataloguePath 
++ (FMDatabase *) openSyncedDb:(NSString *)dbPath  
 {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDir = [paths objectAtIndex:0];
-	NSString *userPath = [documentsDir stringByAppendingPathComponent:@"test.sqlite"]; //catalogue.db
-	return userPath;
-}
-
-+ (FMDatabase *) openDb:(NSString *)dbPath  
-{
-	FMDatabase* db = [FMDatabase databaseWithPath:dbPath];
+	FMDatabase* db = [FMSyncedDatabase databaseWithPath:dbPath];
 	if (![db open]) {
 		[NSException raise:@"DbOpenError" format:@"Could not open db."];
 		[db setShouldCacheStatements:NO];
@@ -48,6 +48,5 @@
 	
 	return db;
 }
-
 
 @end

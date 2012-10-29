@@ -42,7 +42,11 @@
 {
     [self ensureClient];
     
-    [self requestAccessTokenIfNeeded:[self scope]];
+    if (![self requestAccessTokenIfNeeded:[self scope]])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:DLAppDownloadFailedNotification object:self];
+        return;//no token so cannot continue
+    }
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/api/app/%@/%@.sqlite", self.configuration.host, self.configuration.userName, self.configuration.appKey]];
     
@@ -52,8 +56,6 @@
         [[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] dateByAddingTimeInterval:2]];
     }
     
-//    //note: this is just temporary, app service will in future create a table_def table that contains the seq values
-//    [self storeSeq];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:DLAppDownloadedNotification object:self];
 }
@@ -62,7 +64,7 @@
 //note: this is temporary until the api can support adding them to the sequence table itself
 - (void) storeSeq
 {
-    FMDatabase *db = [DLDbManager openDb:configuration.dbPath];
+    FMDatabase *db = [DLDbManager openSyncedDb:configuration.dbPath];
     
     NSString *sql = @"SELECT name FROM sqlite_master WHERE type='table'";
     
@@ -103,7 +105,7 @@
 
 - (void) ensureTableDefTable
 {
-    FMDatabase *db = [DLDbManager openDb:configuration.dbPath];
+    FMDatabase *db = [DLDbManager openSyncedDb:configuration.dbPath];
     
     NSString *sql = @"SELECT name FROM sqlite_master WHERE type='table' and name = 'table_def';";
     
@@ -125,20 +127,36 @@
 
 - (void) synchronizeTables
 {
-    FMDatabase *db = [DLDbManager openDb:configuration.dbPath];
+    DLog(@"datownia: synchronizing tables");
+    FMDatabase *db = [DLDbManager openSyncedDb:configuration.dbPath];
     
     NSString *sql = @"SELECT tablename, seq FROM table_def";
     
     FMResultSet *rs = [db executeQuery:sql];
     
-    NSMutableArray *sqlLines = [NSMutableArray array];
+    //read all the table first into an array so the db is not locked waiting for remote calls
+    NSMutableArray *tableDef = [NSMutableArray array];
     while ([rs next])
     {
-        DLDocService *docService = [[DLDocService alloc] initWithConfiguration:self.configuration];
-        
         NSString *tableName = [rs stringForColumnIndex:0];
         
-        NSUInteger seq = [rs intForColumnIndex:1];
+        NSNumber *seq = [NSNumber numberWithInt:[rs intForColumnIndex:1]];
+        
+        NSArray *tableDefRow = [NSArray arrayWithObjects:tableName, seq, nil];
+        
+        [tableDef addObject:tableDefRow];
+    
+    }
+    
+    NSMutableArray *sqlLines = [NSMutableArray array];
+    for (NSArray *tableDefRow in tableDef) {
+        DLDocService *docService = [[DLDocService alloc] initWithConfiguration:self.configuration];
+        
+        NSString *tableName = [tableDefRow objectAtIndex:0];
+        
+        NSUInteger seq = [[tableDefRow objectAtIndex:1] intValue];
+        
+        DLog(@"datownia: synchronizing %@", tableName);
         
         NSArray *parts = [tableName componentsSeparatedByString:@"_"];
         
@@ -158,8 +176,6 @@
             [sqlLines addObjectsFromArray:lines];
             //DLog(@"%@",sql);
         }
-        
-        
     }
 
     for (NSString *sqlLine in sqlLines) {
@@ -173,6 +189,8 @@
         }
         
     }
+    
+    DLog(@"datownia: done synchronizing tables");
 }
 
 
