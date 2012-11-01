@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 #import "sqlite3.h"
-#import "FMResultSet.h"
+#import "DLFMResultSet.h"
 
-@interface FMDatabase : NSObject 
+@interface DLFMDatabase : NSObject 
 {
 	sqlite3*    db;
 	NSString*   databasePath;
@@ -92,7 +92,7 @@
 
 @end
 
-@interface FMStatement : NSObject {
+@interface DLFMStatement : NSObject {
     sqlite3_stmt *statement;
     NSString *query;
     long useCount;

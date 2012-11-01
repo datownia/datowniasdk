@@ -1,17 +1,17 @@
-#import "FMResultSet.h"
-#import "FMDatabase.h"
+#import "DLFMResultSet.h"
+#import "DLFMDatabase.h"
 #import "unistd.h"
 
-@interface FMResultSet (Private)
+@interface DLFMResultSet (Private)
 - (NSMutableDictionary *)columnNameToIndexMap;
 - (void)setColumnNameToIndexMap:(NSMutableDictionary *)value;
 @end
 
-@implementation FMResultSet
+@implementation DLFMResultSet
 
-+ (id) resultSetWithStatement:(FMStatement *)statement usingParentDatabase:(FMDatabase*)aDB {
++ (id) resultSetWithStatement:(DLFMStatement *)statement usingParentDatabase:(DLFMDatabase*)aDB {
     
-    FMResultSet *rs = [[FMResultSet alloc] init];
+    DLFMResultSet *rs = [[DLFMResultSet alloc] init];
     
     [rs setStatement:statement];
     [rs setParentDB:aDB];
@@ -290,7 +290,7 @@
 	return [NSString stringWithUTF8String: sqlite3_column_name(statement.statement, columnIdx)];
 }
 
-- (void)setParentDB:(FMDatabase *)newDb {
+- (void)setParentDB:(DLFMDatabase *)newDb {
     parentDB = newDb;
 }
 
@@ -311,11 +311,11 @@
     columnNameToIndexMap = value;
 }
 
-- (FMStatement *) statement {
+- (DLFMStatement *) statement {
     return statement;
 }
 
-- (void)setStatement:(FMStatement *)value {
+- (void)setStatement:(DLFMStatement *)value {
     if (statement != value) {
         statement = value;
     }

@@ -10,9 +10,9 @@
 #import "LROAuth2Client.h"
 #import "LROAuth2AccessToken.h"
 #import "LRURLRequestOperation.h"
-#import "FileDownloader.h"
+#import "DLFileDownloader.h"
 #import "DLDbManager.h"
-#import "TextDownloader.h"
+#import "DLTextDownloader.h"
 #import "JSONKit.h"
 #import "DLDocument.h"
 #import "DLDocService.h"
@@ -64,11 +64,11 @@
 //note: this is temporary until the api can support adding them to the sequence table itself
 - (void) storeSeq
 {
-    FMDatabase *db = [DLDbManager openSyncedDb:configuration.dbPath];
+    DLFMDatabase *db = [DLDbManager openSyncedDb:configuration.dbPath];
     
     NSString *sql = @"SELECT name FROM sqlite_master WHERE type='table'";
     
-    FMResultSet *rs = [db executeQuery:sql];
+    DLFMResultSet *rs = [db executeQuery:sql];
     
     NSMutableArray *docs = [NSMutableArray array];
     
@@ -105,11 +105,11 @@
 
 - (void) ensureTableDefTable
 {
-    FMDatabase *db = [DLDbManager openSyncedDb:configuration.dbPath];
+    DLFMDatabase *db = [DLDbManager openSyncedDb:configuration.dbPath];
     
     NSString *sql = @"SELECT name FROM sqlite_master WHERE type='table' and name = 'table_def';";
     
-    FMResultSet *rs = [db executeQuery:sql];
+    DLFMResultSet *rs = [db executeQuery:sql];
     
     BOOL tableDefFound = NO;
     while ([rs next]) {
@@ -128,11 +128,11 @@
 - (void) synchronizeTables
 {
     DLog(@"datownia: synchronizing tables");
-    FMDatabase *db = [DLDbManager openSyncedDb:configuration.dbPath];
+    DLFMDatabase *db = [DLDbManager openSyncedDb:configuration.dbPath];
     
     NSString *sql = @"SELECT tablename, seq FROM table_def";
     
-    FMResultSet *rs = [db executeQuery:sql];
+    DLFMResultSet *rs = [db executeQuery:sql];
     
     //read all the table first into an array so the db is not locked waiting for remote calls
     NSMutableArray *tableDef = [NSMutableArray array];
@@ -212,7 +212,7 @@
 {
     
     
-    FileDownloader *downloader = [[FileDownloader alloc] initWithUrl:endpoint downloadTo:self.configuration.dbPath withDelegate:self];
+    DLFileDownloader *downloader = [[DLFileDownloader alloc] initWithUrl:endpoint downloadTo:self.configuration.dbPath withDelegate:self];
     [downloader.request setHTTPMethod:@"GET"];
     [downloader.request setValue:self.configuration.appKey forHTTPHeaderField:@"client_id"];
     [downloader.request setValue:auth forHTTPHeaderField:@"Authorization"];

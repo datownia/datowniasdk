@@ -4,9 +4,9 @@
 //  Based on code found on the internet. Not sure who original author was
 //
 
-#import "Base64.h"
+#import "DLBase64.h"
 
-@implementation Base64
+@implementation DLBase64
 
 #define ArrayLength(x) (sizeof(x)/sizeof(*(x)))
 
@@ -14,7 +14,7 @@ static char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvw
 static char decodingTable[128];
 
 + (void) initialize {
-	if (self == [Base64 class]) {
+	if (self == [DLBase64 class]) {
 		memset(decodingTable, 0, ArrayLength(decodingTable));
 		for (NSInteger i = 0; i < ArrayLength(encodingTable); i++) {
 			decodingTable[encodingTable[i]] = i;

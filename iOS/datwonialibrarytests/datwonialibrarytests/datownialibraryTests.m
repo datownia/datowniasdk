@@ -8,7 +8,7 @@
 
 #import "datownialibraryTests.h"
 #import <datownialibrary/datownialibrary.h>
-#import <datownialibrary/FMDatabase.h>
+#import <datownialibrary/DLFMDatabase.h>
 #import <datownialibrary/DLDbManager.h>
 
 @implementation datownialibraryTests
@@ -104,7 +104,7 @@
 
 - (void) sequenceTest
 {
-    FMDatabase *db = [DLDbManager openSyncedDb:[self getDbPath]];
+    DLFMDatabase *db = [DLDbManager openSyncedDb:[self getDbPath]];
     
     NSString *sql = @"update table_def set seq = 0;";
 

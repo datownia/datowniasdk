@@ -7,7 +7,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface Base64 : NSObject {
+@interface DLBase64 : NSObject {
 
 }
 

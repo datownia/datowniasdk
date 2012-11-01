@@ -1,12 +1,12 @@
 #import <Foundation/Foundation.h>
 #import "sqlite3.h"
 
-@class FMDatabase;
-@class FMStatement;
+@class DLFMDatabase;
+@class DLFMStatement;
 
-@interface FMResultSet : NSObject {
-    FMDatabase *parentDB;
-    FMStatement *statement;
+@interface DLFMResultSet : NSObject {
+    DLFMDatabase *parentDB;
+    DLFMStatement *statement;
     
     NSString *query;
     NSMutableDictionary *columnNameToIndexMap;
@@ -14,17 +14,17 @@
 }
 
 
-+ (id) resultSetWithStatement:(FMStatement *)statement usingParentDatabase:(FMDatabase*)aDB;
++ (id) resultSetWithStatement:(DLFMStatement *)statement usingParentDatabase:(DLFMDatabase*)aDB;
 
 - (void) close;
 
 - (NSString *)query;
 - (void)setQuery:(NSString *)value;
 
-- (FMStatement *)statement;
-- (void)setStatement:(FMStatement *)value;
+- (DLFMStatement *)statement;
+- (void)setStatement:(DLFMStatement *)value;
 
-- (void)setParentDB:(FMDatabase *)newDb;
+- (void)setParentDB:(DLFMDatabase *)newDb;
 
 - (BOOL) next;
 - (BOOL) hasAnotherRow;

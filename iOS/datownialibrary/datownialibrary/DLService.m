@@ -8,7 +8,7 @@
 
 #import "DLService.h"
 #import "LROAuth2/LROAuth2AccessToken.h"
-#import "TextDownloader.h"
+#import "DLTextDownloader.h"
 #import "JSONKit.h"
 
 @interface DLService()
@@ -130,7 +130,7 @@
     
     NSString *auth = [self getAuth:scope];
     
-    TextDownloader *downloader = [[TextDownloader alloc] initWithUrl:endpoint withDelegate:self];
+    DLTextDownloader *downloader = [[DLTextDownloader alloc] initWithUrl:endpoint withDelegate:self];
     [downloader.request setHTTPMethod:@"GET"];
     [downloader.request setValue:self.configuration.appKey forHTTPHeaderField:@"client_id"];
     [downloader.request setValue:auth forHTTPHeaderField:@"Authorization"];
@@ -187,7 +187,7 @@
     
 }
 
--(void) fileDownloadError:(enum DownloadResult) result source:(id)source
+-(void) fileDownloadError:(enum DLDownloadResult) result source:(id)source
 {
     requesting = false;
 

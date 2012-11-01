@@ -7,7 +7,7 @@
 #import <Foundation/Foundation.h>
 #import "DownloaderDelegate.h"
 
-@interface FileDownloader : NSObject {
+@interface DLFileDownloader : NSObject {
 	NSString *urlString;
 	NSString *outputPath;
 //	NSMutableData *receivedData;
@@ -20,12 +20,12 @@
 
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) NSString *outputPath;
-@property (nonatomic, assign) id<DownloaderDelegate> delegate; //weak
+@property (nonatomic, assign) id<DLDownloaderDelegate> delegate; //weak
 @property (nonatomic, readonly) BOOL complete;
 @property (weak, nonatomic, readonly) NSError *lastError;
 @property (nonatomic, strong) NSMutableURLRequest *request;
 
--(id) initWithUrl:(NSURL *)aUrl downloadTo:(NSString *)aOutputPath withDelegate:(id<DownloaderDelegate>)aDelegate;
+-(id) initWithUrl:(NSURL *)aUrl downloadTo:(NSString *)aOutputPath withDelegate:(id<DLDownloaderDelegate>)aDelegate;
 -(void) download;
 -(void) deleteFileAtPath:(NSString *)filePath; 
 

@@ -16,7 +16,7 @@
 #import "LROAuth2Client.h"
 #import "DownloaderDelegate.h"
 
-@interface DLService : NSObject  <LROAuth2ClientDelegate, DownloaderDelegate>
+@interface DLService : NSObject  <LROAuth2ClientDelegate, DLDownloaderDelegate>
 {
     LROAuth2Client *client;
     BOOL requesting;

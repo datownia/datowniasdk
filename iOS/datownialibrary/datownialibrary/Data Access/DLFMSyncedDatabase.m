@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 datownia. All rights reserved.
 //
 
-#import "FMSyncedDatabase.h"
+#import "DLFMSyncedDatabase.h"
 
-@implementation FMSyncedDatabase
+@implementation DLFMSyncedDatabase
 
 
 - (BOOL) open

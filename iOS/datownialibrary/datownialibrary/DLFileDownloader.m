@@ -4,17 +4,17 @@
 //  Copyright 2010 Release Consulting. All rights reserved.
 //
 
-#import "FileDownloader.h"
-#import "Base64.h"
+#import "DLFileDownloader.h"
+#import "DLBase64.h"
 
-@interface FileDownloader()
+@interface DLFileDownloader()
 
 @property (nonatomic, strong) NSFileHandle *fileHandle;
 //@property (nonatomic, retain) NSDate *lastProgressDate;
 
 @end
 
-@implementation FileDownloader
+@implementation DLFileDownloader
 
 @synthesize url;
 @synthesize outputPath;
@@ -22,7 +22,7 @@
 @synthesize complete, lastError, fileHandle;
 @synthesize request;
 
--(id) initWithUrl:(NSURL *)aUrl downloadTo:(NSString *)aOutputPath withDelegate:(id<DownloaderDelegate>)aDelegate
+-(id) initWithUrl:(NSURL *)aUrl downloadTo:(NSString *)aOutputPath withDelegate:(id<DLDownloaderDelegate>)aDelegate
 {
 	self.url = aUrl;
 	self.delegate = aDelegate;
@@ -122,7 +122,7 @@
 		// inform the user that the download could not be made
 		DLog(@"Connection could not be made");
 		complete = YES;
-		[delegate fileDownloadError:DownloadResult_ConnectionFailed source:self];
+		[delegate fileDownloadError:DLDownloadResult_ConnectionFailed source:self];
 		
 	}
 }
@@ -210,7 +210,7 @@
     // inform the user
 	complete = YES;
 	lastError = error;
-	[delegate fileDownloadError:DownloadResult_HttpError source:self];
+	[delegate fileDownloadError:DLDownloadResult_HttpError source:self];
 
     NSLog(@"Connection failed! Error - %i %@ %@",
 		 [error code], [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
@@ -252,7 +252,7 @@
         if (error)
         {
             NSLog(@"error copying temp file to output file: %@", outputPath);
-            [delegate fileDownloadError:DownloadResult_HttpError source:self];
+            [delegate fileDownloadError:DLDownloadResult_HttpError source:self];
             return;
         }
 

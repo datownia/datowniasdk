@@ -1,7 +1,7 @@
-#import "FMDatabase.h"
+#import "DLFMDatabase.h"
 #import "unistd.h"
 
-@implementation FMDatabase
+@implementation DLFMDatabase
 
 + (id)databaseWithPath:(NSString*)aPath {
     return [[self alloc] initWithPath:aPath];
@@ -97,7 +97,7 @@
 - (void) clearCachedStatements {
     
     NSEnumerator *e = [cachedStatements objectEnumerator];
-    FMStatement *cachedStmt;
+    DLFMStatement *cachedStmt;
 
     while ((cachedStmt = [e nextObject])) {
     	[cachedStmt close];
@@ -106,11 +106,11 @@
     [cachedStatements removeAllObjects];
 }
 
-- (FMStatement*) cachedStatementForQuery:(NSString*)query {
+- (DLFMStatement*) cachedStatementForQuery:(NSString*)query {
     return [cachedStatements objectForKey:query];
 }
 
-- (void) setCachedStatement:(FMStatement*)statement forQuery:(NSString*)query {
+- (void) setCachedStatement:(DLFMStatement*)statement forQuery:(NSString*)query {
     //NSLog(@"setting query: %@", query);
     query = [query copy]; // in case we got handed in a mutable string...
     [statement setQuery:query];
@@ -157,7 +157,7 @@
         return NO;
     }
     
-    FMResultSet *rs = [self executeQuery:@"select name from sqlite_master where type='table'"];
+    DLFMResultSet *rs = [self executeQuery:@"select name from sqlite_master where type='table'"];
     
     if (rs) {
         [rs close];
@@ -255,11 +255,11 @@
     
     [self setInUse:YES];
     
-    FMResultSet *rs = nil;
+    DLFMResultSet *rs = nil;
     
     int rc                  = 0x00;;
     sqlite3_stmt *pStmt     = 0x00;;
-    FMStatement *statement  = 0x00;
+    DLFMStatement *statement  = 0x00;
     
     if (traceExecution && sql) {
         NSLog(@"%@ executeQuery: %@", self, sql);
@@ -345,7 +345,7 @@
      
     
     if (!statement) {
-        statement = [[FMStatement alloc] init];
+        statement = [[DLFMStatement alloc] init];
         [statement setStatement:pStmt];
         
         if (shouldCacheStatements) {
@@ -354,7 +354,7 @@
     }
     
     // the statement gets close in rs's dealloc or [rs close];
-    rs = [FMResultSet resultSetWithStatement:statement usingParentDatabase:self];
+    rs = [DLFMResultSet resultSetWithStatement:statement usingParentDatabase:self];
     [rs setQuery:sql];
     
     statement.useCount = statement.useCount + 1;
@@ -390,7 +390,7 @@
     
     int rc                   = 0x00;
     sqlite3_stmt *pStmt      = 0x00;
-    FMStatement *cachedStmt = 0x00;
+    DLFMStatement *cachedStmt = 0x00;
     
     if (traceExecution && sql) {
         NSLog(@"%@ executeUpdate: %@", self, sql);
@@ -519,7 +519,7 @@
     
     
     if (shouldCacheStatements && !cachedStmt) {
-        cachedStmt = [[FMStatement alloc] init];
+        cachedStmt = [[DLFMStatement alloc] init];
         
         [cachedStmt setStatement:pStmt];
         
@@ -686,7 +686,7 @@
 
 
 
-@implementation FMStatement
+@implementation DLFMStatement
 
 - (void)dealloc {
 	[self close];

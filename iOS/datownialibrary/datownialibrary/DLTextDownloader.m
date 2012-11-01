@@ -6,9 +6,9 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "TextDownloader.h"
+#import "DLTextDownloader.h"
 
-@implementation TextDownloader
+@implementation DLTextDownloader
 
 @synthesize postData;
 @synthesize receivedData;
@@ -17,7 +17,7 @@
 @synthesize lastError;
 @synthesize request;
 
--(id) initWithUrl:(NSURL *)aUrl withDelegate:(id<DownloaderDelegate>)aDelegate
+-(id) initWithUrl:(NSURL *)aUrl withDelegate:(id<DLDownloaderDelegate>)aDelegate
 {
 	self.delegate = aDelegate;
     
@@ -28,7 +28,7 @@
 	return [self init];
 }
 
--(id) initWithUrl:(NSURL *)aUrl postData:(NSString *)thePostData withDelegate:(id<DownloaderDelegate>)aDelegate
+-(id) initWithUrl:(NSURL *)aUrl postData:(NSString *)thePostData withDelegate:(id<DLDownloaderDelegate>)aDelegate
 {
 	self.postData = thePostData;
     
@@ -72,7 +72,7 @@
 		complete = YES;
 		// inform the user that the download could not be made
 		DLog(@"Connection could not be made");
-		[delegate fileDownloadError:DownloadResult_ConnectionFailed source:self];
+		[delegate fileDownloadError:DLDownloadResult_ConnectionFailed source:self];
 		
 	}
 }
@@ -156,7 +156,7 @@
     // inform the user
 	complete = YES;
 	lastError = error;
-	[delegate fileDownloadError:DownloadResult_HttpError source:self];
+	[delegate fileDownloadError:DLDownloadResult_HttpError source:self];
 
 	
     DLog(@"Connection failed! Error - %i %@ %@",

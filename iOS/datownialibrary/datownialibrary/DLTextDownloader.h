@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DownloaderDelegate.h"
 
-@interface TextDownloader : NSObject {
+@interface DLTextDownloader : NSObject {
 	NSString *urlString;
 	NSString *outputString;
 	NSString *postData;
@@ -21,14 +21,14 @@
 
 //@property (nonatomic, strong) NSString *outputString;
 @property (nonatomic, strong) NSString *postData;
-@property (nonatomic, assign) id<DownloaderDelegate> delegate;
+@property (nonatomic, assign) id<DLDownloaderDelegate> delegate;
 @property (nonatomic, readonly) BOOL complete;
 @property (nonatomic, readonly) NSError *lastError;
 @property (nonatomic, strong) NSMutableURLRequest *request;
 @property (nonatomic, strong) NSMutableData *receivedData;
 
--(id) initWithUrl:(NSURL *)aUrl withDelegate:(id<DownloaderDelegate>)aDelegate;
--(id) initWithUrl:(NSURL *)aUrl postData:(NSString *)postData withDelegate:(id<DownloaderDelegate>)aDelegate;
+-(id) initWithUrl:(NSURL *)aUrl withDelegate:(id<DLDownloaderDelegate>)aDelegate;
+-(id) initWithUrl:(NSURL *)aUrl postData:(NSString *)postData withDelegate:(id<DLDownloaderDelegate>)aDelegate;
 
 -(void) download;
 

@@ -9,8 +9,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FMDatabase.h"
+#import "DLFMDatabase.h"
 
-@interface FMSyncedDatabase : FMDatabase
+@interface DLFMSyncedDatabase : DLFMDatabase
 
 @end

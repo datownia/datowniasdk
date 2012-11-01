@@ -7,7 +7,7 @@
 //
 
 #import "DLDbManager.h"
-#import "FMSyncedDatabase.h"
+#import "DLFMSyncedDatabase.h"
 
 @implementation DLDbManager
 
@@ -28,9 +28,9 @@
 //	return userPath;
 //}
 
-+ (FMDatabase *) openSyncedDb:(NSString *)dbPath  
++ (DLFMDatabase *) openSyncedDb:(NSString *)dbPath  
 {
-	FMDatabase* db = [FMSyncedDatabase databaseWithPath:dbPath];
+	DLFMDatabase* db = [DLFMSyncedDatabase databaseWithPath:dbPath];
 	if (![db open]) {
 		[NSException raise:@"DbOpenError" format:@"Could not open db."];
 		[db setShouldCacheStatements:NO];
