@@ -6,9 +6,9 @@ The following documentation is for general use of datownia apis rather than usin
 
 To get going really quickly you can use HTTP basic authentication and the [CURL](http://curl.haxx.se) command.
 
-### Get first 25 records in a dataset:
+### Get first 5 records in a dataset:
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue?offset=0&limit=25"
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue?offset=0&limit=5"
 ```
 
 returns
@@ -52,11 +52,11 @@ returns
     "root": "willstoyscatalogue^~^catalogue",
     "apiVersion": "1.0",
     "type": "document",
-    "limit": 25,
+    "limit": 5,
     "offset": 0,
     "pageNumber": 1,
-    "pageCount": 1,
-    "numRowsInContents": 12,
+    "pageCount": 3,
+    "numRowsInContents": 5,
     "contents": [
         [
             "373 Vineyard Drive, Mayfield Heights, OH 44124",
@@ -94,7 +94,30 @@ returns
             8477853853,
             "eaf1f697f73ee25318dff424dd5d8bdc"
         ],
-        ...
+        [
+            "2178 Thompson Drive, Oakland, CA 94601",
+            "yes",
+            "37.821722, -122.208125",
+            "http://www.wills-toys.com/images/das.jpg",
+            17.99,
+            "Prepare for battle just like the Iron Man character does",
+            "Iron Man Arc Chest Light",
+            5,
+            1374737813,
+            "46504e6061a35d8e25f9792d5a0aea6c"
+        ],
+        [
+            "2178 Thompson Drive, Oakland, CA 94601",
+            "yes",
+            "37.821722, -122.208125",
+            "http://www.wills-toys.com/images/4gf.jpg",
+            69.99,
+            "Minecraft was the fastest growing online game in 2012",
+            "LEGO Minecraft 21102",
+            12,
+            9583638582,
+            "d3e5e17d78d86eb6a05290771d1fcdbe"
+        ]
     ]
 }
 ```
@@ -103,7 +126,127 @@ Note: in this example app key = b317eac00b and app secret = 5156a8e80e . In a re
 
 You may also use OAuth 2 authentication with a client credentials grant, using your app key and secret.
 
-TODO CURL examples here
+### Get entire dataset as a sqlite database
+```
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/willstoyscatalogue/catalogue.sqlite" > test.sqlite
+```
+This will create a sqlite db file with two tables.
+1. example/willstoyscatalogue/catalogue_2.0. This contains your dataset
+2. table_def.  This tracks the last seq number for each table in the database. This can be used to call the delta api passing in the seq value in this table
+
+### Keep your database up to date with the delta api
+```
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue?seq=0"
+```
+
+returns
+```json
+[
+    {
+        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_1",
+        "_rev": "1-edc64811fd6ce7e92a12f48b52d3f587",
+        "type": "delta",
+        "parent": "willstoyscatalogue^~^catalogue_2.0",
+        "seq": 1,
+        "action": "insert",
+        "data": [
+            "373 Vineyard Drive, Mayfield Heights, OH 44124",
+            "yes",
+            "Five activation points start the excitement all over the Batcave",
+            "41.475136, -81.369677",
+            "http://www.wills-toys.com/images/abd.jpg",
+            "Fisher-Price Imaginext Bat Cave",
+            50.99,
+            10,
+            2311835075,
+            "950739696db9aa48dfd37c06cbfe3c46"
+        ]
+    },
+    {
+        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_2",
+        "_rev": "1-eaf91d9f27691a2844e1e73c96cf2472",
+        "type": "delta",
+        "parent": "willstoyscatalogue^~^catalogue_2.0",
+        "seq": 2,
+        "action": "insert",
+        "data": [
+            "373 Vineyard Drive, Mayfield Heights, OH 44124",
+            "no",
+            "This mesmerizing maze of safe, soft, continuous tubes is perfect for a teething baby to chew on",
+            "41.475136, -81.369677",
+            "http://www.wills-toys.com/images/gr2.jpg",
+            "Manhattan Toy Winkel",
+            11.5,
+            10,
+            9054297547,
+            "4c7ec7f51c7eda0f1e854a240436e210"
+        ]
+    },
+    {
+        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_3",
+        "_rev": "1-a49898ede6670445033d49e45239ff6c",
+        "type": "delta",
+        "parent": "willstoyscatalogue^~^catalogue_2.0",
+        "seq": 3,
+        "action": "insert",
+        "data": [
+            "373 Vineyard Drive, Mayfield Heights, OH 44124",
+            "yes",
+            "Explore the potential of solar power with this neat science kit",
+            "41.475136, -81.369677",
+            "http://www.wills-toys.com/images/ef6.jpg",
+            "OWI Frightened Grasshopper Kit - Solar Powered",
+            1.99,
+            22,
+            1682277334,
+            "41142d168acd857313dbfa64e73e62d5"
+        ]
+    },
+    {
+        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_4",
+        "_rev": "1-fec13ddee2188e07d7295b26de4b43c3",
+        "type": "delta",
+        "parent": "willstoyscatalogue^~^catalogue_2.0",
+        "seq": 4,
+        "action": "delete",
+        "data": "3f30ab289441af1b95cd1bcdedce3cbc"
+    },
+    {
+        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_5",
+        "_rev": "1-70b65ff969153960f17f842492cf9505",
+        "type": "delta",
+        "parent": "willstoyscatalogue^~^catalogue_2.0",
+        "seq": 5,
+        "action": "delete",
+        "data": "7afad753056737c44c90c1767b1e5de3"
+    },
+    {
+        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_6",
+        "_rev": "1-39e9cff02e5d6d3c1f8bb76641f39883",
+        "type": "delta",
+        "parent": "willstoyscatalogue^~^catalogue_2.0",
+        "seq": 6,
+        "action": "delete",
+        "data": "7c738a17d0019be20f5bf9595954cc9e"
+    }
+]
+```
+Note: The ```seq``` field is a unique point in the datasets history. Use the ```seq``` parameter when calling the delta api to get all changes since that seq number
+
+OR, you can get the sql statements you need to apply to your database direcly:
+```
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue.sql?seq=0"
+```
+```sql
+replace into [willstoyscatalogue/catalogue_2.0] ([addressOfStore],[availableForPickup],[description],[geocodeOfStore],[imageUrl],[name],[price],[stockLevel],[upc], [_id]) values ('373 Vineyard Drive, Mayfield Heights, OH 44124','yes','Five activation points start the excitement all over the Batcave','41.475136, -81.369677','http://www.wills-toys.com/images/abd.jpg','Fisher-Price Imaginext Bat Cave','50.99','10','2311835075','950739696db9aa48dfd37c06cbfe3c46');
+replace into [willstoyscatalogue/catalogue_2.0] ([addressOfStore],[availableForPickup],[description],[geocodeOfStore],[imageUrl],[name],[price],[stockLevel],[upc], [_id]) values ('373 Vineyard Drive, Mayfield Heights, OH 44124','no','This mesmerizing maze of safe, soft, continuous tubes is perfect for a teething baby to chew on','41.475136, -81.369677','http://www.wills-toys.com/images/gr2.jpg','Manhattan Toy Winkel','11.5','10','9054297547','4c7ec7f51c7eda0f1e854a240436e210');
+replace into [willstoyscatalogue/catalogue_2.0] ([addressOfStore],[availableForPickup],[description],[geocodeOfStore],[imageUrl],[name],[price],[stockLevel],[upc], [_id]) values ('373 Vineyard Drive, Mayfield Heights, OH 44124','yes','Explore the potential of solar power with this neat science kit','41.475136, -81.369677','http://www.wills-toys.com/images/ef6.jpg','OWI Frightened Grasshopper Kit - Solar Powered','1.99','22','1682277334','41142d168acd857313dbfa64e73e62d5');
+delete from [example/willstoyscatalogue/catalogue_2.0] where _id = '3f30ab289441af1b95cd1bcdedce3cbc';
+delete from [example/willstoyscatalogue/catalogue_2.0] where _id = '7afad753056737c44c90c1767b1e5de3';
+delete from [example/willstoyscatalogue/catalogue_2.0] where _id = '7c738a17d0019be20f5bf9595954cc9e';
+replace into [table_def] (tablename, seq) values ('willstoyscatalogue/catalogue_2.0', 6);
+
+```
 
 ##API Information Guide
 
