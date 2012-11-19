@@ -1,8 +1,107 @@
-The repository contains the datownia SDK and code samples showing how to use datownia directly without the SDK. 
+The datownia github repository contains the datownia SDK and code samples showing how to use datownia directly without the SDK. 
 
-The following documentation is for general use of datownia apis rather than using the SDKs. SDK documentation will be found in the relevant SDK folder.
+The following documentation is for general use of datownia apis rather than using the SDKs. SDK documentation will be found in the relevant SDK section of the github repository.
 
 ##API Usage Quickstart
+
+To get going really quickly you can use HTTP basic authentication and the [CURL](http://curl.haxx.se) command.
+
+### Get first 25 records in a dataset:
+```
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue?offset=0&limit=25"
+```
+
+returns
+```json
+{
+    "_id": "willstoyscatalogue^~^catalogue_1.0",
+    "_rev": "4-cc64a12b2c7b681b140b5bac0b50f76f",
+    "fieldListDocOrder": [
+        "UPC",
+        "Product name",
+        "Product Description",
+        "Image URL",
+        "Stock level",
+        "Price",
+        "Address of Store",
+        "Geocode of store",
+        "Available for pick up"
+    ],
+    "fieldList": [
+        "Address of Store",
+        "Available for pick up",
+        "Geocode of store",
+        "Image URL",
+        "Price",
+        "Product Description",
+        "Product name",
+        "Stock level",
+        "UPC"
+    ],
+    "name": "willstoyscatalogue^~^catalogue",
+    "published": true,
+    "fileSize": 0,
+    "fileCreated": "2012-11-06 15:11:02Z",
+    "fileModified": "2012-11-19 14:42:44Z",
+    "fileRevision": "260af68265",
+    "fileName": "willstoyscatalogue",
+    "rows": 12,
+    "contentChecksum": "394f90f6f444bf77f7a3c64ce2af2273",
+    "timestamp": "2012-11-19 14:42:44Z",
+    "seq": 2,
+    "root": "willstoyscatalogue^~^catalogue",
+    "apiVersion": "1.0",
+    "type": "document",
+    "limit": 25,
+    "offset": 0,
+    "pageNumber": 1,
+    "pageCount": 1,
+    "numRowsInContents": 12,
+    "contents": [
+        [
+            "373 Vineyard Drive, Mayfield Heights, OH 44124",
+            "yes",
+            "41.475136, -81.369677",
+            "http://www.wills-toys.com/images/abd.jpg",
+            54.99,
+            "Five activation points start the excitement all over the Batcave",
+            "Fisher-Price Imaginext Bat Cave",
+            10,
+            2311835075,
+            "d4203af75b2ee5a431e3e4306d931caf"
+        ],
+        [
+            "373 Vineyard Drive, Mayfield Heights, OH 44124",
+            "yes",
+            "41.475136, -81.369677",
+            "http://www.wills-toys.com/images/cde.jpg",
+            17.99,
+            "New sonic screwdriver is larger than previous ones",
+            "Dr. Who: The Eleventh Doctor's Sonic Screwdriver",
+            4,
+            1349876583,
+            "b49bc161e3f4f03e07d49e4264be6dd0"
+        ],
+        [
+            "2178 Thompson Drive, Oakland, CA 94601",
+            "yes",
+            "37.821722, -122.208125",
+            "http://www.wills-toys.com/images/fdg.jpg",
+            11.99,
+            "Hollywood has never seen a spud stud like this before",
+            "Playskool Toy Story 3 Classic Mr. Potato Head",
+            24,
+            8477853853,
+            "eaf1f697f73ee25318dff424dd5d8bdc"
+        ],
+        ...
+    ]
+}
+```
+
+Note: in this example app key = b317eac00b and app secret = 5156a8e80e . In a real world use you will have your own app key and secret
+
+You may also use OAuth 2 authentication with a client credentials grant, using your app key and secret.
 
 TODO CURL examples here
 
