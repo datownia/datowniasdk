@@ -112,32 +112,22 @@ method request</td></tr>
 
 ### 4. API Methods
 
-<table>
-<tr><th>Method</th><th>Parameters</th><th>Purpose</th></tr>
+#### Dataset method
 
-<tr><td>Metadata</td><td>?metadataonly=y</td><td>Returns the metadata of an API,
-- Header information
-- Field name list (original order and doc order)</td></tr>
+To call the dataset method the url is constructed like:
 
-<tr><td>Sample Data</td><td>?sampledata=y</td><td>Returns the first two rows of data along with the
+> https://www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue
+
+Optional query string parameters are:
+
+<table><tr><th>Parameter</th><th>Example</th><th>Detail</th></tr>
+<tr><td>metadataonly</td><td>?metadataonly=y</td><td>Returns only the metadata of an API and none of the rows</td></tr>
+<tr><td>sampledata</td><td>?sampledata=y</td><td>Returns the first two rows of data along with the
 metadata of an API</td></tr>
-
-<tr><td>Search By Field Value</td><td>?field=a&value=x</td><td>Returns rows of data from an API where a field
-name equals a particular value</td></tr>
-
-<tr><td>Search By Field Range</td><td>?field=a&from=x&to=y</td><td>Returns rows of data from an API where a field
-name value is within a particular range</td></tr>
-
-<tr><td>Metadata</td><td>?metadataonly=y</td><td>Returns the metadata of an API,
-- Header information
-- Field name list (original order and doc order)</td></tr>
-
-<tr><td>Paged Query</td><td>?offset=x&limit=y</td><td>Returns a subset of data from an API
+<tr><td>field and value</td><td>?field=a&value=x</td><td>Returns rows where a=x</td></tr>
+<tr><td>field, from and to</td><td>?field=a&from=x&to=y/td><td>Returns rows where x&lt;=a&lt;=y</td></tr>
+<tr><td>q (query)</td><td>?q=price:[17.99 to 21.99] AND address:"Vineyard"</td><td>Lucene style search. See <a href="http://lucene.apache.org/core/old_versioned_docs/versions/2_9_1/queryparsersyntax.html">here</a> for syntax</td></tr>
+<tr><td>offset and limit</td><td>?offset=x&limit=y</td><td>Returns a subset of data from an API
 Data row start point specified by offset
 Number of rows returned specified by limit</td></tr>
-
-<tr><td>Delta API</td><td>?offset=x&limit=y&seq=z</td><td>Contains a list of all the changes that have been
-to the data in an API.
-See the Detla API section for more detail</td></tr>
-
 </table>
