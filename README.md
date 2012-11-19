@@ -397,7 +397,7 @@ The Delta API can return either JSON or a set of SQL statements in the SQlite do
 To access the Delta API the name “delta” needs to be added to the path in the API Maker URL as
 follows:
 ```
-https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue?seq=0
+https://www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue?seq=0
 ```
 ### 6. Error Return Codes
 
@@ -410,4 +410,12 @@ https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoy
 <tr><td>500</td><td>Server error - could be a temporal issue, such as a network issue, so may be resolved by repeating the request</td></tr>
 </table>
 
+### 7. SQlite Download
 
+The data in an API can be downloaded as SQlite instead of JSON, this is done by appending “sqlite”
+to the filename in the API Maker URL as follows:
+
+https://www.datownia.com/api/doc/example/version/willstoyscatalogue/catalogue.sqlite
+
+The returned database will contain a table named the same as the filename with the version number
+appended. The primary key of the table is the “_id” field
