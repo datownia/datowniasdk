@@ -63,4 +63,44 @@ branded API website</td>
 
 </table>
 
+### 3. API Metadata
 
+API Maker uses the following metadata fields to describe an API:
+
+<table>
+<tr><th>Field</th><th>Meaning</th></tr>
+<tr><td>_id</td><td>Filename and version (internal id)</td></tr>
+<tr><td>_rev</td><td>Internal revision number</td></tr>
+<tr><td>fieldList</td><td>Lists the API fields in the order that they appear in the API.
+The columns in the source file are alphabetically sorted when the API
+is created</td></tr>
+<tr><td>fieldListDocOrder</td><td>Lists the API fields in the original column order of the source file</td></tr>
+<tr><td>name</td><td>Friendly name of the API</td></tr>
+<tr><td>published</td><td>Has the api been published? Always true, but used internally</td></tr>
+<tr><td>fileSize</td><td>Size of the original source file in it’s original format</td></tr>
+<tr><td>fileCreated</td><td>The date and timestamp of when an API was first created</td></tr>
+<tr><td>fileModified</td><td>The date and timestamp of when an API was last updated</td></tr>
+<tr><td>fileRevision</td><td>Internal file revision number</td></tr>
+<tr><td>fileName</td><td>The name and extension of the original source file used to create an
+API</td></tr>
+<tr><td>rows</td><td>The number of data rows in the API</td></tr>
+<tr><td>contentChecksum</td><td>Internal checksum</td></tr>
+<tr><td>timestamp</td><td>The date and timestamp of the last time anything changed for an API</td></tr>
+<tr><td>seq</td><td>The latest delta sequence number.
+This is to be used in conjunction with the Delta API described below
+in the delta section</td></tr>
+<tr><td>root</td><td>Internal reference field</td></tr>
+<tr><td>apiVersion</td><td>The version number of the API</td></tr>
+<tr><td>type</td><td>The type of API this is. Used internally. Always 'document' currently</td></tr>
+<tr><td>limit</td><td>The number of rows requested. This may be greater than the number of rows returned if there are < limit rows. Currently defaults to 200</td></tr>
+<tr><td>offset</td><td>The first row number requested. </td></tr>
+<tr><td>pageNumber</td><td>The current page number within an API based on limit and offset
+EG pageCount = 3 if API contains 1000 rows
+and limit = 200 and offset = 400</td></tr>
+<tr><td>pageCount</td><td>The number of pages in data in the API based on the limit specified or
+defaulted.
+EG. pageNumber = 5 if API contains 1000 rows and limit = 200</td></tr>
+<tr><td>numRowsInContents</td><td>The number of rows returned in the result contents array for an API
+method request</td></tr>
+
+</table>
