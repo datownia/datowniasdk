@@ -248,7 +248,7 @@ replace into [table_def] (tablename, seq) values ('willstoyscatalogue/catalogue_
 
 ```
 
-### Get several datasets at once
+### Get several datasets at once using the App API
 
 Developers subscriptions are placed into an app. This app is where the app key and secret come from.
 If you have multiple subscriptions you may download all your datasets as one database by use the App Api.
@@ -258,6 +258,8 @@ curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac0
 ```
 
 Here example is the developers tag rather than the publishers. i.e. the account to which the app belongs.
+
+You can then use the above Delta API to synchronise each table in the database
 
 ##API Information Guide
 
