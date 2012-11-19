@@ -1,7 +1,3 @@
-The datownia github repository contains the datownia SDK and code samples showing how to use datownia directly without the SDK. 
-
-The following documentation is for general use of datownia apis rather than using the SDKs. SDK documentation will be found in the relevant SDK section of the github repository.
-
 ##API Usage Quickstart
 
 To get going really quickly you can use HTTP basic authentication and the [CURL](http://curl.haxx.se) command.
