@@ -109,3 +109,35 @@ EG. pageNumber = 5 if API contains 1000 rows and limit = 200</td></tr>
 method request</td></tr>
 
 </table>
+
+### 4. API Methods
+
+<table>
+<tr><th>Method</th><th>Parameters</th><th>Purpose</th></tr>
+
+<tr><td>Metadata</td><td>?metadataonly=y</td><td>Returns the metadata of an API,
+- Header information
+- Field name list (original order and doc order)</td></tr>
+
+<tr><td>Sample Data</td><td>?sampledata=y</td><td>Returns the first two rows of data along with the
+metadata of an API</td></tr>
+
+<tr><td>Search By Field Value</td><td>?field=a&value=x</td><td>Returns rows of data from an API where a field
+name equals a particular value</td></tr>
+
+<tr><td>Search By Field Range</td><td>?field=a&from=x&to=y</td><td>Returns rows of data from an API where a field
+name value is within a particular range</td></tr>
+
+<tr><td>Metadata</td><td>?metadataonly=y</td><td>Returns the metadata of an API,
+- Header information
+- Field name list (original order and doc order)</td></tr>
+
+<tr><td>Paged Query</td><td>?offset=x&limit=y</td><td>Returns a subset of data from an API
+Data row start point specified by offset
+Number of rows returned specified by limit</td></tr>
+
+<tr><td>Delta API</td><td>?offset=x&limit=y&seq=z</td><td>Contains a list of all the changes that have been
+to the data in an API.
+See the Detla API section for more detail</td></tr>
+
+</table>
