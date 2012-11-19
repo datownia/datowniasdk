@@ -248,6 +248,17 @@ replace into [table_def] (tablename, seq) values ('willstoyscatalogue/catalogue_
 
 ```
 
+### Get several datasets at once
+
+Developers subscriptions are placed into an app. This app is where the app key and secret come from.
+If you have multiple subscriptions you may download all your datasets as one database by use the App Api.
+
+```
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b.sqlite" > testapp.sqlite
+```
+
+Here example is the developers tag rather than the publishers. i.e. the account to which the app belongs.
+
 ##API Information Guide
 
 This section contains more detailed information for using the API’s that API Maker generates from the source
