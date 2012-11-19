@@ -23,8 +23,7 @@ Each API contains metadata:
 
 All API’s are RESTful and use common API practices such as offset and limit parameters for paging.
 
-All API’s use OAuth 2 for authentication purposes and will require OAuth 2 client integration to be
-used when calling the API. Authentication keys are required to verify each API call, these will be
+All API’s use either OAuth2 or HTTP basic authentication. Authentication keys are required to verify API calls, these will be
 provided when registering an approved application.
 
 Each application requires only one set of keys and those will cover all the API’s that have been
@@ -32,7 +31,7 @@ approved for use by that application.
 
 Note: There is currently a limit of 200 for the number of data rows that can be returned with a single
 request. Therefore, multiple requests may be needed in order to fulfil a particular function in an
-application
+application. Use limit and offset to page through results. An exception to this are the sqlite database responses which will return all records in the generated database
 
 ### 2. API URL Format
 
