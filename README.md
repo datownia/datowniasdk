@@ -1,8 +1,14 @@
-The repository contains the datownia SDK and code samples showing how to use datownia directly without the SDK.
+The repository contains the datownia SDK and code samples showing how to use datownia directly without the SDK. 
+
+The following documentation is for general use of datownia apis rather than using the SDKs. SDK documentation will be found in the relevant SDK folder.
+
+##API Usage Quickstart
+
+TODO CURL examples here
 
 ##API Information Guide
 
-This section contains information for using the API’s that API Maker generates from the source
+This section contains more detailed information for using the API’s that API Maker generates from the source
 files uploaded by the Publishers (data owners)
 
 ### 1. Overview
