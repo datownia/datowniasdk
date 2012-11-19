@@ -373,3 +373,41 @@ metadata of an API</td></tr>
 Data row start point specified by offset
 Number of rows returned specified by limit</td></tr>
 </table>
+
+### 5. Delta API
+
+Some applications keep a local cached copy of the data accessed from an API. This means that
+any changes made to the data in an API may need to be applied to those local copies. API Maker
+provides a “Delta API” to support making those changes.
+
+The Delta API contains a list of every new or removed data row for an API since it was first published.
+A change to a data row will be represented as a removal of the row with the old data values and an
+addition of a data row with the new values.
+
+The Delta API is ordered in the sequence that the changes were applied to an API and identified
+by a sequence number “seq”. This sequence number should be used when calling the API (&seq
+parameter) to return the correct set of Delta API records that need to be applied.
+
+API Maker uses an internal key “_id” to uniquely identify each row of data in an API. This key is also
+used in the Delta API. The Delta API will identify data rows to be deleted by “_id” only.
+
+The Delta API can return either JSON or a set of SQL statements in the SQlite download (see section
+7 below).
+
+To access the Delta API the name “delta” needs to be added to the path in the API Maker URL as
+follows:
+```
+https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue?seq=0
+```
+### 6. Error Return Codes
+
+<table>
+<tr><th>Error Code</th><th>Reason</th></tr>
+<tr><td>200</td><td>Okay</td></tr>
+<tr><td>400</td><td>Problem with request – in terms of bad method call</td></tr>
+<tr><td>401</td><td>Not authorised</td></tr>
+<tr><td>404</td><td>Not Found</td></tr>
+<tr><td>500</td><td>Server error - could be a temporal issue, such as a network issue, so may be resolved by repeating the request</td></tr>
+</table>
+
+
