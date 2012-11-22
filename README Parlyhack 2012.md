@@ -4,326 +4,47 @@ To get going really quickly you can use HTTP basic authentication and the [CURL]
 
 ### Get first 5 records in a dataset:
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue?offset=0&limit=5"
+curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/registermpsinterests2012-04-30/data?offset=0&limit=5"
 ```
-
-returns
-```json
-{
-    "_id": "willstoyscatalogue^~^catalogue_1.0",
-    "_rev": "4-cc64a12b2c7b681b140b5bac0b50f76f",
-    "fieldListDocOrder": [
-        "UPC",
-        "Product name",
-        "Product Description",
-        "Image URL",
-        "Stock level",
-        "Price",
-        "Address of Store",
-        "Geocode of store",
-        "Available for pick up"
-    ],
-    "fieldList": [
-        "Address of Store",
-        "Available for pick up",
-        "Geocode of store",
-        "Image URL",
-        "Price",
-        "Product Description",
-        "Product name",
-        "Stock level",
-        "UPC"
-    ],
-    "name": "willstoyscatalogue^~^catalogue",
-    "published": true,
-    "fileSize": 0,
-    "fileCreated": "2012-11-06 15:11:02Z",
-    "fileModified": "2012-11-19 14:42:44Z",
-    "fileRevision": "260af68265",
-    "fileName": "willstoyscatalogue",
-    "rows": 12,
-    "contentChecksum": "394f90f6f444bf77f7a3c64ce2af2273",
-    "timestamp": "2012-11-19 14:42:44Z",
-    "seq": 2,
-    "root": "willstoyscatalogue^~^catalogue",
-    "apiVersion": "1.0",
-    "type": "document",
-    "limit": 5,
-    "offset": 0,
-    "pageNumber": 1,
-    "pageCount": 3,
-    "numRowsInContents": 5,
-    "contents": [
-        [
-            "373 Vineyard Drive, Mayfield Heights, OH 44124",
-            "yes",
-            "41.475136, -81.369677",
-            "http://www.wills-toys.com/images/abd.jpg",
-            54.99,
-            "Five activation points start the excitement all over the Batcave",
-            "Fisher-Price Imaginext Bat Cave",
-            10,
-            2311835075,
-            "d4203af75b2ee5a431e3e4306d931caf"
-        ],
-        [
-            "373 Vineyard Drive, Mayfield Heights, OH 44124",
-            "yes",
-            "41.475136, -81.369677",
-            "http://www.wills-toys.com/images/cde.jpg",
-            17.99,
-            "New sonic screwdriver is larger than previous ones",
-            "Dr. Who: The Eleventh Doctor's Sonic Screwdriver",
-            4,
-            1349876583,
-            "b49bc161e3f4f03e07d49e4264be6dd0"
-        ],
-        [
-            "2178 Thompson Drive, Oakland, CA 94601",
-            "yes",
-            "37.821722, -122.208125",
-            "http://www.wills-toys.com/images/fdg.jpg",
-            11.99,
-            "Hollywood has never seen a spud stud like this before",
-            "Playskool Toy Story 3 Classic Mr. Potato Head",
-            24,
-            8477853853,
-            "eaf1f697f73ee25318dff424dd5d8bdc"
-        ],
-        [
-            "2178 Thompson Drive, Oakland, CA 94601",
-            "yes",
-            "37.821722, -122.208125",
-            "http://www.wills-toys.com/images/das.jpg",
-            17.99,
-            "Prepare for battle just like the Iron Man character does",
-            "Iron Man Arc Chest Light",
-            5,
-            1374737813,
-            "46504e6061a35d8e25f9792d5a0aea6c"
-        ],
-        [
-            "2178 Thompson Drive, Oakland, CA 94601",
-            "yes",
-            "37.821722, -122.208125",
-            "http://www.wills-toys.com/images/4gf.jpg",
-            69.99,
-            "Minecraft was the fastest growing online game in 2012",
-            "LEGO Minecraft 21102",
-            12,
-            9583638582,
-            "d3e5e17d78d86eb6a05290771d1fcdbe"
-        ]
-    ]
-}
-```
-
-Note: in this example app key = b317eac00b and app secret = 5156a8e80e . In a real world use you will have your own app key and secret
 
 You may also use OAuth 2 authentication with a client credentials grant, using your app key and secret.
 
 ### Search a dataset:
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue" -G --data-urlencode "q=price:[10.99 TO 20.00] AND address\ of\ store:oakland&offset=0&limit=5"
-```
-
-returns
-```json
-{
-    "_id": "willstoyscatalogue^~^catalogue_1.0",
-    "_rev": "4-cc64a12b2c7b681b140b5bac0b50f76f",
-    "fieldListDocOrder": [
-        "UPC",
-        "Product name",
-        "Product Description",
-        "Image URL",
-        "Stock level",
-        "Price",
-        "Address of Store",
-        "Geocode of store",
-        "Available for pick up"
-    ],
-    "fieldList": [
-        "Address of Store",
-        "Available for pick up",
-        "Geocode of store",
-        "Image URL",
-        "Price",
-        "Product Description",
-        "Product name",
-        "Stock level",
-        "UPC"
-    ],
-    "name": "willstoyscatalogue^~^catalogue",
-    "published": true,
-    "fileSize": 0,
-    "fileCreated": "2012-11-06 15:11:02Z",
-    "fileModified": "2012-11-19 14:42:44Z",
-    "fileRevision": "260af68265",
-    "fileName": "willstoyscatalogue",
-    "rows": 12,
-    "contentChecksum": "394f90f6f444bf77f7a3c64ce2af2273",
-    "timestamp": "2012-11-19 14:42:44Z",
-    "seq": 2,
-    "root": "willstoyscatalogue^~^catalogue",
-    "apiVersion": "1.0",
-    "type": "document",
-    "limit": 200,
-    "offset": 0,
-    "pageNumber": 1,
-    "pageCount": 1,
-    "numRowsInContents": 3,
-    "contents": [
-        [
-            "2178 Thompson Drive, Oakland, CA 94601",
-            "yes",
-            "37.821722, -122.208125",
-            "http://www.wills-toys.com/images/g44.jpg",
-            12.99,
-            "Classic Jenga now in an easy \"put away\" package for easy clean up",
-            "Jenga",
-            2,
-            5447386443,
-            "9528237b5b8d2c9d2cdfb46a4a0cb0cf"
-        ],
-        [
-            "2178 Thompson Drive, Oakland, CA 94601",
-            "yes",
-            "37.821722, -122.208125",
-            "http://www.wills-toys.com/images/fdg.jpg",
-            11.99,
-            "Hollywood has never seen a spud stud like this before",
-            "Playskool Toy Story 3 Classic Mr. Potato Head",
-            24,
-            8477853853,
-            "eaf1f697f73ee25318dff424dd5d8bdc"
-        ],
-        [
-            "2178 Thompson Drive, Oakland, CA 94601",
-            "yes",
-            "37.821722, -122.208125",
-            "http://www.wills-toys.com/images/das.jpg",
-            17.99,
-            "Prepare for battle just like the Iron Man character does",
-            "Iron Man Arc Chest Light",
-            5,
-            1374737813,
-            "46504e6061a35d8e25f9792d5a0aea6c"
-        ]
-    ]
-}
+curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/registermpsinterests2012-04-30/data" -G --data-urlencode "q=membername:Cameron&offset=0&limit=5"
 ```
 
 ### Get entire dataset as a sqlite database
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/willstoyscatalogue/catalogue.sqlite" > test.sqlite
+curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/registermpsinterests2012-04-30/data" > test.sqlite
 ```
 This will create a sqlite db file with two tables.
-1. example/willstoyscatalogue/catalogue_2.0. This contains your dataset
+1. parlyhack2012/registermpsinterests2012-04-30/data_1.0. This contains your dataset
 2. table_def.  This tracks the last seq number for each table in the database. This can be used to call the delta api passing in the seq value in this table
+
+### Get several datasets at once using the App API
+
+Api subscriptions are placed into an app. This app is where the app key and secret come from.
+If you have multiple subscriptions you may download all your datasets as one database by use the App Api.
+
+```
+curl "https://519b825f00:62faf3ab03@www.datownia.com/api/app/parlyhack2012/519b825f00.sqlite" > testapp.sqlite
+```
+
+Here example is the developers tag rather than the publishers. i.e. the account to which the app belongs.
+
+You can then use the above Delta API to synchronise each table in the database
 
 ### Keep your database up to date with the delta api
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue?seq=0"
+curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/delta/registermpsinterests2012-04-30/data?seq=0"
 ```
 
-returns
-```json
-[
-    {
-        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_1",
-        "_rev": "1-edc64811fd6ce7e92a12f48b52d3f587",
-        "type": "delta",
-        "parent": "willstoyscatalogue^~^catalogue_2.0",
-        "seq": 1,
-        "action": "insert",
-        "data": [
-            "373 Vineyard Drive, Mayfield Heights, OH 44124",
-            "yes",
-            "Five activation points start the excitement all over the Batcave",
-            "41.475136, -81.369677",
-            "http://www.wills-toys.com/images/abd.jpg",
-            "Fisher-Price Imaginext Bat Cave",
-            50.99,
-            10,
-            2311835075,
-            "950739696db9aa48dfd37c06cbfe3c46"
-        ]
-    },
-    {
-        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_2",
-        "_rev": "1-eaf91d9f27691a2844e1e73c96cf2472",
-        "type": "delta",
-        "parent": "willstoyscatalogue^~^catalogue_2.0",
-        "seq": 2,
-        "action": "insert",
-        "data": [
-            "373 Vineyard Drive, Mayfield Heights, OH 44124",
-            "no",
-            "This mesmerizing maze of safe, soft, continuous tubes is perfect for a teething baby to chew on",
-            "41.475136, -81.369677",
-            "http://www.wills-toys.com/images/gr2.jpg",
-            "Manhattan Toy Winkel",
-            11.5,
-            10,
-            9054297547,
-            "4c7ec7f51c7eda0f1e854a240436e210"
-        ]
-    },
-    {
-        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_3",
-        "_rev": "1-a49898ede6670445033d49e45239ff6c",
-        "type": "delta",
-        "parent": "willstoyscatalogue^~^catalogue_2.0",
-        "seq": 3,
-        "action": "insert",
-        "data": [
-            "373 Vineyard Drive, Mayfield Heights, OH 44124",
-            "yes",
-            "Explore the potential of solar power with this neat science kit",
-            "41.475136, -81.369677",
-            "http://www.wills-toys.com/images/ef6.jpg",
-            "OWI Frightened Grasshopper Kit - Solar Powered",
-            1.99,
-            22,
-            1682277334,
-            "41142d168acd857313dbfa64e73e62d5"
-        ]
-    },
-    {
-        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_4",
-        "_rev": "1-fec13ddee2188e07d7295b26de4b43c3",
-        "type": "delta",
-        "parent": "willstoyscatalogue^~^catalogue_2.0",
-        "seq": 4,
-        "action": "delete",
-        "data": "3f30ab289441af1b95cd1bcdedce3cbc"
-    },
-    {
-        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_5",
-        "_rev": "1-70b65ff969153960f17f842492cf9505",
-        "type": "delta",
-        "parent": "willstoyscatalogue^~^catalogue_2.0",
-        "seq": 5,
-        "action": "delete",
-        "data": "7afad753056737c44c90c1767b1e5de3"
-    },
-    {
-        "_id": "willstoyscatalogue^~^catalogue_2.0_delta_6",
-        "_rev": "1-39e9cff02e5d6d3c1f8bb76641f39883",
-        "type": "delta",
-        "parent": "willstoyscatalogue^~^catalogue_2.0",
-        "seq": 6,
-        "action": "delete",
-        "data": "7c738a17d0019be20f5bf9595954cc9e"
-    }
-]
-```
 Note: The ```seq``` field is a unique point in the datasets history. Use the ```seq``` parameter when calling the delta api to get all changes since that seq number
 
 OR, you can get the sql statements you need to apply to your database direcly:
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue.sql?seq=0"
+curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/delta/registermpsinterests2012-04-30/data.sql?seq=0"
 ```
 ```sql
 replace into [willstoyscatalogue/catalogue_2.0] ([addressOfStore],[availableForPickup],[description],[geocodeOfStore],[imageUrl],[name],[price],[stockLevel],[upc], [_id]) values ('373 Vineyard Drive, Mayfield Heights, OH 44124','yes','Five activation points start the excitement all over the Batcave','41.475136, -81.369677','http://www.wills-toys.com/images/abd.jpg','Fisher-Price Imaginext Bat Cave','50.99','10','2311835075','950739696db9aa48dfd37c06cbfe3c46');
@@ -336,18 +57,8 @@ replace into [table_def] (tablename, seq) values ('willstoyscatalogue/catalogue_
 
 ```
 
-### Get several datasets at once using the App API
 
-Developers subscriptions are placed into an app. This app is where the app key and secret come from.
-If you have multiple subscriptions you may download all your datasets as one database by use the App Api.
 
-```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b.sqlite" > testapp.sqlite
-```
-
-Here example is the developers tag rather than the publishers. i.e. the account to which the app belongs.
-
-You can then use the above Delta API to synchronise each table in the database
 
 ##API Information Guide
 
