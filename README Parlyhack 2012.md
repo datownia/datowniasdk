@@ -29,7 +29,7 @@ Api subscriptions are placed into an app. This app is where the app key and secr
 If you have multiple subscriptions you may download all your datasets as one database by use the App Api.
 
 ```
-curl "https://519b825f00:62faf3ab03@www.datownia.com/api/app/parlyhack2012/519b825f00.sqlite" > testapp.sqlite
+curl "https://519b825f00:62faf3ab03@www.datownia.com/api/app/parlyhack2012datownia/519b825f00.sqlite" > testapp.sqlite
 ```
 
 Here example is the developers tag rather than the publishers. i.e. the account to which the app belongs.
