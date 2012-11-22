@@ -124,7 +124,94 @@ You may also use OAuth 2 authentication with a client credentials grant, using y
 
 ### Search a dataset:
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue" -G --data-urlencode "q=price:[10 TO 11.99]&offset=0&limit=5"
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue" -G --data-urlencode "q=price:[10.99 TO 20.00] AND address\ of\ store:oakland&offset=0&limit=5"
+```
+
+returns
+```json
+{
+    "_id": "willstoyscatalogue^~^catalogue_1.0",
+    "_rev": "4-cc64a12b2c7b681b140b5bac0b50f76f",
+    "fieldListDocOrder": [
+        "UPC",
+        "Product name",
+        "Product Description",
+        "Image URL",
+        "Stock level",
+        "Price",
+        "Address of Store",
+        "Geocode of store",
+        "Available for pick up"
+    ],
+    "fieldList": [
+        "Address of Store",
+        "Available for pick up",
+        "Geocode of store",
+        "Image URL",
+        "Price",
+        "Product Description",
+        "Product name",
+        "Stock level",
+        "UPC"
+    ],
+    "name": "willstoyscatalogue^~^catalogue",
+    "published": true,
+    "fileSize": 0,
+    "fileCreated": "2012-11-06 15:11:02Z",
+    "fileModified": "2012-11-19 14:42:44Z",
+    "fileRevision": "260af68265",
+    "fileName": "willstoyscatalogue",
+    "rows": 12,
+    "contentChecksum": "394f90f6f444bf77f7a3c64ce2af2273",
+    "timestamp": "2012-11-19 14:42:44Z",
+    "seq": 2,
+    "root": "willstoyscatalogue^~^catalogue",
+    "apiVersion": "1.0",
+    "type": "document",
+    "limit": 200,
+    "offset": 0,
+    "pageNumber": 1,
+    "pageCount": 1,
+    "numRowsInContents": 3,
+    "contents": [
+        [
+            "2178 Thompson Drive, Oakland, CA 94601",
+            "yes",
+            "37.821722, -122.208125",
+            "http://www.wills-toys.com/images/g44.jpg",
+            12.99,
+            "Classic Jenga now in an easy \"put away\" package for easy clean up",
+            "Jenga",
+            2,
+            5447386443,
+            "9528237b5b8d2c9d2cdfb46a4a0cb0cf"
+        ],
+        [
+            "2178 Thompson Drive, Oakland, CA 94601",
+            "yes",
+            "37.821722, -122.208125",
+            "http://www.wills-toys.com/images/fdg.jpg",
+            11.99,
+            "Hollywood has never seen a spud stud like this before",
+            "Playskool Toy Story 3 Classic Mr. Potato Head",
+            24,
+            8477853853,
+            "eaf1f697f73ee25318dff424dd5d8bdc"
+        ],
+        [
+            "2178 Thompson Drive, Oakland, CA 94601",
+            "yes",
+            "37.821722, -122.208125",
+            "http://www.wills-toys.com/images/das.jpg",
+            17.99,
+            "Prepare for battle just like the Iron Man character does",
+            "Iron Man Arc Chest Light",
+            5,
+            1374737813,
+            "46504e6061a35d8e25f9792d5a0aea6c"
+        ]
+    ]
+}
 ```
 
 ### Get entire dataset as a sqlite database
