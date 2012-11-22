@@ -46,19 +46,6 @@ OR, you can get the sql statements you need to apply to your database direcly:
 ```
 curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/delta/registermpsinterests2012-04-30/data.sql?seq=0"
 ```
-```sql
-replace into [willstoyscatalogue/catalogue_2.0] ([addressOfStore],[availableForPickup],[description],[geocodeOfStore],[imageUrl],[name],[price],[stockLevel],[upc], [_id]) values ('373 Vineyard Drive, Mayfield Heights, OH 44124','yes','Five activation points start the excitement all over the Batcave','41.475136, -81.369677','http://www.wills-toys.com/images/abd.jpg','Fisher-Price Imaginext Bat Cave','50.99','10','2311835075','950739696db9aa48dfd37c06cbfe3c46');
-replace into [willstoyscatalogue/catalogue_2.0] ([addressOfStore],[availableForPickup],[description],[geocodeOfStore],[imageUrl],[name],[price],[stockLevel],[upc], [_id]) values ('373 Vineyard Drive, Mayfield Heights, OH 44124','no','This mesmerizing maze of safe, soft, continuous tubes is perfect for a teething baby to chew on','41.475136, -81.369677','http://www.wills-toys.com/images/gr2.jpg','Manhattan Toy Winkel','11.5','10','9054297547','4c7ec7f51c7eda0f1e854a240436e210');
-replace into [willstoyscatalogue/catalogue_2.0] ([addressOfStore],[availableForPickup],[description],[geocodeOfStore],[imageUrl],[name],[price],[stockLevel],[upc], [_id]) values ('373 Vineyard Drive, Mayfield Heights, OH 44124','yes','Explore the potential of solar power with this neat science kit','41.475136, -81.369677','http://www.wills-toys.com/images/ef6.jpg','OWI Frightened Grasshopper Kit - Solar Powered','1.99','22','1682277334','41142d168acd857313dbfa64e73e62d5');
-delete from [example/willstoyscatalogue/catalogue_2.0] where _id = '3f30ab289441af1b95cd1bcdedce3cbc';
-delete from [example/willstoyscatalogue/catalogue_2.0] where _id = '7afad753056737c44c90c1767b1e5de3';
-delete from [example/willstoyscatalogue/catalogue_2.0] where _id = '7c738a17d0019be20f5bf9595954cc9e';
-replace into [table_def] (tablename, seq) values ('willstoyscatalogue/catalogue_2.0', 6);
-
-```
-
-
-
 
 ##API Information Guide
 
