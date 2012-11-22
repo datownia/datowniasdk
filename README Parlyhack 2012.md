@@ -16,9 +16,10 @@ curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/re
 
 ### Get entire dataset as a sqlite database
 ```
-curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/registermpsinterests2012-04-30/data" > test.sqlite
+curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/registermpsinterests2012-04-30/data.sqlite" > test.sqlite
 ```
 This will create a sqlite db file with two tables.
+
 1. parlyhack2012/registermpsinterests2012-04-30/data_1.0. This contains your dataset
 2. table_def.  This tracks the last seq number for each table in the database. This can be used to call the delta api passing in the seq value in this table
 
