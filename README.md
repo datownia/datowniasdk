@@ -4,7 +4,7 @@ To get going really quickly you can use HTTP basic authentication and the [CURL]
 
 ### Get first 5 records in a dataset:
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue?offset=0&limit=5"
+curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue?offset=0&limit=5"
 ```
 
 returns
@@ -124,7 +124,7 @@ You may also use OAuth 2 authentication with a client credentials grant, using y
 
 ### Search a dataset:
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue" -G --data-urlencode "q=price:[10.99 TO 20.00] AND address\ of\ store:oakland&offset=0&limit=5"
+curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue" -G --data-urlencode "q=price:[10.99 TO 20.00] AND address\ of\ store:oakland&offset=0&limit=5"
 ```
 
 returns
@@ -216,7 +216,7 @@ returns
 
 ### Get entire dataset as a sqlite database
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/willstoyscatalogue/catalogue.sqlite" > test.sqlite
+curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/willstoyscatalogue/catalogue.sqlite" > test.sqlite
 ```
 This will create a sqlite db file with two tables.
 1. example/willstoyscatalogue/catalogue_2.0. This contains your dataset
@@ -224,7 +224,7 @@ This will create a sqlite db file with two tables.
 
 ### Keep your database up to date with the delta api
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue?seq=0"
+curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue?seq=0"
 ```
 
 returns
@@ -323,7 +323,7 @@ Note: The ```seq``` field is a unique point in the datasets history. Use the ```
 
 OR, you can get the sql statements you need to apply to your database direcly:
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue.sql?seq=0"
+curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue.sql?seq=0"
 ```
 ```sql
 replace into [willstoyscatalogue/catalogue_2.0] ([addressOfStore],[availableForPickup],[description],[geocodeOfStore],[imageUrl],[name],[price],[stockLevel],[upc], [_id]) values ('373 Vineyard Drive, Mayfield Heights, OH 44124','yes','Five activation points start the excitement all over the Batcave','41.475136, -81.369677','http://www.wills-toys.com/images/abd.jpg','Fisher-Price Imaginext Bat Cave','50.99','10','2311835075','950739696db9aa48dfd37c06cbfe3c46');
@@ -342,7 +342,7 @@ Developers subscriptions are placed into an app. This app is where the app key a
 If you have multiple subscriptions you may download all your datasets as one database by use the App Api.
 
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b.sqlite" > testapp.sqlite
+curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b.sqlite" > testapp.sqlite
 ```
 
 Here example is the developers tag rather than the publishers. i.e. the account to which the app belongs.
