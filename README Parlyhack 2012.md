@@ -34,7 +34,7 @@ curl "https://519b825f00:62faf3ab03@www.datownia.com/api/app/parlyhack2012/519b8
 
 Here example is the developers tag rather than the publishers. i.e. the account to which the app belongs.
 
-You can then use the above Delta API to synchronise each table in the database
+You can then use the Delta API to synchronise each table in the database
 
 ### Keep your database up to date with the delta api
 ```
