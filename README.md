@@ -122,6 +122,11 @@ Note: in this example app key = b317eac00b and app secret = 5156a8e80e . In a re
 
 You may also use OAuth 2 authentication with a client credentials grant, using your app key and secret.
 
+### Search a dataset:
+```
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue?q=Price:[10 TO 11.99]&offset=0&limit=5"
+```
+
 ### Get entire dataset as a sqlite database
 ```
 curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/willstoyscatalogue/catalogue.sqlite" > test.sqlite
