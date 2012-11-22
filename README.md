@@ -124,7 +124,7 @@ You may also use OAuth 2 authentication with a client credentials grant, using y
 
 ### Search a dataset:
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue?q=Price:[10 TO 11.99]&offset=0&limit=5"
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue" -G --data-urlencode "q=price:[10 TO 11.99]&offset=0&limit=5"
 ```
 
 ### Get entire dataset as a sqlite database
