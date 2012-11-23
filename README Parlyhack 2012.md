@@ -40,6 +40,7 @@ Here example is the developers tag rather than the publishers. i.e. the account 
 You can then use the Delta API to synchronise each table in the database
 
 ### Keep your database up to date with the delta api
+You are unlikely to need this for the hack but it's worth knowing it is there for the future as it is a good feature, as it enables you to keep a local database in sync with the source data.
 ```
 curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/delta/registermpsinterests2012-04-30/data?seq=0"
 ```
