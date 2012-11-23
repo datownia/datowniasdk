@@ -9,6 +9,64 @@ To get going really quickly you can use HTTP basic authentication and the [CURL]
 curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/registermpsinterests2012-04-30/data?offset=0&limit=5"
 ```
 
+Results:
+```json
+{
+    "_id": "registermpsinterests2012-04-30^~^data_1.0",
+    "_rev": "1-61d4a7f9bfac178e0e97e80c70b76b01",
+    "fieldListDocOrder": [
+        "TWFY_Member_id",
+        "membername",
+        "TWFY_Person_id",
+        "categoryid",
+        "categoryname",
+        "categorytype",
+        "categoryitem"
+    ],
+    "fieldList": [
+        "categoryid",
+        "categoryitem",
+        "categoryname",
+        "categorytype",
+        "membername",
+        "TWFY_Member_id",
+        "TWFY_Person_id"
+    ],
+    "name": "registermpsinterests2012-04-30^~^data",
+    "published": true,
+    "fileSize": 0,
+    "fileCreated": "2012-11-19 18:26:30Z",
+    "fileModified": "2012-11-19 19:18:51Z",
+    "fileRevision": "60bca9a4c",
+    "fileName": "registermpsinterests2012-04-30",
+    "rows": 8420,
+    "contentChecksum": "687e282c411e8be1f35fb998866391c3",
+    "timestamp": "2012-11-19 19:18:51Z",
+    "seq": 0,
+    "root": "registermpsinterests2012-04-30^~^data",
+    "apiVersion": "1.0",
+    "type": "document",
+    "limit": 5,
+    "offset": 0,
+    "pageNumber": 1,
+    "pageCount": 1684,
+    "numRowsInContents": 5,
+    "contents": [
+        [
+            1,
+            "Fees received for co-presenting BBC’s \"This Week\" TV programme. Address: BBC Television Centre, Wood Lane, London W12 7RJ.",
+            "Remunerated employment, office, profession etc",
+            2,
+            "Diane Abbott",
+            40289,
+            10001,
+            "c8d87045323e522da1a616c9591cdf03"
+        ],
+        ...
+    ]
+}
+```
+
 You may also use OAuth 2 authentication with a client credentials grant, using your app key and secret. The examples in the rest of this repository use OAuth 2 but it may be simpler to use basic auth for the hack if you are unfamiliar with OAuth 2.
 
 ### Search a dataset:
