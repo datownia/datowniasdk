@@ -2,7 +2,7 @@
 A list of datasets can be found on the Parly Hack developer portal
 https://www.datownia.com/developer/parlyhack2012
 
-To get going really quickly you can use HTTP basic authentication and the [CURL](http://curl.haxx.se) command. (Note depending on how your curl is set up you may need the -k parameter to ignore cert checking.
+To get going really quickly you can use HTTP basic authentication and the [CURL](http://curl.haxx.se) command. (Note depending on how your curl is set up you may need the -k parameter to ignore cert checking).
 
 ### Get first 5 records in a dataset:
 ```
