@@ -1,4 +1,6 @@
 ##API Usage Quickstart
+A list of datasets can be found on the Parly Hack developer portal
+https://www.datownia.com/developer/parlyhack2012
 
 To get going really quickly you can use HTTP basic authentication and the [CURL](http://curl.haxx.se) command.
 
@@ -27,6 +29,7 @@ This will create a sqlite db file with two tables.
 
 Api subscriptions are placed into an app. This app is where the app key and secret come from.
 If you have multiple subscriptions you may download all your datasets as one database by use the App Api.
+For Parly Hack we have alrady set up an app with subscriptions so you do not need to register, but you may also register if you wish to subscribe to just a subset of the data and therefore download a smaller sqlite database file.
 
 ```
 curl "https://519b825f00:62faf3ab03@www.datownia.com/api/app/parlyhack2012datownia/519b825f00.sqlite" > testapp.sqlite
