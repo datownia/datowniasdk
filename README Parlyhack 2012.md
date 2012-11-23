@@ -68,6 +68,8 @@ Results:
 ```
 * All document api calls return documents with this structure.
 * fieldList gives you fields in the order that they appear in the contents. 
+* It is recommended to always supply limit and offset. The max, and default, limit is 200. You can easily loop through all records by checking if numRowsInContents = limit, as soon as it does not you must be on the last page.
+
 
 You may also use OAuth 2 authentication with a client credentials grant, using your app key and secret. The examples in the rest of this repository use OAuth 2 but it may be simpler to use basic auth for the hack if you are unfamiliar with OAuth 2.
 
