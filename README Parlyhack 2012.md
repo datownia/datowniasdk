@@ -15,6 +15,7 @@ You may also use OAuth 2 authentication with a client credentials grant, using y
 ```
 curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/registermpsinterests2012-04-30/data" -G --data-urlencode "q=membername:Cameron&offset=0&limit=5"
 ```
+Note that here we are using the --data-encodeurl and -G parameters in curl so we do not have to url encode the request url and make it less readable for these docs.
 
 ### Get entire dataset as a sqlite database
 ```
