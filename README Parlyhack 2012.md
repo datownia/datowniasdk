@@ -9,7 +9,7 @@ To get going really quickly you can use HTTP basic authentication and the [CURL]
 curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/registermpsinterests2012-04-30/data?offset=0&limit=5"
 ```
 
-You may also use OAuth 2 authentication with a client credentials grant, using your app key and secret.
+You may also use OAuth 2 authentication with a client credentials grant, using your app key and secret. The examples in the rest of this repository use OAuth 2 but it may be simpler to use basic auth for the hack if you are unfamiliar with OAuth 2.
 
 ### Search a dataset:
 ```
