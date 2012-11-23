@@ -76,7 +76,7 @@ You may also use OAuth 2 authentication with a client credentials grant, using y
 ### Search a dataset:
 David Cameron's gifts
 ```
-curl "https://519b825f00:62faf3ab03@localhost/api/doc/parlyhack2012/v1/registermpsinterests2012-04-30/data?limit=5&offset=0" -G --data-urlencode "q=membername:Cameron AND categoryname:gifts" -k```
+curl "https://519b825f00:62faf3ab03@www.datownia.com/api/doc/parlyhack2012/v1/registermpsinterests2012-04-30/data?limit=5&offset=0" -G --data-urlencode "q=membername:Cameron AND categoryname:gifts" -k```
 Note that here we are using the --data-encodeurl and -G parameters in curl so we do not have to url encode the request url and make it less readable for these docs.
 
 ### Get entire dataset as a sqlite database
