@@ -66,7 +66,8 @@ Results:
     ]
 }
 ```
-Note that all document api calls return documents with this structure.
+* All document api calls return documents with this structure.
+* fieldList gives you fields in the order that they appear in the contents. 
 
 You may also use OAuth 2 authentication with a client credentials grant, using your app key and secret. The examples in the rest of this repository use OAuth 2 but it may be simpler to use basic auth for the hack if you are unfamiliar with OAuth 2.
 
