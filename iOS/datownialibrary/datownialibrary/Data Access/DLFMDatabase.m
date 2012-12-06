@@ -168,10 +168,10 @@
 }
 
 - (void) compainAboutInUse {
-    NSLog(@"The FMDatabase %@ is currently in use.", self);
+    NSLog(@"The DLFMDatabase %@ is currently in use.", self);
     
     if (crashOnErrors) {
-        NSAssert1(false, @"The FMDatabase %@ is currently in use.", self);
+        NSAssert1(false, @"The DLFMDatabase %@ is currently in use.", self);
     }
 }
 
