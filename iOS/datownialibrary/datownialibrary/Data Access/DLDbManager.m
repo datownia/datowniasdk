@@ -8,6 +8,7 @@
 
 #import "DLDbManager.h"
 #import "DLFMSyncedDatabase.h"
+#import "DLFMDatabase.h"
 
 @implementation DLDbManager
 
@@ -30,8 +31,9 @@
 
 + (DLFMDatabase *) openSyncedDb:(NSString *)dbPath  
 {
-	DLFMDatabase* db = [DLFMSyncedDatabase databaseWithPath:dbPath];
-	if (![db open]) {
+	//DLFMDatabase* db = [DLFMSyncedDatabase databaseWithPath:dbPath];
+	DLFMDatabase* db = [DLFMDatabase databaseWithPath:dbPath];
+    if (![db open]) {
 		[NSException raise:@"DbOpenError" format:@"Could not open db."];
 		[db setShouldCacheStatements:NO];
 		return nil;

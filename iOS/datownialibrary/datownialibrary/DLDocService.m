@@ -14,10 +14,12 @@
 
 - (NSString *) scope:(NSString *)doc
 {
+    DLog(@"doc: %@", doc);
     NSString *nameMinusExt = [doc fileNameMinusExt];
     
     return [NSString stringWithFormat:@"Read|%@|%@", self.configuration.userName, nameMinusExt];
 }
+
 - (DLDocument *)httpGetDocumentByUrl:(NSURL *)endpoint scope:(NSString *)scope
 {
     id json = [self httpGetJson:endpoint scope:scope];
@@ -38,6 +40,7 @@
 - (NSString *)httpGetDeltaSql:(NSString *)doc version:(NSString *)version seq:(NSUInteger)seq
 {
     NSString *scope = [self scope:doc];
+    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/api/doc/%@/v%@/delta/%@.sql?seq=%i", self.configuration.host, self.configuration.userName, version, doc, seq]];
     
     return [self httpGetRawString:url scope:scope];

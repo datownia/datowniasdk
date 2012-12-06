@@ -158,6 +158,17 @@
         
         DLog(@"datownia: synchronizing %@", tableName);
         
+        //FIX FOR PUBNAME ISSUE - strip out the publisher name from the tablename for use in the delta call
+		NSArray *tablePathParts = [tableName componentsSeparatedByString:@"/"];
+        NSString *publisherName = [tablePathParts objectAtIndex:0]; //save the publisher name for later
+        
+        NSRange tablerange = {.location = 1, .length = tablePathParts.count - 1};
+		tablePathParts = [tablePathParts objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:tablerange]];
+		tableName = [tablePathParts componentsJoinedByString:@"/"];
+		//END
+        
+        
+        
         NSArray *parts = [tableName componentsSeparatedByString:@"_"];
         
         NSString *version = [parts objectAtIndex:parts.count - 1];
@@ -165,30 +176,74 @@
         
         NSArray *pathParts = [parts objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]];
         NSString *doc = [pathParts componentsJoinedByString:@"_"];
-        
+                
         NSString *sql = [docService httpGetDeltaSql:doc version:version seq:seq];
+        //DLog(@"sql: %@", sql);
         
         if ([sql length] > 0)
         {
             NSMutableArray *lines = [NSMutableArray arrayWithArray:[sql componentsSeparatedByString:@"\n"]];
-            if (![lines lastObject]|| [[lines lastObject] length] == 0)
-                [lines removeLastObject];
-            [sqlLines addObjectsFromArray:lines];
-            //DLog(@"%@",sql);
+            NSMutableArray *modifiedLines = [NSMutableArray arrayWithCapacity:lines.count];
+            
+        
+            
+            //////////
+            for (int i=0; i<lines.count; i++)
+            {
+                
+                NSMutableString *lineString = [[NSMutableString alloc]initWithString:[lines objectAtIndex:i]];
+                
+                if ([lineString rangeOfString:publisherName].location == NSNotFound)
+                {
+//                    DLog(@"*****");
+//                    DLog(@"Publisher name not found!");
+//                    DLog(@"*****");
+                    
+                    //find the table name and replace it with the publisher name + table name.
+                    if ([lineString rangeOfString:tableName].location != NSNotFound)
+                    {
+                        NSString *stringToInsert = [NSString stringWithFormat:@"%@/%@", publisherName, tableName];
+                        [lineString replaceOccurrencesOfString:tableName withString:stringToInsert options:NSCaseInsensitiveSearch range:(NSRange){0,[lineString length]}];
+                    
+                        //DLog(@"lineString: %@", lineString);
+                        
+                        //[lines removeObjectAtIndex:0];
+                        //[lines insertObject:lineString atIndex:0];
+                        [modifiedLines addObject:lineString];
+                    }
+                }
+                else
+                {
+                    [modifiedLines addObject:lineString];
+                }
+            
+            }
+            /////////
+            
+            if (![modifiedLines lastObject]|| [[modifiedLines lastObject] length] == 0)
+                [modifiedLines removeLastObject];
+            [sqlLines addObjectsFromArray:modifiedLines];
+//            DLog(@"-----");
+//            DLog(@"%@",sql);
+//            DLog(@"-----");
         }
     }
 
-    for (NSString *sqlLine in sqlLines) {
-        BOOL success = [db executeUpdate:sqlLine];
-        
-        if (!success)
-        {
-           //TODO: if fails, what do we do
-            DLog(@"update failed %@", [db lastErrorMessage]);
-
+    if (sqlLines.count > 1) //table_def always included if there were actual changes, so 1 line should never occur - if it does this is due to bug in datownia (fixed but not on live)
+    {
+        for (NSString *sqlLine in sqlLines) {
+            BOOL success = [db executeUpdate:sqlLine];
+            
+            if (!success)
+            {
+                //TODO: if fails, what do we do
+                DLog(@"update failed %@", [db lastErrorMessage]);
+                
+            }
+            
         }
-        
     }
+    
     
     DLog(@"datownia: done synchronizing tables");
 }

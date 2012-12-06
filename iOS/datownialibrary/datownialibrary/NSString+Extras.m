@@ -38,6 +38,7 @@
 
 - (NSString *) fileNameMinusExt
 {
+    
 	NSString *lastPathComponent = [self lastPathComponent];
 	
 	NSRange dotRange = [lastPathComponent rangeOfString:@"." options:NSBackwardsSearch];
