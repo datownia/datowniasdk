@@ -13,7 +13,7 @@
 		const userTable = 'users_1.0';
 		
 		const appKey = '123acme';
-		const hostName = 'localhost';
+		const hostName = 'www.datownia.com';
 		const clientId = '123acme';
 		const clientSecret = 'hohohomerryxmas';
 		const publisher = 'acme';
@@ -116,7 +116,7 @@
 			return $result;
 		}
 		
-		//•	Service Provider name
+		//ï¿½	Service Provider name
 		function GetServiceProviders(){
 			$serviceProviders = array();			
 			$db = new PDO(self::databaseName);
