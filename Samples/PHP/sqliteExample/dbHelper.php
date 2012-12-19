@@ -80,6 +80,9 @@
 			$fp = fopen(self::targetFile, 'w');
 			curl_setopt($ch2, CURLOPT_FILE, $fp);
 			$finalResult = curl_exec($ch2);
+			if ( !$finalResult || curl_getinfo( $ch2, CURLINFO_HTTP_CODE ) != 200 ) {
+				die( "There was an error getting the SQL database, aborting." );
+			}
 			curl_close($ch2);
 			fclose($fp);
 		}
