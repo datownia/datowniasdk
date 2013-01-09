@@ -355,6 +355,11 @@ curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac0
 ```
 Note that here we downloaded the data as json rather than a sqlite db.
 
+Coming soon - will support v=max which will return you just the newest api versions
+```
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b?v=max"
+```
+
 ##API Information Guide
 
 This section contains more detailed information for using the API’s that API Maker generates from the source
