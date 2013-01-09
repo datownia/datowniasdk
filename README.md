@@ -349,6 +349,12 @@ Here example is the developers "my api tag" rather than the publishers tag. i.e.
 
 You can then use the above Delta API to synchronise each table in the database
 
+In this example all versions of the data apis will be included. You can restrict to certain version by using the v parameter where the value is a json array of document,version pairs
+```
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b" -G --data-urlencode "v=[[\"willstoyscatalogue/catalogue\",2]]"
+```
+Note that here we downloaded the data as json rather than a sqlite db.
+
 ##API Information Guide
 
 This section contains more detailed information for using the API’s that API Maker generates from the source
