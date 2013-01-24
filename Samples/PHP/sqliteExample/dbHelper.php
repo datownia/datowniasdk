@@ -13,7 +13,7 @@
 		const userTable = 'users_1.0';
 		
 		const appKey = '123acme';
-		const hostName = 'localhost';
+		const hostName = 'www.datownia.com';
 		const clientId = '123acme';
 		const clientSecret = 'hohohomerryxmas';
 		const publisher = 'acme';
@@ -80,6 +80,9 @@
 			$fp = fopen(self::targetFile, 'w');
 			curl_setopt($ch2, CURLOPT_FILE, $fp);
 			$finalResult = curl_exec($ch2);
+			if ( !$finalResult || curl_getinfo( $ch2, CURLINFO_HTTP_CODE ) != 200 ) {
+				die( "There was an error getting the SQL database, aborting." );
+			}
 			curl_close($ch2);
 			fclose($fp);
 		}
@@ -116,7 +119,7 @@
 			return $result;
 		}
 		
-		//•	Service Provider name
+		//ï¿½	Service Provider name
 		function GetServiceProviders(){
 			$serviceProviders = array();			
 			$db = new PDO(self::databaseName);

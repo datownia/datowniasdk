@@ -24,7 +24,7 @@ public class ApiClient {
 	private String Publisher;
 	private String AppKey;
 	private String AppSecret;
-	private String serviceHost = "apimaker.releasemobile.com";
+	private String serviceHost = "www.datownia.com";
 	
 	public ApiClient(String publisher, String appKey, String appSecret)
 	{

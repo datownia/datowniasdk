@@ -345,9 +345,20 @@ If you have multiple subscriptions you may download all your datasets as one dat
 curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b.sqlite" > testapp.sqlite
 ```
 
-Here example is the developers tag rather than the publishers. i.e. the account to which the app belongs.
+Here example is the developers "my api tag" rather than the publishers tag. i.e. the account to which the app belongs.
 
 You can then use the above Delta API to synchronise each table in the database
+
+In this example all versions of the data apis will be included. You can restrict to certain version by using the v parameter where the value is a json array of document,version pairs
+```
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b" -G --data-urlencode "v=[[\"willstoyscatalogue/catalogue\",2]]"
+```
+Note that here we downloaded the data as json rather than a sqlite db.
+
+Coming soon - will support v=max which will return you just the newest api versions
+```
+curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b?v=max"
+```
 
 ##API Information Guide
 
