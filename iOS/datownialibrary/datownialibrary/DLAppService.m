@@ -13,7 +13,7 @@
 #import "DLFileDownloader.h"
 #import "DLDbManager.h"
 #import "DLTextDownloader.h"
-#import "JSONKit.h"
+#import <JSONKit/JSONKit.h>
 #import "DLDocument.h"
 #import "DLDocService.h"
 
@@ -233,6 +233,10 @@
     {
         for (NSString *sqlLine in sqlLines) {
             BOOL success = [db executeUpdate:sqlLine];
+            
+            //something has changed so...
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setInteger:1 forKey:@"newContent"];
             
             if (!success)
             {

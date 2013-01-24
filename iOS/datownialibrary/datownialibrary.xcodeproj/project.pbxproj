@@ -7,22 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F308A31515FDF76100B650BE /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A31315FDF76100B650BE /* JSONKit.h */; };
-		F308A31615FDF76100B650BE /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A31415FDF76100B650BE /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F308A33115FDF7CC00B650BE /* DLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A32D15FDF7CC00B650BE /* DLDocument.h */; };
+		3299026316B158F0006DC100 /* DLAppService.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00515F9E78200B7759F /* DLAppService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026516B158F2006DC100 /* DLDocService.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A34715FE08B600B650BE /* DLDocService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026616B158F4006DC100 /* DLService.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A34B15FE08CD00B650BE /* DLService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026716B158F7006DC100 /* DLBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00615F9E78200B7759F /* DLBase64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026816B158F8006DC100 /* DLFileDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00A15F9E78200B7759F /* DLFileDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026916B158FA006DC100 /* DLTextDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A33D15FDFCB800B650BE /* DLTextDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026A16B158FE006DC100 /* datownialibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00715F9E78200B7759F /* datownialibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026B16B15908006DC100 /* DownloaderDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00815F9E78200B7759F /* DownloaderDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026C16B1590A006DC100 /* DLAppConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0AE15FA18F600B7759F /* DLAppConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026D16B1590D006DC100 /* DLOfflineApiDataSync.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0A615FA161000B7759F /* DLOfflineApiDataSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026E16B15910006DC100 /* macro.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A34115FDFD0700B650BE /* macro.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299026F16B15912006DC100 /* DLConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0B215FA342900B7759F /* DLConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027016B15915006DC100 /* LROAuth2AccessToken.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFB15F9E77300B7759F /* LROAuth2AccessToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027116B15916006DC100 /* LROAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFC15F9E77300B7759F /* LROAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027216B15917006DC100 /* LROAuth2ClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFD15F9E77300B7759F /* LROAuth2ClientDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027316B15919006DC100 /* LRURLRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFE15F9E77300B7759F /* LRURLRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027416B1591A006DC100 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFF15F9E77300B7759F /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027516B1591B006DC100 /* NSDictionary+QueryString.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00015F9E77300B7759F /* NSDictionary+QueryString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027616B1591D006DC100 /* NSObject+Tap.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00115F9E77300B7759F /* NSObject+Tap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027716B1591E006DC100 /* NSRunLoop+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00215F9E77300B7759F /* NSRunLoop+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027816B15920006DC100 /* NSString+QueryString.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00315F9E77300B7759F /* NSString+QueryString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027916B15922006DC100 /* NSURL+QueryInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00415F9E77300B7759F /* NSURL+QueryInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027A16B15924006DC100 /* DLDbManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0BA15FDDB0500B7759F /* DLDbManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027B16B15925006DC100 /* DLFMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0BC15FDDB0500B7759F /* DLFMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027C16B15927006DC100 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0BE15FDDB0500B7759F /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027D16B15928006DC100 /* DLFMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0C015FDDB0500B7759F /* DLFMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027E16B1592A006DC100 /* DLFMSyncedDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = F3D423D9163EA99E004C66CB /* DLFMSyncedDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299027F16B15934006DC100 /* DLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A32D15FDF7CC00B650BE /* DLDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299028016B15935006DC100 /* DLContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A32F15FDF7CC00B650BE /* DLContentItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299028116B15936006DC100 /* DLGenericContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A33515FDF82500B650BE /* DLGenericContentItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299028216B15938006DC100 /* NSString+Extras.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A33A15FDF84E00B650BE /* NSString+Extras.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3299035116B19CAA006DC100 /* libJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3299035016B19CAA006DC100 /* libJSONKit.a */; };
 		F308A33215FDF7CC00B650BE /* DLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A32E15FDF7CC00B650BE /* DLDocument.m */; };
-		F308A33315FDF7CC00B650BE /* DLContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A32F15FDF7CC00B650BE /* DLContentItem.h */; };
 		F308A33415FDF7CC00B650BE /* DLContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A33015FDF7CC00B650BE /* DLContentItem.m */; };
-		F308A33715FDF82500B650BE /* DLGenericContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A33515FDF82500B650BE /* DLGenericContentItem.h */; };
 		F308A33815FDF82500B650BE /* DLGenericContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A33615FDF82500B650BE /* DLGenericContentItem.m */; };
 		F308A33B15FDF84E00B650BE /* NSString+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A33915FDF84E00B650BE /* NSString+Extras.m */; };
-		F308A33C15FDF84E00B650BE /* NSString+Extras.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A33A15FDF84E00B650BE /* NSString+Extras.h */; };
-		F308A33F15FDFCB800B650BE /* DLTextDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A33D15FDFCB800B650BE /* DLTextDownloader.h */; };
 		F308A34015FDFCB800B650BE /* DLTextDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A33E15FDFCB800B650BE /* DLTextDownloader.m */; };
-		F308A34215FDFD0700B650BE /* macro.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A34115FDFD0700B650BE /* macro.h */; };
-		F308A34915FE08BA00B650BE /* DLDocService.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A34715FE08B600B650BE /* DLDocService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F308A34A15FE08BA00B650BE /* DLDocService.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A34815FE08B700B650BE /* DLDocService.m */; };
-		F308A34D15FE08CD00B650BE /* DLService.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A34B15FE08CD00B650BE /* DLService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F308A34E15FE08CD00B650BE /* DLService.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A34C15FE08CD00B650BE /* DLService.m */; };
 		F38FAE8815F8F39100B7759F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FAE8715F8F39100B7759F /* Foundation.framework */; };
 		F38FAF7B15F8F6BC00B7759F /* DLAppService.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAF5F15F8F6BC00B7759F /* DLAppService.m */; };
@@ -38,53 +60,18 @@
 		F38FAFB915F8F72000B7759F /* NSString+QueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAFA815F8F72000B7759F /* NSString+QueryString.m */; };
 		F38FAFBB15F8F72000B7759F /* NSURL+QueryInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FAFAA15F8F72000B7759F /* NSURL+QueryInspector.m */; };
 		F38FAFF415F8F8D500B7759F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FAFF315F8F8D500B7759F /* UIKit.framework */; };
-		F38FB00C15F9EAB000B7759F /* datownialibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00715F9E78200B7759F /* datownialibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB00D15F9EAB100B7759F /* DLAppService.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00515F9E78200B7759F /* DLAppService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB00E15F9EAD500B7759F /* LROAuth2ClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFD15F9E77300B7759F /* LROAuth2ClientDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB00F15F9EADF00B7759F /* DownloaderDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00815F9E78200B7759F /* DownloaderDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB01015F9EAE000B7759F /* DLFileDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00A15F9E78200B7759F /* DLFileDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB01215F9EAE300B7759F /* DLBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00615F9E78200B7759F /* DLBase64.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB01315F9EAE600B7759F /* NSURL+QueryInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00415F9E77300B7759F /* NSURL+QueryInspector.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB01415F9EAE800B7759F /* NSString+QueryString.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00315F9E77300B7759F /* NSString+QueryString.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB01515F9EAE900B7759F /* NSRunLoop+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00215F9E77300B7759F /* NSRunLoop+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB01615F9EAEB00B7759F /* NSObject+Tap.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00115F9E77300B7759F /* NSObject+Tap.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB01715F9EAEC00B7759F /* NSDictionary+QueryString.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB00015F9E77300B7759F /* NSDictionary+QueryString.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB01815F9EAEE00B7759F /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFF15F9E77300B7759F /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB01915F9EAEF00B7759F /* LRURLRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFE15F9E77300B7759F /* LRURLRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB01A15F9EAF200B7759F /* LROAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FAFFC15F9E77300B7759F /* LROAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F38FB0A815FA161100B7759F /* DLOfflineApiDataSync.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0A615FA161000B7759F /* DLOfflineApiDataSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F38FB0A915FA161100B7759F /* DLOfflineApiDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0A715FA161000B7759F /* DLOfflineApiDataSync.m */; };
-		F38FB0B015FA18F700B7759F /* DLAppConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0AE15FA18F600B7759F /* DLAppConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F38FB0B115FA18F700B7759F /* DLAppConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0AF15FA18F700B7759F /* DLAppConfiguration.m */; };
-		F38FB0B415FA342900B7759F /* DLConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0B215FA342900B7759F /* DLConstants.h */; };
 		F38FB0B515FA342900B7759F /* DLConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0B315FA342900B7759F /* DLConstants.m */; };
-		F38FB0C215FDDB0500B7759F /* DLDbManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0BA15FDDB0500B7759F /* DLDbManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F38FB0C315FDDB0500B7759F /* DLDbManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0BB15FDDB0500B7759F /* DLDbManager.m */; };
-		F38FB0C415FDDB0500B7759F /* DLFMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0BC15FDDB0500B7759F /* DLFMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F38FB0C515FDDB0500B7759F /* DLFMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0BD15FDDB0500B7759F /* DLFMDatabase.m */; };
-		F38FB0C615FDDB0500B7759F /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0BE15FDDB0500B7759F /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F38FB0C715FDDB0500B7759F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0BF15FDDB0500B7759F /* FMDatabaseAdditions.m */; };
-		F38FB0C815FDDB0500B7759F /* DLFMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = F38FB0C015FDDB0500B7759F /* DLFMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F38FB0C915FDDB0500B7759F /* DLFMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0C115FDDB0500B7759F /* DLFMResultSet.m */; };
-		F3D423DB163EA99E004C66CB /* DLFMSyncedDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = F3D423D9163EA99E004C66CB /* DLFMSyncedDatabase.h */; };
 		F3D423DC163EA99E004C66CB /* DLFMSyncedDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D423DA163EA99E004C66CB /* DLFMSyncedDatabase.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		F38FAE8215F8F39100B7759F /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/${PRODUCT_NAME}";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		F308A31315FDF76100B650BE /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		F308A31415FDF76100B650BE /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		3299035016B19CAA006DC100 /* libJSONKit.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libJSONKit.a; path = "../JSONKit/build/Release-iphoneos/libJSONKit.a"; sourceTree = "<group>"; };
 		F308A32D15FDF7CC00B650BE /* DLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLDocument.h; sourceTree = "<group>"; };
 		F308A32E15FDF7CC00B650BE /* DLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLDocument.m; sourceTree = "<group>"; };
 		F308A32F15FDF7CC00B650BE /* DLContentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLContentItem.h; sourceTree = "<group>"; };
@@ -156,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3299035116B19CAA006DC100 /* libJSONKit.a in Frameworks */,
 				F38FAFF415F8F8D500B7759F /* UIKit.framework in Frameworks */,
 				F38FAE8815F8F39100B7759F /* Foundation.framework in Frameworks */,
 			);
@@ -167,8 +155,6 @@
 		F308A32C15FDF7B500B650BE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F308A31315FDF76100B650BE /* JSONKit.h */,
-				F308A31415FDF76100B650BE /* JSONKit.m */,
 				F308A32D15FDF7CC00B650BE /* DLDocument.h */,
 				F308A32E15FDF7CC00B650BE /* DLDocument.m */,
 				F308A32F15FDF7CC00B650BE /* DLContentItem.h */,
@@ -184,6 +170,7 @@
 		F38FAE7915F8F39100B7759F = {
 			isa = PBXGroup;
 			children = (
+				3299035016B19CAA006DC100 /* libJSONKit.a */,
 				F38FAE8915F8F39100B7759F /* datownialibrary */,
 				F38FAE8615F8F39100B7759F /* Frameworks */,
 				F38FAE8515F8F39100B7759F /* Products */,
@@ -299,37 +286,37 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F38FB00C15F9EAB000B7759F /* datownialibrary.h in Headers */,
-				F38FB00D15F9EAB100B7759F /* DLAppService.h in Headers */,
-				F38FB01715F9EAEC00B7759F /* NSDictionary+QueryString.h in Headers */,
-				F38FB00E15F9EAD500B7759F /* LROAuth2ClientDelegate.h in Headers */,
-				F38FB01915F9EAEF00B7759F /* LRURLRequestOperation.h in Headers */,
-				F38FB01415F9EAE800B7759F /* NSString+QueryString.h in Headers */,
-				F38FB01A15F9EAF200B7759F /* LROAuth2Client.h in Headers */,
-				F38FB01815F9EAEE00B7759F /* NSData+Base64.h in Headers */,
-				F38FB0C415FDDB0500B7759F /* DLFMDatabase.h in Headers */,
-				F38FB0C615FDDB0500B7759F /* FMDatabaseAdditions.h in Headers */,
-				F38FB0C815FDDB0500B7759F /* DLFMResultSet.h in Headers */,
-				F38FB01515F9EAE900B7759F /* NSRunLoop+Additions.h in Headers */,
-				F38FB01615F9EAEB00B7759F /* NSObject+Tap.h in Headers */,
-				F38FB01215F9EAE300B7759F /* DLBase64.h in Headers */,
-				F38FB01315F9EAE600B7759F /* NSURL+QueryInspector.h in Headers */,
-				F38FB0C215FDDB0500B7759F /* DLDbManager.h in Headers */,
-				F308A34D15FE08CD00B650BE /* DLService.h in Headers */,
-				F38FB00F15F9EADF00B7759F /* DownloaderDelegate.h in Headers */,
-				F308A34915FE08BA00B650BE /* DLDocService.h in Headers */,
-				F38FB0B015FA18F700B7759F /* DLAppConfiguration.h in Headers */,
-				F38FB0A815FA161100B7759F /* DLOfflineApiDataSync.h in Headers */,
-				F38FB01015F9EAE000B7759F /* DLFileDownloader.h in Headers */,
-				F38FB0B415FA342900B7759F /* DLConstants.h in Headers */,
-				F308A31515FDF76100B650BE /* JSONKit.h in Headers */,
-				F308A33315FDF7CC00B650BE /* DLContentItem.h in Headers */,
-				F308A33115FDF7CC00B650BE /* DLDocument.h in Headers */,
-				F308A33715FDF82500B650BE /* DLGenericContentItem.h in Headers */,
-				F308A33C15FDF84E00B650BE /* NSString+Extras.h in Headers */,
-				F308A33F15FDFCB800B650BE /* DLTextDownloader.h in Headers */,
-				F308A34215FDFD0700B650BE /* macro.h in Headers */,
-				F3D423DB163EA99E004C66CB /* DLFMSyncedDatabase.h in Headers */,
+				3299026316B158F0006DC100 /* DLAppService.h in Headers */,
+				3299026816B158F8006DC100 /* DLFileDownloader.h in Headers */,
+				3299026616B158F4006DC100 /* DLService.h in Headers */,
+				3299026916B158FA006DC100 /* DLTextDownloader.h in Headers */,
+				3299026D16B1590D006DC100 /* DLOfflineApiDataSync.h in Headers */,
+				3299026F16B15912006DC100 /* DLConstants.h in Headers */,
+				3299026E16B15910006DC100 /* macro.h in Headers */,
+				3299027016B15915006DC100 /* LROAuth2AccessToken.h in Headers */,
+				3299026A16B158FE006DC100 /* datownialibrary.h in Headers */,
+				3299026B16B15908006DC100 /* DownloaderDelegate.h in Headers */,
+				3299027116B15916006DC100 /* LROAuth2Client.h in Headers */,
+				3299027316B15919006DC100 /* LRURLRequestOperation.h in Headers */,
+				3299027B16B15925006DC100 /* DLFMDatabase.h in Headers */,
+				3299027A16B15924006DC100 /* DLDbManager.h in Headers */,
+				3299027F16B15934006DC100 /* DLDocument.h in Headers */,
+				3299028016B15935006DC100 /* DLContentItem.h in Headers */,
+				3299027C16B15927006DC100 /* FMDatabaseAdditions.h in Headers */,
+				3299027516B1591B006DC100 /* NSDictionary+QueryString.h in Headers */,
+				3299027216B15917006DC100 /* LROAuth2ClientDelegate.h in Headers */,
+				3299028216B15938006DC100 /* NSString+Extras.h in Headers */,
+				3299028116B15936006DC100 /* DLGenericContentItem.h in Headers */,
+				3299027616B1591D006DC100 /* NSObject+Tap.h in Headers */,
+				3299027916B15922006DC100 /* NSURL+QueryInspector.h in Headers */,
+				3299027D16B15928006DC100 /* DLFMResultSet.h in Headers */,
+				3299027E16B1592A006DC100 /* DLFMSyncedDatabase.h in Headers */,
+				3299027816B15920006DC100 /* NSString+QueryString.h in Headers */,
+				3299027716B1591E006DC100 /* NSRunLoop+Additions.h in Headers */,
+				3299026C16B1590A006DC100 /* DLAppConfiguration.h in Headers */,
+				3299027416B1591A006DC100 /* NSData+Base64.h in Headers */,
+				3299026716B158F7006DC100 /* DLBase64.h in Headers */,
+				3299026516B158F2006DC100 /* DLDocService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +329,6 @@
 			buildPhases = (
 				F38FAE8015F8F39100B7759F /* Sources */,
 				F38FAE8115F8F39100B7759F /* Frameworks */,
-				F38FAE8215F8F39100B7759F /* CopyFiles */,
 				F38FB00B15F9EAAA00B7759F /* Headers */,
 			);
 			buildRules = (
@@ -404,7 +390,6 @@
 				F38FB0C515FDDB0500B7759F /* DLFMDatabase.m in Sources */,
 				F38FB0C715FDDB0500B7759F /* FMDatabaseAdditions.m in Sources */,
 				F38FB0C915FDDB0500B7759F /* DLFMResultSet.m in Sources */,
-				F308A31615FDF76100B650BE /* JSONKit.m in Sources */,
 				F308A33215FDF7CC00B650BE /* DLDocument.m in Sources */,
 				F308A33415FDF7CC00B650BE /* DLContentItem.m in Sources */,
 				F308A33815FDF82500B650BE /* DLGenericContentItem.m in Sources */,
@@ -468,26 +453,32 @@
 		F38FAEAA15F8F39100B7759F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				DSTROOT = /tmp/datownialibrary.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "datownialibrary/datownialibrary-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_TEMP_DIR)/../UninstalledProducts/include\"";
 			};
 			name = Debug;
 		};
 		F38FAEAB15F8F39100B7759F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				DSTROOT = /tmp/datownialibrary.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "datownialibrary/datownialibrary-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_TEMP_DIR)/../UninstalledProducts/include\"";
 			};
 			name = Release;
 		};

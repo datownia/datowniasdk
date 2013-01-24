@@ -9,7 +9,7 @@
 #import "DLService.h"
 #import "LROAuth2/LROAuth2AccessToken.h"
 #import "DLTextDownloader.h"
-#import "JSONKit.h"
+#import <JSONKit/JSONKit.h>
 
 @interface DLService()
 
