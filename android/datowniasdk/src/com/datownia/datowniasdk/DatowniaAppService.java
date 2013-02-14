@@ -11,6 +11,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -29,7 +31,7 @@ public class DatowniaAppService extends ServiceBase
 	}
 
 	//download the 
-	public void downloadAppDB()
+	public void downloadAppDB() throws IOException, JSONException
 	{
 		//builds the access token if one does not exist yet
 		//and is stored as part of the bases' configuration settings 
@@ -69,7 +71,7 @@ public class DatowniaAppService extends ServiceBase
 	}
 
 	//synchronise the database tables with datownia for updated data
-	public void synchroniseDBTables()
+	public void synchroniseDBTables() throws IOException, JSONException
 	{
 		//temporary .. jsut request a new token no matter what
 		//this.requestAccessTokenIfNeeded(this.getScope());
@@ -174,7 +176,7 @@ public class DatowniaAppService extends ServiceBase
 		
 	}
 
-	private String getHTTPDeltaSQL(String documentName, String version, int sequenceNumber)
+	private String getHTTPDeltaSQL(String documentName, String version, int sequenceNumber) throws IOException, JSONException
 	{
 		String result = null;
 		URL url = null;

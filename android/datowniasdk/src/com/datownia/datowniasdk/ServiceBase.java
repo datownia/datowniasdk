@@ -5,14 +5,17 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.util.Log;
 
 public class ServiceBase 
 {
@@ -30,7 +33,7 @@ public class ServiceBase
 		
 	}
 
-	public void requestAccessTokenIfNeeded(String scope)
+	public void requestAccessTokenIfNeeded(String scope) throws IOException, JSONException
 	{
 		//check if access token object is non existant
 		if(this.configurationSettings.getAccessToken() == null)
@@ -40,7 +43,7 @@ public class ServiceBase
 		}
 	}
 		
-	protected DatowniaAccessToken generateAccessTokenFromScope(String scope)
+	protected DatowniaAccessToken generateAccessTokenFromScope(String scope) throws IOException, JSONException
 	{
 		DatowniaAccessToken result = null;
 		StringBuilder root = new StringBuilder(String.format("https://%s/oauth2/token?", this.configurationSettings.getHost()));
@@ -48,14 +51,14 @@ public class ServiceBase
 		StringBuilder parameters = new StringBuilder("client_id=");
 		parameters.append(this.configurationSettings.getAppKey());
 		parameters.append("&client_secret=");
-		parameters.append(this.configurationSettings.getAppSecret());
+		parameters.append(this.configurationSettings.getAppSecret())	;
 		parameters.append("&grant_type=client_credentials&scope=");
 		parameters.append(scope);
 
 		//get token
 		URL url;
-		try 
-		{
+//		try 
+//		{
 			url = new URL(root.toString());
 
 			// open HTTPS connection
@@ -113,43 +116,44 @@ public class ServiceBase
 		    String expiresInSeconds = "";
 		    String tokenType = "";
 			
-		    try 
-		    {
+//		    try 
+//		    {
 				objResponse = new JSONObject(text.toString());	
-			} 
-		    catch (JSONException e) 
-		    {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			} 
+//		    catch (JSONException e) 
+//		    {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		    
-		    try 
-		    {
+//		    try 
+//		    {
 				accessToken =  objResponse.getString("access_token");
 				expiresInSeconds = objResponse.getString("expires_in");
 				tokenType = objResponse.getString("token_type");
-			} 
-		    catch (JSONException e) 
-		    {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		    
+//			} 
+//		    catch (JSONException e) 
+//		    {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		    
 		    //build the result access token object
 		    result = new DatowniaAccessToken();
 		    result.setAccessToken(accessToken);
 		    result.setExpiresInSeconds(expiresInSeconds);
 		    result.setTokenType(tokenType);
 		     
-		} 
-		catch (MalformedURLException e) 
-		{
-			e.printStackTrace();
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
+//		} 
+//		catch (MalformedURLException e) 
+//		{
+//			Log.d("datownia", e.toString());
+//		} 
+//		catch (IOException e) 
+//		{
+//			Log.d("datownia", e.toString());
+//
+//		}
 		
 		//return access token object
 		return result;

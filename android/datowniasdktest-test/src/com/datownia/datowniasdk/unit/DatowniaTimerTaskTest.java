@@ -1,36 +1,32 @@
-package com.datownia.datowniasdk;
+package com.datownia.datowniasdk.unit;
 
+import java.io.IOException;
+
+import org.json.JSONException;
+
+import com.datownia.datowniasdk.ConnectivityHelper;
 import com.datownia.datowniasdk.DatowniaAppConfiguration;
 import com.datownia.datowniasdk.DatowniaAppService;
+import com.datownia.datowniasdk.DatowniaSQLiteDBHelper;
 import com.datownia.datowniasdk.DatowniaTimerTask;
 import com.datownia.datowniasdk.ServiceFactory;
+import com.datownia.datowniasdk.testframework.DatowniaTestCase;
 
 import android.content.Context;
 import static org.mockito.Mockito.*;
 import android.test.AndroidTestCase;
 
-public class DatowniaTimerTaskTest extends AndroidTestCase {
+public class DatowniaTimerTaskTest extends DatowniaTestCase {
 
-	protected void setUp() throws Exception {
-		System.setProperty("dexmaker.dexcache", "/sdcard");
-		super.setUp();
-	}
 
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
+	/**
+	 * We want to test that a timer task calls appropriate AppService methods
+	 * depending on the state of the database and the connection
+	 * @throws JSONException 
+	 * @throws IOException 
+	 */
+	public void testRun() throws IOException, JSONException {
 
-	public void testRun() {
-		//create timer task with datownia configuration
-		DatowniaAppConfiguration config = new DatowniaAppConfiguration();
-		config.setPublisher("example");
-		config.setAppKey("b317eac00b");
-		config.setAppSecret("5156a8e80e");
-		config.setHost("www.datownia.com");
-		config.setCheckChangesFrequency(300);
-		config.setPhoneDatabaseName("exampledb");
-		config.setPhoneDatabasePath("/temp/database/");
-		
 		//create mock app service
 		DatowniaAppService appServiceMock = mock(DatowniaAppService.class);
 		
@@ -45,7 +41,7 @@ public class DatowniaTimerTaskTest extends AndroidTestCase {
 		
 		//run. this should create an app service and initialize with the configuration
 		//then it should call downloadAppDb
-		DatowniaTimerTask timerTask = new DatowniaTimerTask(getContext(), config);
+		DatowniaTimerTask timerTask = new DatowniaTimerTask(getContext(), getConfig(getContext()));
 		timerTask.setServiceFactory(serviceFactoryMock);
 		timerTask.setDbHelper(dbHelperMock);
 		timerTask.setConnectivityHelper(connectivityHelperMock);
