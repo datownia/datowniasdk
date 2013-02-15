@@ -62,26 +62,26 @@ public class DatowniaAppConfiguration
 	/**
 	 * @return path to store database files. trailing slash
 	 */
-	public String getPhoneDatabasePath() {
+	public String getDatabaseFolder() {
 		return phoneDatabasePath;
 	}
 	
 	/**
 	 * @param phoneDatabasePath path to use to store database file. trailing slash will be added if not present
 	 */
-	public void setPhoneDatabasePath(String phoneDatabasePath) {
+	public void setFullDatabasePath(String phoneDatabasePath) {
 		if (!phoneDatabasePath.endsWith("/"))
-			phoneDatabasePath.concat("/");
+			phoneDatabasePath = phoneDatabasePath.concat("/");
 		this.phoneDatabasePath = phoneDatabasePath;
 	}
-	public String getDatabaseStoragePath() {
+	public String getFullDatabasePath() {
 		return phoneDatabasePath + phoneDatabaseName;
 	}
 
-	public String getPhoneDatabaseName() {
+	public String getDatabaseName() {
 		return phoneDatabaseName;
 	}
-	public void setPhoneDatabaseName(String phoneDatabaseName) {
+	public void setDatabaseName(String phoneDatabaseName) {
 		this.phoneDatabaseName = phoneDatabaseName;
 	}
 

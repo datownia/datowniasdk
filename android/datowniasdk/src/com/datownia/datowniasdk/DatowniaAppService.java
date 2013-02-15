@@ -2,15 +2,18 @@ package com.datownia.datowniasdk;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 
 import android.content.Context;
@@ -33,6 +36,7 @@ public class DatowniaAppService extends ServiceBase
 	//download the 
 	public void downloadAppDB() throws IOException, JSONException
 	{
+		Log.d("datownia", "begin download app db");
 		//builds the access token if one does not exist yet
 		//and is stored as part of the bases' configuration settings 
 		this.requestAccessTokenIfNeeded(this.getScope());
@@ -61,11 +65,21 @@ public class DatowniaAppService extends ServiceBase
 		
 		if(resultStream != null)
 		{
+			Log.d("datownia", String.format("storing database to path %s", this.configurationSettings.getFullDatabasePath()));
+			
+			File folder = new File(this.configurationSettings.getDatabaseFolder());
+			if (!folder.exists())
+			{
+				folder.mkdir();
+			}
+			OutputStream outputStream = new FileOutputStream(this.configurationSettings.getFullDatabasePath());
+			
+			IOUtils.copy(resultStream, outputStream);
 			//create the sqlite helper with the input stream and application context
-			DatowniaSQLiteDBHelper dbHelper = DatowniaSQLiteDBHelper.getInstance(this.applicationContext, 
-																				 this.configurationSettings.getPhoneDatabaseName(),
-																				 this.configurationSettings.getDatabaseStoragePath());
-			dbHelper.initWithInputStream(resultStream);
+//			DatowniaSQLiteDBHelper dbHelper = DatowniaSQLiteDBHelper.getInstance(this.applicationContext, 
+//																				 this.configurationSettings.getPhoneDatabaseName(),
+//																				 this.configurationSettings.getPhoneDatabasePath());
+//			dbHelper.initWithInputStream(resultStream);
 			
 		}
 	}
@@ -78,8 +92,8 @@ public class DatowniaAppService extends ServiceBase
 		//this.configurationSettings.setAccessToken(this.generateAccessTokenFromScope(this.getScope()));
 		
 		DatowniaManagementDAO dao = new DatowniaManagementDAO(this.applicationContext, 
-															  this.configurationSettings.getPhoneDatabaseName(), 
-															  this.configurationSettings.getPhoneDatabasePath());
+															  this.configurationSettings.getDatabaseName(), 
+															  this.configurationSettings.getDatabaseFolder());
 		
 		List<DatowniaTableDef> tableDefs = dao.getAllTableDefRecords();
 		

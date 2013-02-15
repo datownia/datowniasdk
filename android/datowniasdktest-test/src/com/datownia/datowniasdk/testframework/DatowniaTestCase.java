@@ -1,8 +1,11 @@
 package com.datownia.datowniasdk.testframework;
 
+import java.io.File;
+
 import com.datownia.datowniasdk.DatowniaAppConfiguration;
 
 import android.content.Context;
+import android.os.Environment;
 import android.test.AndroidTestCase;
 
 public class DatowniaTestCase extends AndroidTestCase {
@@ -23,8 +26,10 @@ public class DatowniaTestCase extends AndroidTestCase {
 		config.setAppSecret("5156a8e80e");
 		config.setHost("www.datownia.com");
 		config.setCheckChangesFrequency(300);
-		config.setPhoneDatabaseName("exampledatowniadb");
-		config.setPhoneDatabasePath(context.getApplicationInfo().dataDir);
+		config.setDatabaseName("exampledatownia.db");
+		//config.setPhoneDatabasePath(context.getApplicationInfo().dataDir);
+		//we use sdcard for the tests so that we can inspect the sqlite file more easily when debugging
+		config.setFullDatabasePath(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "databases");
 		return config;
 	}
 

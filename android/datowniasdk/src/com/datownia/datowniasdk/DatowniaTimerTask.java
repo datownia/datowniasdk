@@ -21,7 +21,7 @@ public class DatowniaTimerTask extends TimerTask
 	{
 		this.settings = configSettings;
 		this.appContext = appContext;	
-		setDbHelper(new DatowniaSQLiteDBHelper(appContext, configSettings.getPhoneDatabaseName(), configSettings.getPhoneDatabasePath()));
+		setDbHelper(new DatowniaSQLiteDBHelper(appContext, configSettings.getDatabaseName(), configSettings.getDatabaseFolder()));
 		setConnectivityHelper(new ConnectivityHelper(appContext));
 	}	
 	
