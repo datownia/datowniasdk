@@ -14,18 +14,18 @@
 
 #import <Foundation/Foundation.h>
 
-void *NewBase64Decode(
+void *DLNewBase64Decode(
 	const char *inputBuffer,
 	size_t length,
 	size_t *outputLength);
 
-char *NewBase64Encode(
+char *DLNewBase64Encode(
 	const void *inputBuffer,
 	size_t length,
 	bool separateLines,
 	size_t *outputLength);
 
-@interface NSData (Base64)
+@interface NSData (DLBase64)
 
 + (NSData *)LR_dataFromBase64String:(NSString *)aString;
 - (NSString *)LR_base64EncodedString;

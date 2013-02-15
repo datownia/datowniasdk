@@ -153,6 +153,8 @@
         [self handleCompletionForAuthorizationRequestOperation:blockOperation];
     }];
     
+    
+    
     [_networkQueue addOperation:operation];
 }
 
@@ -171,7 +173,7 @@
     }
     if ([authData objectForKey:@"access_token"] == nil) {
         [self.delegate oauthClientError:self];
-      NSAssert(NO, @"Unhandled parsing failure");
+      DLog(@"Unhandled parsing failure");
     }
     if (accessToken == nil) {
       accessToken = [[LROAuth2AccessToken alloc] initWithAuthorizationResponse:authData];
@@ -190,7 +192,13 @@
         [self.delegate oauthClientError:self];
       NSLog(@"Connection error: %@", operation.connectionError);
     }
+    else
+    {
+        NSLog(@"Reponse status: %i", response.statusCode);
+        [self.delegate oauthClientError:self];
+    }
   }
+    
 }
 
 @end

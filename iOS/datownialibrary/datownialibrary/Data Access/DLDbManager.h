@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FMDatabase.h"
+#import "DLFMDatabase.h"
 
 @interface DLDbManager : NSObject {
 
@@ -16,7 +16,7 @@
 
 //+ (NSString *) getLibraryDbPath;
 //+ (NSString *) getContentDbPath:(NSString *)dbName;
-+ (NSString *) getUserCataloguePath;
-+ (NSString *) getDatabasePath;
-+ (FMDatabase *) openDb: (NSString *) dbPath ;
+//+ (NSString *) getDocumentsDbPath;
+//+ (NSString *) getDatabasePath;
++ (DLFMDatabase *) openSyncedDb: (NSString *) dbPath ;
 @end

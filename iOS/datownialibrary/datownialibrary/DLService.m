@@ -3,13 +3,13 @@
 //  datownialibrary
 //
 //  Created by Ian Cox on 10/09/2012.
-//  Copyright (c) 2012 datownia. All rights reserved.
+//  Copyright (c) 2012 Release Consulting Ltd. All rights reserved.
 //
 
 #import "DLService.h"
 #import "LROAuth2/LROAuth2AccessToken.h"
-#import "TextDownloader.h"
-#import "JSONKit.h"
+#import "DLTextDownloader.h"
+#import <JSONKit/JSONKit.h>
 
 @interface DLService()
 
@@ -42,7 +42,11 @@
 
 - (void)ensureClient
 {
-    NSAssert(self.configuration, @"configuration required");
+    if (!self.configuration)
+    {
+        DLog(@"CONFIGURATION MISSING");
+        return;
+    }
     
     if (!client)
     {
@@ -58,31 +62,20 @@
 }
 
 
-- (void)requestAccessTokenIfNeeded:(NSString *)scope
+- (BOOL)requestAccessTokenIfNeeded:(NSString *)scope
 {
-    //client.tokenURL = [NSURL URLWithString:@"https://192.168.42.11/oauth2/token"]; //@"https://apimakersandbox.cloudapp.net/oauth2/token"];
+    //try and restore access token from defaults
+    //if it has not expired then use it
+    id savedValue = [[NSUserDefaults standardUserDefaults] objectForKey:[self accessTokenKeyName:scope]];
     
-    //if already have an unexpired access token then use it
-//    if (client.accessToken)
-//    {
-//        if (!client.accessToken.hasExpired)
-//            return; // use the one we already have
-//    }
-//    else
-//    {
-        //try and restore access token from defaults
-        //if it has not expired then use it
-        id savedValue = [[NSUserDefaults standardUserDefaults] objectForKey:[self accessTokenKeyName:scope]];
+    if (savedValue)
+    {
+        client.accessToken = [NSKeyedUnarchiver unarchiveObjectWithData:savedValue];
         
-        if (savedValue)
-        {
-            client.accessToken = [NSKeyedUnarchiver unarchiveObjectWithData:savedValue];
-            
-            if (!client.accessToken.hasExpired)
-                return;
-        }
-        
-//    }
+        if (!client.accessToken.hasExpired)
+            return YES;
+    }
+
     
     requesting = true;
     [client requestAccessTokenClientCredentials:scope];
@@ -93,17 +86,28 @@
         [[NSRunLoop currentRunLoop] runUntilDate:[[NSDate date] dateByAddingTimeInterval:2]];
     }
     
-    NSAssert(client.accessToken, @"An error must have occurred getting the token");
+    if (client.accessToken == NULL)
+    {
+        DLog(@"An error must have occurred getting the token");
+        return NO;;
+    }
+    
     
     //save the token for later use
     NSData *accessTokenAsNSData = [NSKeyedArchiver archivedDataWithRootObject:client.accessToken];
     [[NSUserDefaults standardUserDefaults] setObject:accessTokenAsNSData forKey:[self accessTokenKeyName:scope]];
+    
+    return YES;
 }
 
 - (NSString *)getAuth:(NSString *)scope
 {
-    NSAssert(self.configuration, @"dbPath required");
-    
+    if (!self.configuration.dbPath)
+    {
+        DLog(@"dbPath required in configuration");
+        return nil;
+    }
+   
     [self requestAccessTokenIfNeeded:scope];
     
     requesting = true;
@@ -126,7 +130,7 @@
     
     NSString *auth = [self getAuth:scope];
     
-    TextDownloader *downloader = [[TextDownloader alloc] initWithUrl:endpoint withDelegate:self];
+    DLTextDownloader *downloader = [[DLTextDownloader alloc] initWithUrl:endpoint withDelegate:self];
     [downloader.request setHTTPMethod:@"GET"];
     [downloader.request setValue:self.configuration.appKey forHTTPHeaderField:@"client_id"];
     [downloader.request setValue:auth forHTTPHeaderField:@"Authorization"];
@@ -183,7 +187,7 @@
     
 }
 
--(void) fileDownloadError:(enum DownloadResult) result source:(id)source
+-(void) fileDownloadError:(enum DLDownloadResult) result source:(id)source
 {
     requesting = false;
 

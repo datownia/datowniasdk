@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@interface FMDatabase (FMDatabaseAdditions)
+@interface DLFMDatabase (DLFMDatabaseAdditions)
 
 
 - (int)intForQuery:(NSString*)objs, ...;
@@ -24,8 +24,8 @@
 
 
 - (BOOL)tableExists:(NSString*)tableName;
-- (FMResultSet*)getSchema;
-- (FMResultSet*)getTableSchema:(NSString*)tableName;
+- (DLFMResultSet*)getSchema;
+- (DLFMResultSet*)getTableSchema:(NSString*)tableName;
 - (BOOL)columnExists:(NSString*)tableName columnName:(NSString*)columnName;
 
 @end

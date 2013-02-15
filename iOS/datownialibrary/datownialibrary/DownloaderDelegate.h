@@ -7,18 +7,18 @@
 
 #import <Foundation/Foundation.h>
 
-enum DownloadResult {
-	DownloadResult_Success, 
-	DownloadResult_ConnectionFailed, 
-	DownloadResult_HttpError, 
-	DownloadResult_NotFound,
-	DownloadResult_NotAuthorised
+enum DLDownloadResult {
+	DLDownloadResult_Success, 
+	DLDownloadResult_ConnectionFailed, 
+	DLDownloadResult_HttpError, 
+	DLDownloadResult_NotFound,
+	DLDownloadResult_NotAuthorised
 };
 
-@protocol DownloaderDelegate <NSObject> 
+@protocol DLDownloaderDelegate <NSObject> 
 
 -(void) fileDownloadComplete:(id)source contentFound:(BOOL)contentFound;
 -(void) fileDownloadProgress:(NSNumber *)progressFraction source:(id)source;
--(void) fileDownloadError:(enum DownloadResult) result source:(id)source;
+-(void) fileDownloadError:(enum DLDownloadResult) result source:(id)source;
 
 @end

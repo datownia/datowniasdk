@@ -7,58 +7,33 @@
 //
 
 #import "DLDbManager.h"
-#import "FMDatabase.h"
+#import "DLFMSyncedDatabase.h"
+#import "DLFMDatabase.h"
 
 @implementation DLDbManager
 
-//+ (NSString *) getLibraryDbPath
+//+ (NSString *) getDatabasePath 
 //{
-//	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//	NSString *documentsDir = [paths objectAtIndex:0];
-//	return [documentsDir stringByAppendingPathComponent:@"Library.db"];
+//	NSString *userPath;
+//	userPath = [self getDocumentsDbPath];
+//	
+//    return userPath;
+//	
 //}
 //
-//+(NSString *) getContentDbPath:(NSString *)dbName
+//+ (NSString *) getDocumentsDbPath 
 //{
-//	if ([dbName rangeOfString:@"/"].location != NSNotFound)
-//		return dbName;
-//		
 //	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //	NSString *documentsDir = [paths objectAtIndex:0];
-//	
-//	NSString *dbPath = [[NSBundle mainBundle] pathForResource:dbName ofType:@"db"];
-//	if (!dbPath)
-//	{
-//		
-//		dbPath = [documentsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.db", dbName]];
-//	}
-//	
-//	
-//	return dbPath;
+//	NSString *userPath = [documentsDir stringByAppendingPathComponent:@"test.sqlite"]; //catalogue.db
+//	return userPath;
 //}
 
-
-+ (NSString *) getDatabasePath 
++ (DLFMDatabase *) openSyncedDb:(NSString *)dbPath  
 {
-	NSString *userPath;
-	userPath = [self getUserCataloguePath];
-	
-    return userPath;
-	
-}
-
-+ (NSString *) getUserCataloguePath 
-{
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDir = [paths objectAtIndex:0];
-	NSString *userPath = [documentsDir stringByAppendingPathComponent:@"test.sqlite"]; //catalogue.db
-	return userPath;
-}
-
-+ (FMDatabase *) openDb:(NSString *)dbPath  
-{
-	FMDatabase* db = [FMDatabase databaseWithPath:dbPath];
-	if (![db open]) {
+	//DLFMDatabase* db = [DLFMSyncedDatabase databaseWithPath:dbPath];
+	DLFMDatabase* db = [DLFMDatabase databaseWithPath:dbPath];
+    if (![db open]) {
 		[NSException raise:@"DbOpenError" format:@"Could not open db."];
 		[db setShouldCacheStatements:NO];
 		return nil;
@@ -75,6 +50,5 @@
 	
 	return db;
 }
-
 
 @end

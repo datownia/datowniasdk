@@ -3,7 +3,7 @@
 //  datownialibrary
 //
 //  Created by Ian Cox on 07/09/2012.
-//  Copyright (c) 2012 datownia. All rights reserved.
+//  Copyright (c) 2012 Release Consulting Ltd. All rights reserved.
 //
 
 #import "DLOfflineApiDataSync.h"
@@ -13,12 +13,13 @@
 @interface DLOfflineApiDataSync()
 
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic) NSUInteger failCount;
 
 @end
 
 @implementation DLOfflineApiDataSync
 
-@synthesize timer, running;
+@synthesize timer, running, failCount;
 
 //+ (id) sharedInstance
 //{
@@ -32,6 +33,7 @@
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDownloaded:) name:DLAppDownloadedNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDownloadFailed:) name:DLAppDownloadFailedNotification object:nil];
     }
     return self;
 }
@@ -42,9 +44,23 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (NSTimeInterval)getNextCheckTime:(DLAppConfiguration *)configuration
+{
+    //TODO: a method to check if our local copy is really up to date
+    //possibly try to create the overall checksum based on the row _ids
+    
+    failCount = MIN(failCount, 16); //constrain failCount
+    NSTimeInterval nextCheck = configuration.checkChangesFrequencySeconds * pow(2,failCount);
+    nextCheck = MIN(nextCheck, 60*60*24); //min recheck every day, even if failing
+    DLog(@"datownia: checking again in %f seconds", nextCheck);
+    return nextCheck;
+}
+
 //start sync process
 - (void) startSync:(NSTimer *)aTimer
 {
+    //TODO: add error handling so sync errors do not crash the app
+    
     DLAppConfiguration* configuration = aTimer.userInfo;
     DLAppService *service = [[DLAppService alloc] initWithConfiguration:configuration];
     
@@ -52,14 +68,13 @@
    if (![[NSFileManager defaultManager] fileExistsAtPath:configuration.dbPath])
     {
         //if no database then call app service to create initial database
+        //usually the database will already exist as the app will have been bundled with seed database
         
-        
+        DLog(@"datownia: starting database download");
         [service downloadApp];
         
-        //TODO:when done get the seq value for each table and store
-        //TODO:api will change to incorporate seq without these additional calls
-        
-        [self createTimer:configuration freq:configuration.checkChangesFrequencySeconds];
+        NSTimeInterval nextCheck = [self getNextCheckTime:configuration];
+        [self createTimer:configuration freq:nextCheck];
         return;
     }
 
@@ -67,10 +82,8 @@
     [service synchronizeTables];
     
     
-    //TODO: a method to check if our local copy is really up to date
-    //possibly try to create the overall checksum based on the row _ids
-    
-    [self createTimer:configuration freq:configuration.checkChangesFrequencySeconds];
+    NSTimeInterval nextCheck = [self getNextCheckTime:configuration];
+    [self createTimer:configuration freq:nextCheck];
 }
 
 - (void) createTimer:(DLAppConfiguration *)aConfiguration freq:(NSTimeInterval)interval
@@ -78,11 +91,16 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(startSync:) userInfo:aConfiguration repeats:NO];
 }
 
-- (void) start:(DLAppConfiguration *)aConfiguration onAppDownloaded:(event_block_t)onAppDownloadedHandler
+- (void) start:(DLAppConfiguration *)aConfiguration onAppDownloaded:(event_block_t)onAppDownloadedHandler onFailure:(event_block_t)onFailureHandler
 {
-    NSAssert(aConfiguration, @"Must supply configuration");
+    if (!aConfiguration)
+    {
+        DLog(@"Must supply configuration");
+        return;
+    }
     
     onAppDownloadedBlock = onAppDownloadedHandler;
+    onFailureBlock = onFailureHandler;
     
     if (backgroundQueue)
         dispatch_release(backgroundQueue);
@@ -92,7 +110,7 @@
     backgroundQueue = dispatch_queue_create("com.datownia.offlineapi.queue", NULL);
     
     dispatch_async(backgroundQueue, ^void{
-        [self createTimer:aConfiguration freq:0.5f];
+        [self createTimer:aConfiguration freq:0.5f]; //fire the first one straight away
         
         [[NSRunLoop currentRunLoop] run];  
     });
@@ -110,12 +128,24 @@
 
 - (void) appDownloaded:(NSNotification *)notification
 {
+    DLog(@"datownia: done database download");
+    failCount = 0;
     if (onAppDownloadedBlock)
     {
         onAppDownloadedBlock();
     }
 }
 
+- (void) appDownloadFailed:(NSNotification *)notification
+{
+    DLog(@"datownia: failed database download");
+    failCount++;
+    if (onFailureBlock)
+    {
+        onFailureBlock();
+    }
+
+}
 
 
 @end

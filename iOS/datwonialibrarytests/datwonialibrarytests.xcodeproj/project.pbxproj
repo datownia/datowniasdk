@@ -39,7 +39,7 @@
 		F38FB04815FA031400B7759F /* datwonialibrarytestsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = datwonialibrarytestsTests.octest; path = datwonialibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38FB04915FA031400B7759F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F38FB04B15FA031400B7759F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		F38FB05315FA031400B7759F /* datwonialibrarytestsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "datwonialibrarytestsTests-Info.plist"; sourceTree = "<group>"; };
+		F38FB05315FA031400B7759F /* datwonialibrarytestsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "datwonialibrarytestsTests-Info.plist"; path = "datwonialibrarytestsTests/datwonialibrarytestsTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F38FB05515FA031400B7759F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F38FB06F15FA040B00B7759F /* datownialibraryTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datownialibraryTests.h; sourceTree = "<group>"; };
 		F38FB07015FA040B00B7759F /* datownialibraryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = datownialibraryTests.m; sourceTree = "<group>"; };
@@ -69,7 +69,6 @@
 				F3CF2E2515FDF2BA009BE218 /* libsqlite3.dylib */,
 				F38FB09A15FA047B00B7759F /* datownialibrary.xcodeproj */,
 				F38FB03C15FA031400B7759F /* datwonialibrarytests */,
-				F38FB05115FA031400B7759F /* datwonialibrarytestsTests */,
 				F38FB03915FA031400B7759F /* Frameworks */,
 				F38FB03815FA031400B7759F /* Products */,
 			);
@@ -106,24 +105,9 @@
 		F38FB03D15FA031400B7759F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F38FB03E15FA031400B7759F /* datwonialibrarytests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F38FB05115FA031400B7759F /* datwonialibrarytestsTests */ = {
-			isa = PBXGroup;
-			children = (
-				F38FB05215FA031400B7759F /* Supporting Files */,
-			);
-			path = datwonialibrarytestsTests;
-			sourceTree = "<group>";
-		};
-		F38FB05215FA031400B7759F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F38FB05315FA031400B7759F /* datwonialibrarytestsTests-Info.plist */,
 				F38FB05415FA031400B7759F /* InfoPlist.strings */,
+				F38FB05315FA031400B7759F /* datwonialibrarytestsTests-Info.plist */,
+				F38FB03E15FA031400B7759F /* datwonialibrarytests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -253,7 +237,8 @@
 				F38FB05515FA031400B7759F /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
+			path = datwonialibrarytestsTests;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXVariantGroup section */
 

@@ -3,12 +3,12 @@
 //  datownialibraryTests
 //
 //  Created by Ian Cox on 06/09/2012.
-//  Copyright (c) 2012 datownia. All rights reserved.
+//  Copyright (c) 2012 Release Consulting Ltd. All rights reserved.
 //
 
 #import "datownialibraryTests.h"
 #import <datownialibrary/datownialibrary.h>
-#import <datownialibrary/FMDatabase.h>
+#import <datownialibrary/DLFMDatabase.h>
 #import <datownialibrary/DLDbManager.h>
 
 @implementation datownialibraryTests
@@ -89,9 +89,9 @@
     configuration.appSecret = testAppSecret;
     configuration.checkChangesFrequencySeconds = 1;
     configuration.dbPath = pathToFile;
-    configuration.host = @"192.168.42.211";
+    configuration.host = @"www.datownia.com";
     
-    [manager start:configuration onAppDownloaded:^(){[manager stop];}];
+    [manager start:configuration onAppDownloaded:^(){[manager stop];} onFailure:^(){[manager stop];}];
     
     while(manager.running)
     {
@@ -104,7 +104,7 @@
 
 - (void) sequenceTest
 {
-    FMDatabase *db = [DLDbManager openDb:[self getDbPath]];
+    DLFMDatabase *db = [DLDbManager openSyncedDb:[self getDbPath]];
     
     NSString *sql = @"update table_def set seq = 0;";
 

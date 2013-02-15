@@ -8,7 +8,7 @@
 //  if you want multiple requests simultaneously then create multple instances of the service
 //
 //  Created by Ian Cox on 10/09/2012.
-//  Copyright (c) 2012 datownia. All rights reserved.
+//  Copyright (c) 2012 Release Consulting Ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,7 +16,7 @@
 #import "LROAuth2Client.h"
 #import "DownloaderDelegate.h"
 
-@interface DLService : NSObject  <LROAuth2ClientDelegate, DownloaderDelegate>
+@interface DLService : NSObject  <LROAuth2ClientDelegate, DLDownloaderDelegate>
 {
     LROAuth2Client *client;
     BOOL requesting;
@@ -30,7 +30,7 @@
 
 - (id) initWithConfiguration:(DLAppConfiguration *)configuration;
 
-- (void)requestAccessTokenIfNeeded:(NSString *)scope;
+- (BOOL)requestAccessTokenIfNeeded:(NSString *)scope;
 - (void)ensureClient;
 
 - (id) httpGetJson:(NSURL *)endpoint scope:(NSString *)scope;
