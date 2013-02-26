@@ -25,17 +25,27 @@ import android.test.AndroidTestCase;
 public class DatowniaAppServiceTest extends DatowniaTestCase{
 
 
-	public void testDownloadAppDB() throws IOException, JSONException
+	public void testDownloadAppDB()
 	{
 		DatowniaAppConfiguration config = getConfig(getContext());
 		DatowniaAppService appService = new DatowniaAppService(getContext(), config);
 		
-		appService.downloadAppDB();
+		try {
+			appService.downloadAppDB();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue("IOException", false);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue("JSONException", false);
+		}
 		
 		//check file exists
 		java.io.File file = new java.io.File(config.getFullDatabasePath());
 	    assertTrue(config.getFullDatabasePath(), file.exists());
-	    assertEquals(config.getDatabaseName(), file.getName());
+	    assertEquals(config.getDatabaseName() + ".db", file.getName());
 	   
 	    //check it is a db by opening it and doing a query
 	    DatabaseContext dbContext = new DatabaseContext(getContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
@@ -46,7 +56,14 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 	    
 	    Cursor queryCursor = db.query("[table_def]", new String[]{"tablename","seq"} , null, null, null, null, null);
 	    //Cursor queryCursor = db.rawQuery("select * from [table_def]", null);
-	    queryCursor.moveToLast();
+	    assertTrue(queryCursor.moveToFirst());
+	    int rows = 1;
+	    while(queryCursor.moveToNext())
+	    {
+	    	rows++;
+	    }
+
+	    assertEquals(3, rows); //catalogue v1 and 2 + offers
 	    queryCursor.close();
 	    dbHelper.close();
 
