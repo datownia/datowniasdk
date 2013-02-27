@@ -14,15 +14,17 @@ import java.net.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.releasemobile.data.RepositoryStorableContext;
+
 import android.content.Context;
 import android.util.Log;
 
 public class ServiceBase 
 {
 	protected DatowniaAppConfiguration configurationSettings;
-	protected Context applicationContext;
+	protected RepositoryStorableContext applicationContext;
 	
-	public ServiceBase(Context appContext, DatowniaAppConfiguration configurationSettings)
+	public ServiceBase(RepositoryStorableContext appContext, DatowniaAppConfiguration configurationSettings)
 	{
 		this.applicationContext = appContext;
 		this.configurationSettings = configurationSettings;

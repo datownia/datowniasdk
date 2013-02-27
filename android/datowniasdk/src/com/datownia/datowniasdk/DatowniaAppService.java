@@ -16,6 +16,8 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 
+import com.releasemobile.data.RepositoryStorableContext;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -23,7 +25,7 @@ public class DatowniaAppService extends ServiceBase
 {
 	private String appScope = null;
 	
-	public DatowniaAppService(Context appContext, DatowniaAppConfiguration configurationSettings)
+	public DatowniaAppService(RepositoryStorableContext appContext, DatowniaAppConfiguration configurationSettings)
 	{
 		super(appContext, configurationSettings);
 	}

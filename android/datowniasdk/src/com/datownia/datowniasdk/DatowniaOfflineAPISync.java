@@ -2,13 +2,15 @@ package com.datownia.datowniasdk;
 
 import java.util.Timer;
 
+import com.releasemobile.data.RepositoryStorableContext;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 public class DatowniaOfflineAPISync 
 {
-	private Context applicationContext;
+	private RepositoryStorableContext applicationContext;
 	private DatowniaAppService appService;
 	private DatowniaAppConfiguration configSettings;
 	private Timer timer;
@@ -19,7 +21,7 @@ public class DatowniaOfflineAPISync
 		
 	}
 	
-	public void init(Context applicationContext, DatowniaAppConfiguration config)
+	public void init(RepositoryStorableContext applicationContext, DatowniaAppConfiguration config)
 	{
 		this.applicationContext = applicationContext;
 		this.configSettings = config;

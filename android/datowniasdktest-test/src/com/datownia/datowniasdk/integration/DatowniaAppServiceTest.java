@@ -13,6 +13,8 @@ import com.datownia.datowniasdk.DatowniaAppConfiguration;
 import com.datownia.datowniasdk.DatowniaAppService;
 import com.datownia.datowniasdk.DatowniaSQLiteDBHelper;
 import com.datownia.datowniasdk.testframework.DatowniaTestCase;
+import com.releasemobile.data.Repository;
+import com.releasemobile.data.RepositoryStorableContext;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -27,8 +29,8 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 
 	public void testDownloadAppDB() throws IOException, JSONException
 	{
-		DatowniaAppConfiguration config = getConfig(getContext());
-		DatowniaAppService appService = new DatowniaAppService(getContext(), config);
+		DatowniaAppConfiguration config = getConfig(getTestContext());
+		DatowniaAppService appService = new DatowniaAppService(getTestContext(), config);
 		
 		appService.downloadAppDB();
 		
@@ -38,17 +40,17 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 	    assertEquals(config.getDatabaseName(), file.getName());
 	   
 	    //check it is a db by opening it and doing a query
-	    DatabaseContext dbContext = new DatabaseContext(getContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
+	    DatabaseContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
 	    //means we can use sdcard and then it is easy to grab a copy for inspection
-	    SQLiteOpenHelper dbHelper = DatowniaSQLiteDBHelper.getInstance(dbContext, config.getDatabaseName(), config.getDatabaseFolder());
+	    Repository repository = Repository.getInstance(dbContext, config.getDatabaseName(), config.getFullDatabasePath());
 	    
-	    SQLiteDatabase db = dbHelper.getReadableDatabase();
+	    SQLiteDatabase db = repository.getReadableDatabase();
 	    
 	    Cursor queryCursor = db.query("[table_def]", new String[]{"tablename","seq"} , null, null, null, null, null);
 	    //Cursor queryCursor = db.rawQuery("select * from [table_def]", null);
 	    queryCursor.moveToLast();
 	    queryCursor.close();
-	    dbHelper.close();
+	    repository.close();
 
 	}
 

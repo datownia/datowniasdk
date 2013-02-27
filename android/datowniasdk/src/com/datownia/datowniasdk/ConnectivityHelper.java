@@ -1,14 +1,16 @@
 package com.datownia.datowniasdk;
 
+import com.releasemobile.data.RepositoryStorableContext;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class ConnectivityHelper {
 	
-	private Context context;
+	private RepositoryStorableContext context;
 
-	public ConnectivityHelper(Context context)
+	public ConnectivityHelper(RepositoryStorableContext context)
 	{
 		this.context = context;
 	}

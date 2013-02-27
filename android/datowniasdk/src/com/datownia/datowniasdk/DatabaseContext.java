@@ -2,6 +2,10 @@ package com.datownia.datowniasdk;
 
 import java.io.File;
 
+import com.releasemobile.data.Repository;
+import com.releasemobile.data.RepositoryStorableContext;
+import com.releasemobile.data.RepositoryStore;
+
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,8 +17,9 @@ import android.util.Log;
  * be read from the sdcard
  * 
  */
-public class DatabaseContext extends ContextWrapper {
+public class DatabaseContext extends ContextWrapper implements RepositoryStorableContext {
 
+	private RepositoryStore repositoryStore = new RepositoryStore();
 	private static final String DEBUG_CONTEXT = "DatabaseContext";
 	private String databasePath;
 
@@ -59,5 +64,16 @@ public class DatabaseContext extends ContextWrapper {
 				+ result.getPath());
 
 		return result;
+	}
+
+	@Override
+	public Repository getRepository(String name) {
+		return repositoryStore.getRepository(name);
+	}
+
+	@Override
+	public void addRepository(String name, Repository repository) {
+		repositoryStore.addRepository(name, repository);
+		
 	}
 }

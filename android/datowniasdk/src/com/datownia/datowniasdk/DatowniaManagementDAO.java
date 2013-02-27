@@ -2,6 +2,10 @@ package com.datownia.datowniasdk;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.releasemobile.data.Repository;
+import com.releasemobile.data.RepositoryStorableContext;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,7 +16,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DatowniaManagementDAO 
 {
-	private DatowniaSQLiteDBHelper dbHelper;
+	private Repository repository;
 	
 	//table_def table
 	private String TABLE_DEF_TABLE = "[table_def]";
@@ -25,9 +29,9 @@ public class DatowniaManagementDAO
 	
 	
 	//constructor
-	public DatowniaManagementDAO(Context context, final String databaseName, final String databaseStoragePath)
+	public DatowniaManagementDAO(RepositoryStorableContext context, final String databaseName, final String databaseStoragePath)
 	{
-		dbHelper = DatowniaSQLiteDBHelper.getInstance(context, databaseName, databaseStoragePath);	
+		repository = Repository.getInstance(context, databaseName, databaseStoragePath);
 	}
 	
 	//get all table_def objects from the table_def table in database
@@ -35,7 +39,7 @@ public class DatowniaManagementDAO
 	{
 		List<DatowniaTableDef> tableDefs = new ArrayList<DatowniaTableDef>();
 		
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		SQLiteDatabase db = repository.getReadableDatabase();
 		Cursor cursor = db.query(this.TABLE_DEF_TABLE, this.tabledef_tableColumns, null, null, null, null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) 
@@ -54,8 +58,9 @@ public class DatowniaManagementDAO
 	//updates the datownia database 
 	public void updateDatowniaDataBase(String rawSQL)
 	{
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		SQLiteDatabase db = repository.getWritableDatabase();
 		//if( (!rawSQL.equals("") )
+		//TODO: this doesn't work
 			db.execSQL(rawSQL);	
 	}
 	

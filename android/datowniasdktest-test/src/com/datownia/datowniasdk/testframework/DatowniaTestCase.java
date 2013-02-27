@@ -32,5 +32,14 @@ public class DatowniaTestCase extends AndroidTestCase {
 		config.setFullDatabasePath(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "databases");
 		return config;
 	}
+	
+	private TestContext context = null;
+	public TestContext getTestContext()
+	{
+		if (context == null)
+			context =  new TestContext(getContext());
+		
+		return context;
+	}
 
 }

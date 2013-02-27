@@ -2,6 +2,9 @@ package com.datownia.datowniasdk;
 
 import java.util.TimerTask;
 
+import com.releasemobile.data.Repository;
+import com.releasemobile.data.RepositoryStorableContext;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -12,24 +15,26 @@ import android.util.Log;
 public class DatowniaTimerTask extends TimerTask
 {
 	private DatowniaAppConfiguration settings;
-	private Context appContext;
+	private RepositoryStorableContext appContext;
 	private ServiceFactory serviceFactory = new ServiceFactory();
-	private DatowniaSQLiteDBHelper dbHelper;
+	private Repository repository;
 	private ConnectivityHelper connectivityHelper;
 	
-	public DatowniaTimerTask(Context appContext, DatowniaAppConfiguration configSettings)
+	public DatowniaTimerTask(RepositoryStorableContext appContext, DatowniaAppConfiguration configSettings)
 	{
 		this.settings = configSettings;
 		this.appContext = appContext;	
-		setDbHelper(new DatowniaSQLiteDBHelper(appContext, configSettings.getDatabaseName(), configSettings.getDatabaseFolder()));
+		this.repository = Repository.getInstance(appContext,  configSettings.getDatabaseName(), configSettings.getFullDatabasePath());
+//		setDbHelper(new DatowniaSQLiteDBHelper(appContext, configSettings.getDatabaseName(), configSettings.getDatabaseFolder()));
 		setConnectivityHelper(new ConnectivityHelper(appContext));
 	}	
 	
-	public DatowniaTimerTask(Context appContext, DatowniaAppConfiguration configSettings, DatowniaSQLiteDBHelper dbHelper, ConnectivityHelper connectivityHelper)
+	public DatowniaTimerTask(RepositoryStorableContext appContext, DatowniaAppConfiguration configSettings, Repository repository, ConnectivityHelper connectivityHelper)
 	{
 		this.settings = configSettings;
 		this.appContext = appContext;	
-		setDbHelper(dbHelper);
+		this.repository = repository;
+
 		setConnectivityHelper(connectivityHelper);
 		
 	}
@@ -45,7 +50,7 @@ public class DatowniaTimerTask extends TimerTask
 			DatowniaAppService appService = this.getServiceFactory().createAppService(this.appContext, this.settings);
 
 			//check if database exists at the location specified in the config settings object
-			if(getDbHelper().doesDatabaseExist())
+			if(repository.doesDatabaseExist())
 			{
 				//call syncronise on the app service
 				Log.d("timer task", "attempting to sync database tables");
@@ -80,13 +85,13 @@ public class DatowniaTimerTask extends TimerTask
 		this.serviceFactory = serviceFactory;
 	}
 
-	public DatowniaSQLiteDBHelper getDbHelper() {
-		return dbHelper;
-	}
-
-	public void setDbHelper(DatowniaSQLiteDBHelper dbHelper) {
-		this.dbHelper = dbHelper;
-	}
+//	public DatowniaSQLiteDBHelper getDbHelper() {
+//		return dbHelper;
+//	}
+//
+//	public void setDbHelper(DatowniaSQLiteDBHelper dbHelper) {
+//		this.dbHelper = dbHelper;
+//	}
 
 	public ConnectivityHelper getConnectivityHelper() {
 		return connectivityHelper;
