@@ -7,10 +7,11 @@ import org.json.JSONException;
 import com.datownia.datowniasdk.ConnectivityHelper;
 import com.datownia.datowniasdk.DatowniaAppConfiguration;
 import com.datownia.datowniasdk.DatowniaAppService;
-import com.datownia.datowniasdk.DatowniaSQLiteDBHelper;
 import com.datownia.datowniasdk.DatowniaTimerTask;
 import com.datownia.datowniasdk.ServiceFactory;
 import com.datownia.datowniasdk.testframework.DatowniaTestCase;
+import com.releasemobile.data.Repository;
+import com.releasemobile.data.RepositoryStorableContext;
 
 import android.content.Context;
 import static org.mockito.Mockito.*;
@@ -32,18 +33,18 @@ public class DatowniaTimerTaskTest extends DatowniaTestCase {
 		
 		//create mock factory to return the service
 		ServiceFactory serviceFactoryMock = mock(ServiceFactory.class);
-		when(serviceFactoryMock.createAppService(any(Context.class), any(DatowniaAppConfiguration.class))).thenReturn(appServiceMock);
+		when(serviceFactoryMock.createAppService(any(RepositoryStorableContext.class), any(DatowniaAppConfiguration.class))).thenReturn(appServiceMock);
 		
 		//mock db helper and ConnectivityHelper
-		DatowniaSQLiteDBHelper dbHelperMock = mock(DatowniaSQLiteDBHelper.class);
+		Repository dbHelperMock = mock(Repository.class);
 		ConnectivityHelper connectivityHelperMock = mock(ConnectivityHelper.class);
 		when(connectivityHelperMock.isNetworkAvailable()).thenReturn(true);
 		
 		//run. this should create an app service and initialize with the configuration
 		//then it should call downloadAppDb
-		DatowniaTimerTask timerTask = new DatowniaTimerTask(getContext(), getConfig(getContext()));
+		DatowniaTimerTask timerTask = new DatowniaTimerTask(getTestContext(), getConfig(getContext()));
 		timerTask.setServiceFactory(serviceFactoryMock);
-		timerTask.setDbHelper(dbHelperMock);
+		timerTask.setRepository(dbHelperMock);
 		timerTask.setConnectivityHelper(connectivityHelperMock);
 		
 		when(dbHelperMock.doesDatabaseExist()).thenReturn(false); //no db first time around

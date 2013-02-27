@@ -11,7 +11,6 @@ import org.json.JSONException;
 import com.datownia.datowniasdk.DatabaseContext;
 import com.datownia.datowniasdk.DatowniaAppConfiguration;
 import com.datownia.datowniasdk.DatowniaAppService;
-import com.datownia.datowniasdk.DatowniaSQLiteDBHelper;
 import com.datownia.datowniasdk.testframework.DatowniaTestCase;
 import com.releasemobile.data.Repository;
 import com.releasemobile.data.RepositoryStorableContext;
@@ -50,7 +49,7 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 	    assertEquals(config.getDatabaseName() + ".db", file.getName());
 	   
 	    //check it is a db by opening it and doing a query
-	    DatabaseContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
+	    DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
 	    //means we can use sdcard and then it is easy to grab a copy for inspection
 	    Repository repository = Repository.getInstance(dbContext, config.getDatabaseName(), config.getFullDatabasePath());
 	    

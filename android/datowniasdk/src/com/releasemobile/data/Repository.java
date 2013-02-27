@@ -39,8 +39,8 @@ public class Repository extends SQLiteOpenHelper {
 		
 		if (repo == null)
 		{
-			repo = new Repository(context.getApplicationContext(), name, path);
-			context.addRepository(repo.databaseFile.getPath(), repo);
+			repo = new Repository((Context)context, name, path);
+			context.addRepository(name, repo);
 		}
 		
 		return repo;
@@ -57,8 +57,8 @@ public class Repository extends SQLiteOpenHelper {
 		
 		if (repo == null)
 		{
-			repo = new Repository(context.getApplicationContext(), name);
-			context.addRepository(repo.databaseFile.getPath(), repo);
+			repo = new Repository((Context)context, name);
+			context.addRepository(name, repo);
 		}
 		
 		return repo;

@@ -85,13 +85,13 @@ public class DatowniaTimerTask extends TimerTask
 		this.serviceFactory = serviceFactory;
 	}
 
-//	public DatowniaSQLiteDBHelper getDbHelper() {
-//		return dbHelper;
-//	}
-//
-//	public void setDbHelper(DatowniaSQLiteDBHelper dbHelper) {
-//		this.dbHelper = dbHelper;
-//	}
+	public Repository getRepository() {
+		return repository;
+	}
+
+	public void setRepository(Repository repository) {
+		this.repository = repository;
+	}
 
 	public ConnectivityHelper getConnectivityHelper() {
 		return connectivityHelper;
