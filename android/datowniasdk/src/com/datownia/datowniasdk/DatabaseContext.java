@@ -56,8 +56,10 @@ public class DatabaseContext extends ContextWrapper implements RepositoryStorabl
 	@Override
 	public SQLiteDatabase openOrCreateDatabase(String name, int mode,
 			SQLiteDatabase.CursorFactory factory) {
-		SQLiteDatabase result = SQLiteDatabase.openOrCreateDatabase(
-				getDatabasePath(name), null);
+//		SQLiteDatabase result = SQLiteDatabase.openOrCreateDatabase(
+//				getDatabasePath(name), null);
+//		
+		SQLiteDatabase result = SQLiteDatabase.openDatabase(getDatabasePath(name).getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
 		// SQLiteDatabase result = super.openOrCreateDatabase(name, mode,
 		// factory);
 		Logger.w(DEBUG_CONTEXT, "openOrCreateDatabase(" + name + ",,) = "

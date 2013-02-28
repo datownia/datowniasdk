@@ -29,11 +29,11 @@ public class DatowniaTestCase extends AndroidTestCase {
 		config.setDatabaseName("exampledatownia");
 		//config.setPhoneDatabasePath(context.getApplicationInfo().dataDir);
 		//we use sdcard for the tests so that we can inspect the sqlite file more easily when debugging
-		config.setFullDatabasePath(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "databases");
+		config.setDatabasePath(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "databases");
 		return config;
 	}
 	
-	private TestContext context = null;
+	protected TestContext context = null;
 	public TestContext getTestContext()
 	{
 		if (context == null)

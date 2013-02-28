@@ -77,6 +77,9 @@ public class DatowniaAppService extends ServiceBase
 			OutputStream outputStream = new FileOutputStream(this.configurationSettings.getFullDatabasePath());
 			
 			IOUtils.copy(resultStream, outputStream);
+			
+			outputStream.close();
+			resultStream.close();
 			//create the sqlite helper with the input stream and application context
 //			DatowniaSQLiteDBHelper dbHelper = DatowniaSQLiteDBHelper.getInstance(this.applicationContext, 
 //																				 this.configurationSettings.getPhoneDatabaseName(),

@@ -193,6 +193,8 @@ public class Repository extends SQLiteOpenHelper {
 		}
 		setDatabaseVersion();
 		mInvalidDatabaseFile = false;
+		
+		
 	}
 	
 	private void setDatabaseVersion() {

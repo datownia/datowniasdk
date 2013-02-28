@@ -69,7 +69,7 @@ public class DatowniaAppConfiguration
 	/**
 	 * @param phoneDatabasePath path to use to store database file. trailing slash will be added if not present
 	 */
-	public void setFullDatabasePath(String phoneDatabasePath) {
+	public void setDatabasePath(String phoneDatabasePath) {
 		if (!phoneDatabasePath.endsWith("/"))
 			phoneDatabasePath = phoneDatabasePath.concat("/");
 		this.phoneDatabasePath = phoneDatabasePath;
