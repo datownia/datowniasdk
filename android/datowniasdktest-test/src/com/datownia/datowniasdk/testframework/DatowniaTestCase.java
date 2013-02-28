@@ -21,7 +21,7 @@ public class DatowniaTestCase extends AndroidTestCase {
 
 	protected DatowniaAppConfiguration getConfig(Context context) {
 		DatowniaAppConfiguration config = new DatowniaAppConfiguration();
-		config.setPublisher("example");
+		config.setPublisher("example.db");
 		config.setAppKey("b317eac00b");
 		config.setAppSecret("5156a8e80e");
 		config.setHost("www.datownia.com");

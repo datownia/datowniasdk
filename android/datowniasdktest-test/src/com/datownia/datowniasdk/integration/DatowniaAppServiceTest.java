@@ -46,7 +46,7 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 		//check file exists
 		java.io.File file = new java.io.File(config.getFullDatabasePath());
 	    assertTrue(config.getFullDatabasePath(), file.exists());
-	    assertEquals(config.getDatabaseName() + ".db", file.getName());
+	    assertEquals(config.getDatabaseName(), file.getName());
 	   
 	    //check it is a db by opening it and doing a query
 	    DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
