@@ -75,7 +75,7 @@ public class DatowniaAppConfiguration
 		this.phoneDatabasePath = phoneDatabasePath;
 	}
 	public String getFullDatabasePath() {
-		return phoneDatabasePath + phoneDatabaseName";
+		return phoneDatabasePath + phoneDatabaseName;
 	}
 
 	public String getDatabaseName() {
