@@ -56,14 +56,14 @@ public class DatowniaTimerTask extends TimerTask
 				Log.d("timer task", "attempting to sync database tables");
 			
 				if(getConnectivityHelper().isNetworkAvailable())
-					appService.synchroniseDBTables();
+					appService.synchroniseDb();
 					Log.d("timer task", "synced database tables");
 			}
 			else
 			{
 				//phone has no database from datownia yet, so download it from datownia
 				Log.d("timer task", "attempting to download database tables");
-				appService.downloadAppDB();
+				appService.downloadDb();
 				Log.d("timer task", "downloaded the database");
 			} 
 		}

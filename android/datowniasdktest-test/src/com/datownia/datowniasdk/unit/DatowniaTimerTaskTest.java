@@ -49,20 +49,20 @@ public class DatowniaTimerTaskTest extends DatowniaTestCase {
 		
 		when(dbHelperMock.doesDatabaseExist()).thenReturn(false); //no db first time around
 		timerTask.run();
-		verify(appServiceMock, times(1)).downloadAppDB();
-		verify(appServiceMock, never()).synchroniseDBTables();
+		verify(appServiceMock, times(1)).downloadDb();
+		verify(appServiceMock, never()).synchroniseDb();
 		
 		//run again. this time is should create an app service and call sync
 		when(dbHelperMock.doesDatabaseExist()).thenReturn(true); //now there is a db
 		timerTask.run();
-		verify(appServiceMock, times(1)).downloadAppDB();
-		verify(appServiceMock, times(1)).synchroniseDBTables();
+		verify(appServiceMock, times(1)).downloadDb();
+		verify(appServiceMock, times(1)).synchroniseDb();
 		
 		//now make network unavailable. should not call synchronise again
 		when(connectivityHelperMock.isNetworkAvailable()).thenReturn(false);
 		timerTask.run();
-		verify(appServiceMock, times(1)).downloadAppDB();
-		verify(appServiceMock, times(1)).synchroniseDBTables();
+		verify(appServiceMock, times(1)).downloadDb();
+		verify(appServiceMock, times(1)).synchroniseDb();
 		
 	}
 

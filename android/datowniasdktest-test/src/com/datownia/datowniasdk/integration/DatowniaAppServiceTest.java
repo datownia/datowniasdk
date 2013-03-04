@@ -43,19 +43,20 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 		this.context = testContext;
 	}
 	
-	public void testDownloadAppDB()
+	public void testDownloadDb()
 	{
 		DatowniaAppConfiguration config = getConfig(getTestContext());
-		doDownloadAppDB(3, config);
+		doDownloadDb(config);
 
+		doValidateDb(3, config);
 	}
 
-	public void doDownloadAppDB(int expectedNumberOfTable, DatowniaAppConfiguration config) {
+	public void doDownloadDb(DatowniaAppConfiguration config) {
 		
 		DatowniaAppService appService = new DatowniaAppService(getTestContext(), config);
 		
 		try {
-			appService.downloadAppDB();
+			appService.downloadDb();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,18 +72,19 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 	    assertTrue(config.getFullDatabasePath(), file.exists());
 	    assertEquals(config.getDatabaseName(), file.getName());
 	   
-	    //check it is a db by opening it and doing a query
+	    
+	}
+
+
+	protected void doValidateDb(int expectedNumberOfTable, DatowniaAppConfiguration config) {
+		//check it is a db by opening it and doing a query
     	DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
 	    //means we can use sdcard and then it is easy to grab a copy for inspection
     	Repository repository = Repository.getInstance(dbContext, config.getDatabaseName(), config.getFullDatabasePath());
- 
-	    
-	    //SQLiteDatabase db = repository.getReadableDatabase();
-	  //open and close it to ensure the android_metadata table is created
-	  	//SQLiteDatabase db = SQLiteDatabase.openDatabase(databaseFile.getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE);
+
 	    SQLiteDatabase db = repository.getWritableDatabase();
 	    Cursor queryCursor = db.query("[table_def]", new String[]{"tablename","seq"} , null, null, null, null, null);
-	    //Cursor queryCursor = db.rawQuery("select * from [table_def]", null);
+
 	    assertTrue(queryCursor.moveToFirst());
 	    int rows = 1;
 	    while(queryCursor.moveToNext())
@@ -93,6 +95,49 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 	    
 		assertEquals(expectedNumberOfTable, rows); //catalogue v1 and 2 + offers
 	    queryCursor.close();
+	    repository.close();
+	}
+	
+	public void testSynchronizeDB()
+	{
+		//download the db first
+		DatowniaAppConfiguration config = getConfig(getTestContext());
+		doDownloadDb(config);
+		
+		//then synchronize it
+		resetSeqNumbers(config);
+		doSynchronizeDb(config);
+		
+	}
+	
+	protected void doSynchronizeDb(DatowniaAppConfiguration config) {
+		
+		DatowniaAppService appService = new DatowniaAppService(getTestContext(), config);
+		
+		try {
+			appService.synchroniseDb();
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue("IOException", false);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			assertTrue("JSONException", false);
+		}
+		
+		
+		
+	}
+
+
+	private void resetSeqNumbers(DatowniaAppConfiguration config) {
+		//check it is a db by opening it and doing a query
+    	DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
+	    //means we can use sdcard and then it is easy to grab a copy for inspection
+    	Repository repository = Repository.getInstance(dbContext, config.getDatabaseName(), config.getFullDatabasePath());
+
+	    SQLiteDatabase db = repository.getWritableDatabase();
+	    db.execSQL("update [table_def]  set seq=0");
+
 	    repository.close();
 	}
 

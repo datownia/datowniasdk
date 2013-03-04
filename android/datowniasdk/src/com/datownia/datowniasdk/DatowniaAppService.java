@@ -36,7 +36,7 @@ public class DatowniaAppService extends ServiceBase
 	}
 
 	//download the 
-	public void downloadAppDB() throws IOException, JSONException
+	public void downloadDb() throws IOException, JSONException
 	{
 		Log.d("datownia", "begin download app db");
 		//builds the access token if one does not exist yet
@@ -90,7 +90,7 @@ public class DatowniaAppService extends ServiceBase
 	}
 
 	//synchronise the database tables with datownia for updated data
-	public void synchroniseDBTables() throws IOException, JSONException
+	public void synchroniseDb() throws IOException, JSONException
 	{
 		//temporary .. jsut request a new token no matter what
 		//this.requestAccessTokenIfNeeded(this.getScope());
