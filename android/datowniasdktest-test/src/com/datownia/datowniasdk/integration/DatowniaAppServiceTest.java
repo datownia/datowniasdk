@@ -131,7 +131,7 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 	}
 
 
-	private void resetSeqNumbers(DatowniaAppConfiguration config) {
+	void resetSeqNumbers(DatowniaAppConfiguration config) {
 		//check it is a db by opening it and doing a query
     	DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
 	    //means we can use sdcard and then it is easy to grab a copy for inspection

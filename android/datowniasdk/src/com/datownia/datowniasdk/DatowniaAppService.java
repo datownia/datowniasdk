@@ -24,10 +24,17 @@ import android.util.Log;
 public class DatowniaAppService extends ServiceBase 
 {
 	private String appScope = null;
+	private DaoFactory daoFactory = new DaoFactory();
 	
 	public DatowniaAppService(RepositoryStorableContext appContext, DatowniaAppConfiguration configurationSettings)
 	{
 		super(appContext, configurationSettings);
+	}
+	
+	public DatowniaAppService(RepositoryStorableContext appContext, DatowniaAppConfiguration configurationSettings, DaoFactory daoFactory)
+	{
+		super(appContext, configurationSettings);
+		this.daoFactory = daoFactory;
 	}
 	
 	public DatowniaAppService()
@@ -91,9 +98,7 @@ public class DatowniaAppService extends ServiceBase
 		//this.requestAccessTokenIfNeeded(this.getScope());
 		//this.configurationSettings.setAccessToken(this.generateAccessTokenFromScope(this.getScope()));
 		
-		DatowniaManagementDAO dao = new DatowniaManagementDAO(this.applicationContext, 
-															  this.configurationSettings.getDatabaseName(), 
-															  this.configurationSettings.getDatabaseFolder());
+		DatowniaManagementDAO dao = daoFactory.getDatowniaDao(this.applicationContext, this.configurationSettings);
 		
 		List<DatowniaTableDef> tableDefs = dao.getAllTableDefRecords();
 		
