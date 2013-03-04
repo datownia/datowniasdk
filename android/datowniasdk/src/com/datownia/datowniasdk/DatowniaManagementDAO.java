@@ -1,5 +1,7 @@
 package com.datownia.datowniasdk;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,8 +62,28 @@ public class DatowniaManagementDAO
 	{
 		SQLiteDatabase db = repository.getWritableDatabase();
 		//if( (!rawSQL.equals("") )
-		//TODO: this doesn't work
+		//adb shell setprop log.tag.datownia VERBOSE  if not seeing the log
+		
+		if (rawSQL != null)
+		{
+			Logger.d("datownia", rawSQL);
 			db.execSQL(rawSQL);	
+		}
+	}
+
+	public void updateDatabase(BufferedReader buff) throws IOException {
+		SQLiteDatabase db = repository.getWritableDatabase();
+		
+		String line = null;
+		do 
+	    {
+			line = buff.readLine();
+			this.updateDatowniaDataBase(line);
+	    }
+		while (line != null);
+		
+		db.close();
+		
 	}
 	
 	

@@ -37,6 +37,8 @@ public class ServiceBase
 
 	public void requestAccessTokenIfNeeded(String scope) throws IOException, JSONException
 	{
+		//TODO: implement proper access token expiry awareness and could also persist the access token in local storage
+		
 		//check if access token object is non existant
 		if(this.configurationSettings.getAccessToken() == null)
 		{
@@ -47,6 +49,8 @@ public class ServiceBase
 		
 	protected DatowniaAccessToken generateAccessTokenFromScope(String scope) throws IOException, JSONException
 	{
+		//TODO: cache access tokens
+		
 		DatowniaAccessToken result = null;
 		StringBuilder root = new StringBuilder(String.format("https://%s/oauth2/token?", this.configurationSettings.getHost()));
 
@@ -103,6 +107,7 @@ public class ServiceBase
 		    buff = new BufferedReader(in);
 		    String line;
 		    
+		    //TODO:is this really the best way to read an entire stream?
 		    do 
 		    {
 		      line = buff.readLine();
@@ -113,49 +118,20 @@ public class ServiceBase
 		    
 		    connection.disconnect();
 
-		    JSONObject objResponse = null;
-		    String accessToken = "";
-		    String expiresInSeconds = "";
-		    String tokenType = "";
-			
-//		    try 
-//		    {
-				objResponse = new JSONObject(text.toString());	
-//			} 
-//		    catch (JSONException e) 
-//		    {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-		    
-//		    try 
-//		    {
-				accessToken =  objResponse.getString("access_token");
-				expiresInSeconds = objResponse.getString("expires_in");
-				tokenType = objResponse.getString("token_type");
-//			} 
-//		    catch (JSONException e) 
-//		    {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		    
+		    //TODO: use proper types for access token object, and use the actual expiry time rather than store the number of seconds
+		    //subtract a few seconds off of the expiry seconds so that we have it expire slightly early rather than late, when you 
+		   //would then get an auth error
+		    JSONObject objResponse = new JSONObject(text.toString());	
+		    String accessToken =  objResponse.getString("access_token");
+		    String expiresInSeconds = objResponse.getString("expires_in");
+		    String tokenType = objResponse.getString("token_type");
+
 		    //build the result access token object
 		    result = new DatowniaAccessToken();
 		    result.setAccessToken(accessToken);
 		    result.setExpiresInSeconds(expiresInSeconds);
 		    result.setTokenType(tokenType);
-		     
-//		} 
-//		catch (MalformedURLException e) 
-//		{
-//			Log.d("datownia", e.toString());
-//		} 
-//		catch (IOException e) 
-//		{
-//			Log.d("datownia", e.toString());
-//
-//		}
+
 		
 		//return access token object
 		return result;

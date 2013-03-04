@@ -23,6 +23,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import static org.mockito.Mockito.*;
 import android.os.Environment;
 import android.test.AndroidTestCase;
+import android.util.Log;
 
 public class DatowniaAppServiceTest extends DatowniaTestCase{
 
@@ -112,16 +113,17 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 	
 	protected void doSynchronizeDb(DatowniaAppConfiguration config) {
 		
-		DatowniaAppService appService = new DatowniaAppService(getTestContext(), config);
+		DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder());
+		DatowniaAppService appService = new DatowniaAppService(dbContext, config);
 		
 		try {
 			appService.synchroniseDb();
 		} catch (IOException e) {
 			e.printStackTrace();
-			assertTrue("IOException", false);
+			assertTrue(String.format("%s. \r\n%s", e.toString(), Log.getStackTraceString(e)), false);
 		} catch (JSONException e) {
 			e.printStackTrace();
-			assertTrue("JSONException", false);
+			assertTrue(String.format("%s. \r\n%s", e.toString(), Log.getStackTraceString(e)), false);
 		}
 		
 		

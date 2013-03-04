@@ -70,7 +70,7 @@ public class DatowniaTimerTask extends TimerTask
 		catch(Exception e)
 		{
 			//if datownia fails, we just want to allow the app to continue to run
-			Log.d("datownia", e.toString());
+			Log.d("datownia", String.format("App service failed. %s. %s", e.toString(), Log.getStackTraceString(e)));
 		}
 
 		
