@@ -14,6 +14,13 @@ public class DatowniaTableDef
 		
 	}
 	
+	public DatowniaTableDef(String tableName, int seqNo)
+	{
+		this.tableName = tableName;
+		this.seqNo = seqNo;
+		
+	}
+	
 	public DatowniaTableDef(Cursor cursor)
 	{
 		this.tableName = cursor.getString(0);	

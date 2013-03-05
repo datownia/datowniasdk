@@ -48,7 +48,7 @@ public class DatowniaAppService extends ServiceBase
 		Log.d("datownia", "begin download app db");
 		//builds the access token if one does not exist yet
 		//and is stored as part of the bases' configuration settings 
-		this.requestAccessTokenIfNeeded(this.getScope());
+		this.oauth2Client.getAccessToken(this.getScope());
 		
 		//create the URL for the download of the file
 		URL url = null;
@@ -129,7 +129,7 @@ public class DatowniaAppService extends ServiceBase
 			versionNumberStr = minusPublisherName.substring(underScorePoint + 1);
 			
 			//retrieve the delta update SQL string
-			this.getHTTPDeltaSQL(docName, versionNumberStr, datowniaTableDef.getSeqNo());
+			this.getDeltaAndUpdateTable(docName, versionNumberStr, datowniaTableDef.getSeqNo());
 
 		}
 	}
@@ -160,11 +160,14 @@ public class DatowniaAppService extends ServiceBase
 			HttpURLConnection connection = SecureConnection.GetConnection(url);
 			
 			if (connection == null) 
+			{
+				Logger.w("datownia", String.format("getHTTPDownload failed. could not get connection"));
 				return null;
+			}
 
 			connection.setRequestMethod("GET");
 			connection.setDoInput(true);
-			connection.setRequestProperty("Authorization", "Bearer "+this.configurationSettings.getAccessToken().getAccessToken());
+			connection.setRequestProperty("Authorization", "Bearer "+ this.oauth2Client.getAccessToken(this.getScope()).getAccessToken());
 			connection.setRequestProperty("scope", this.getScope());
 			connection.setRequestProperty("grant_type", "client_credentials");
 			connection.setRequestProperty("client_id", this.configurationSettings.getAppKey());
@@ -177,84 +180,69 @@ public class DatowniaAppService extends ServiceBase
 				return null;
 		
 		}
-		catch (MalformedURLException e) 
+		catch (Exception e) 
 		{
-			e.printStackTrace();
+			Logger.e("datownia", String.format("failed to download database. \r\n%s", Log.getStackTraceString(e)));
+
 		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
 		
 		return resultInputStream;
 		
 	}
 
-	private void getHTTPDeltaSQL(String documentName, String version, int sequenceNumber) throws IOException, JSONException
+	private void getDeltaAndUpdateTable(String documentName, String version, int sequenceNumber) throws IOException, JSONException
 	{
 		String result = null;
 		URL url = null;
 		
-		String accessTokenForDelta = this.generateAccessTokenFromScope(this.getDeltaScope(documentName)).getAccessToken();
+		String accessTokenForDelta = this.oauth2Client.getAccessToken(this.getDeltaScope(documentName)).getAccessToken();
 		
-		try 
-		{
-			url = new URL(String.format("https://%s/api/doc/%s/v%s/delta/%s.sql?seq=%d",
-					this.configurationSettings.getHost(),
-					this.configurationSettings.getPublisher(),
-					version,
-					documentName,
-					sequenceNumber));
-			
-			HttpURLConnection connection = SecureConnection.GetConnection(url);
-			
-			if (connection == null) 
-			{
-				Logger.d("datownia", String.format("delta failed. could not get connection"));
-				return;
-			}
-				
-					
-			connection.setRequestMethod("GET");
-			connection.setDoInput(true);
-			connection.setRequestProperty("Authorization", "Bearer " + accessTokenForDelta);
-			connection.setRequestProperty("scope", this.getDeltaScope(documentName));
-			connection.setRequestProperty("client_id", this.configurationSettings.getAppKey());
-			
-			StringBuffer text = new StringBuffer();
-			int status = connection.getResponseCode();
-			
-			if(status != 200)
-			{
-				Logger.d("datownia", String.format("delta failed. http status was %d", IOUtils.toString(connection.getInputStream())));
-				return;
-			}
-			
-			InputStream resultInputStream = connection.getInputStream();
-			
-			InputStreamReader in;
-			in = new InputStreamReader(resultInputStream);
 
-		    BufferedReader buff = new BufferedReader(in);
-		    
-		    
-		    DatowniaManagementDAO dao = new DatowniaManagementDAO(this.applicationContext, this.configurationSettings.getDatabaseName(), this.configurationSettings.getFullDatabasePath());
-		    dao.updateDatabase(buff);
-		   
-		    connection.disconnect();
-		    //result = text.toString();
-		} 
-		catch (MalformedURLException e) 
+		url = new URL(String.format("https://%s/api/doc/%s/v%s/delta/%s.sql?seq=%d",
+				this.configurationSettings.getHost(),
+				this.configurationSettings.getPublisher(),
+				version,
+				documentName,
+				sequenceNumber));
+		
+		HttpURLConnection connection = SecureConnection.GetConnection(url);
+		
+		if (connection == null) 
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.w("datownia", String.format("delta failed. could not get connection"));
+			return;
 		}
-		catch (IOException e) 
+			
+				
+		connection.setRequestMethod("GET");
+		connection.setDoInput(true);
+		connection.setRequestProperty("Authorization", "Bearer " + accessTokenForDelta);
+		connection.setRequestProperty("scope", this.getDeltaScope(documentName));
+		connection.setRequestProperty("client_id", this.configurationSettings.getAppKey());
+		
+		StringBuffer text = new StringBuffer();
+		int status = connection.getResponseCode();
+		
+		if(status != 200)
 		{
-			e.printStackTrace();
+			Logger.w("datownia", String.format("delta failed. http status was %d. response: %s", status, IOUtils.toString(connection.getInputStream())));
+			return;
 		}
 		
-	
+		InputStream resultInputStream = connection.getInputStream();
+		
+		InputStreamReader in;
+		in = new InputStreamReader(resultInputStream);
+
+	    BufferedReader buff = new BufferedReader(in);
+	    
+	    
+	    DatowniaManagementDAO dao = new DatowniaManagementDAO(this.applicationContext, this.configurationSettings.getDatabaseName(), this.configurationSettings.getFullDatabasePath());
+	    dao.updateDatabase(buff);
+	   
+	    connection.disconnect();
+		    //result = text.toString();
+
 		//return result;
 	}
 	

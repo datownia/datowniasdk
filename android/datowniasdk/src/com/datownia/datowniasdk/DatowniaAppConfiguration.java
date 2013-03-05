@@ -1,12 +1,15 @@
 package com.datownia.datowniasdk;
 
+import com.datownia.datowniasdk.oauth2.AccessTokenCacheable;
+import com.datownia.datowniasdk.oauth2.DatowniaAccessToken;
+
 /*	Class : 	DatowniaAppConfiguration 
  *  Function :  Holds all the config settings and methods that datownia requires
  *  			such as accessTokens etc 
  * 
  */
 
-public class DatowniaAppConfiguration 
+public class DatowniaAppConfiguration
 {
 	//variables
 	
