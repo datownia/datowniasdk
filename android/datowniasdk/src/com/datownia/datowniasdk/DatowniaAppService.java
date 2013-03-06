@@ -16,6 +16,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 
+import com.datownia.datowniasdk.oauth2.OAuth2Client;
 import com.releasemobile.data.RepositoryStorableContext;
 
 import android.content.Context;
@@ -25,16 +26,19 @@ public class DatowniaAppService extends ServiceBase
 {
 	private String appScope = null;
 	private DaoFactory daoFactory = new DaoFactory();
+	private ConnectionFactory connectionFactory;
 	
 	public DatowniaAppService(RepositoryStorableContext appContext, DatowniaAppConfiguration configurationSettings)
 	{
 		super(appContext, configurationSettings);
+		connectionFactory = new ConnectionFactory();
 	}
 	
-	public DatowniaAppService(RepositoryStorableContext appContext, DatowniaAppConfiguration configurationSettings, DaoFactory daoFactory)
+	public DatowniaAppService(RepositoryStorableContext appContext, DatowniaAppConfiguration configurationSettings, DaoFactory daoFactory, OAuth2Client oauth2Client, ConnectionFactory connectionFactory)
 	{
-		super(appContext, configurationSettings);
+		super(appContext, configurationSettings, oauth2Client);
 		this.daoFactory = daoFactory;
+		this.connectionFactory = connectionFactory;
 	}
 	
 	public DatowniaAppService()
@@ -204,8 +208,8 @@ public class DatowniaAppService extends ServiceBase
 				version,
 				documentName,
 				sequenceNumber));
-		
-		HttpURLConnection connection = SecureConnection.GetConnection(url);
+
+		HttpURLConnection connection = connectionFactory.getConnection(url);
 		
 		if (connection == null) 
 		{
@@ -225,7 +229,7 @@ public class DatowniaAppService extends ServiceBase
 		
 		if(status != 200)
 		{
-			Logger.w("datownia", String.format("delta failed. http status was %d. response: %s", status, IOUtils.toString(connection.getInputStream())));
+			Logger.w("datownia", String.format("delta failed. http status was %d. response: %s", status, IOUtils.toString(connection.getErrorStream())));
 			return;
 		}
 		
@@ -237,7 +241,7 @@ public class DatowniaAppService extends ServiceBase
 	    BufferedReader buff = new BufferedReader(in);
 	    
 	    
-	    DatowniaManagementDAO dao = new DatowniaManagementDAO(this.applicationContext, this.configurationSettings.getDatabaseName(), this.configurationSettings.getFullDatabasePath());
+	    DatowniaManagementDAO dao = daoFactory.getDatowniaDao(this.applicationContext, this.configurationSettings);
 	    dao.updateDatabase(buff);
 	   
 	    connection.disconnect();

@@ -33,7 +33,12 @@ public class DatowniaManagementDAO
 	//constructor
 	public DatowniaManagementDAO(RepositoryStorableContext context, final String databaseName, final String databaseStoragePath)
 	{
-		repository = Repository.getInstance(context, databaseName, databaseStoragePath);
+		setRepository(Repository.getInstance(context, databaseName, databaseStoragePath));
+	}
+	
+	public DatowniaManagementDAO(RepositoryStorableContext context, Repository repository)
+	{
+		setRepository(repository);
 	}
 	
 	//get all table_def objects from the table_def table in database
@@ -41,7 +46,7 @@ public class DatowniaManagementDAO
 	{
 		List<DatowniaTableDef> tableDefs = new ArrayList<DatowniaTableDef>();
 		
-		SQLiteDatabase db = repository.getReadableDatabase();
+		SQLiteDatabase db = getRepository().getReadableDatabase();
 		Cursor cursor = db.query(this.TABLE_DEF_TABLE, this.tabledef_tableColumns, null, null, null, null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) 
@@ -60,7 +65,7 @@ public class DatowniaManagementDAO
 	//updates the datownia database 
 	public void updateDatowniaDataBase(String rawSQL)
 	{
-		SQLiteDatabase db = repository.getWritableDatabase();
+		SQLiteDatabase db = getRepository().getWritableDatabase();
 		//if( (!rawSQL.equals("") )
 		//adb shell setprop log.tag.datownia VERBOSE  if not seeing the log
 		
@@ -72,7 +77,7 @@ public class DatowniaManagementDAO
 	}
 
 	public void updateDatabase(BufferedReader buff) throws IOException {
-		SQLiteDatabase db = repository.getWritableDatabase();
+		SQLiteDatabase db = getRepository().getWritableDatabase();
 		
 		String line = null;
 		do 
@@ -84,6 +89,14 @@ public class DatowniaManagementDAO
 		
 		db.close();
 		
+	}
+
+	public Repository getRepository() {
+		return repository;
+	}
+
+	private void setRepository(Repository repository) {
+		this.repository = repository;
 	}
 	
 	
