@@ -8,6 +8,5 @@
 	<classpathentry kind="lib" path="libs/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/datowniasdk"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

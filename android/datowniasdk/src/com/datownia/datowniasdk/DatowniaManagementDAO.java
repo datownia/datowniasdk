@@ -1,7 +1,9 @@
 package com.datownia.datowniasdk;
 
 import java.io.BufferedReader;
+import java.io.CharArrayWriter;
 import java.io.IOException;
+import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,13 +81,98 @@ public class DatowniaManagementDAO
 	public void updateDatabase(BufferedReader buff) throws IOException {
 		SQLiteDatabase db = getRepository().getWritableDatabase();
 		
-		String line = null;
-		do 
-	    {
-			line = buff.readLine();
-			this.updateDatowniaDataBase(line);
-	    }
-		while (line != null);
+		//a valid line must end with ;. if does not end with ; then read next line until it does end in a ;
+		//then we need to make sure that we aren't in the middle of a string e.g. replace into (x) values ('this ;\nis what I want to avoid failed');
+		
+//		
+//		String line = null;
+//		String appendLine = null;
+//		do 
+//	    {
+//			line = buff.readLine();
+//			String sqlToExecute = null;
+//			if (appendLine == null)
+//				sqlToExecute = line;
+//			else
+//				sqlToExecute = appendLine + "\n" + line;
+//			
+//			appendLine = sqlToExecute;
+//			if (sqlToExecute != null && sqlToExecute.endsWith(";"))
+//			{
+//				//now check we aren't inside a string, if we were it would look like this -  replace into (x) values ('this ;
+//				//if we have a case like this we need to read the next line
+//				//certainly there would be an odd number of apostraphes in the string, so count them
+//				int numberOfApostraphes = sqlToExecute.split("'").length - 1;
+//				if (numberOfApostraphes % 2 == 0)
+//				{
+//					this.updateDatowniaDataBase(sqlToExecute);
+//					appendLine = null;
+//				}
+//
+//			}
+//			
+//	    }
+//		while (line != null);
+		
+		//actually a better algorithm would be to read characters until get to ;, then work out if we are in a '', if we are keep reading
+		//this way we don't care about different types of line endings
+		char[] buffer = new char[1];
+		CharArrayWriter sqlBuffer = new CharArrayWriter();
+		int numApostrophes = 0;
+		while(buff.read(buffer, 0, 1) > -1)
+		{
+			sqlBuffer.append(buffer[0]);
+			
+			if (buffer[0] == '\'') 
+				numApostrophes++;
+			
+			//if we hit a ; and an even number of apostrophes then we are at a sql statement end
+			if (buffer[0] == ';' && numApostrophes % 2 == 0)
+			{
+				//if next char is \n or \r\n then read these in as well
+				char overread = 0;
+				boolean wasOverread = false;
+				if (buff.read(buffer, 0, 1) > -1)
+				{
+					if (buffer[0] == '\r')
+					{
+						sqlBuffer.append(buffer[0]);
+						if (buff.read(buffer, 0, 1) > -1)
+						{
+							if (buffer[0] == '\n')
+							{
+								sqlBuffer.append(buffer[0]);
+							}
+							else
+							{
+								wasOverread = true;
+								//we need to remember this char for next sqlbuffer
+								overread = buffer[0];
+							}
+						}
+					}
+					else if (buffer[0] == '\n')
+					{
+						sqlBuffer.append(buffer[0]);
+					}
+					else
+					{
+						wasOverread = true;
+						//we need to remember this char for next sqlbuffer
+						overread = buffer[0];
+					}
+				}
+				
+				String sqlToExecute = new String(sqlBuffer.toCharArray());
+				
+				this.updateDatowniaDataBase(sqlToExecute);
+				
+				sqlBuffer.reset();
+				
+				if (wasOverread)
+					sqlBuffer.append(overread);
+			}
+		}
 		
 		db.close();
 		

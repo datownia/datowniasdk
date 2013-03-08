@@ -1,8 +1,9 @@
 package com.releasemobile.data;
 
+import android.test.AndroidTestCase;
 import junit.framework.TestCase;
 
-public class DatabaseApplicationTest extends TestCase {
+public class DatabaseApplicationTest extends AndroidTestCase {
 
 	public void testAddRepository() {
 		DatabaseApplication app = new DatabaseApplication();
