@@ -6,11 +6,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.commons.io.IOUtils;
+
+import com.datownia.datowniasdk.Logger;
+
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class Repository extends SQLiteOpenHelper {
 	private static final int VERSION = 1;
@@ -95,17 +100,19 @@ public class Repository extends SQLiteOpenHelper {
 		this.databaseName = name;
 		SQLiteDatabase db = null;
 		try {
+			databaseFile = context.getDatabasePath(databaseName);
+			
+			if (!doesDatabaseExist()) {
+				copyDatabase();
+			}
+			
 			db = getReadableDatabase();
 			if (db != null) {
 		  		db.close();
 			}
-		
-			databaseFile = context.getDatabasePath(databaseName);
-		
-			if (mInvalidDatabaseFile) {
-				copyDatabase();
-			}
+
 		} catch (SQLiteException e) {
+			Logger.w("database", "Repository ctor failed. Exception: %s", Log.getStackTraceString(e));
 		} finally {
 			if (db != null && db.isOpen()) {
 				db.close();
@@ -172,23 +179,24 @@ public class Repository extends SQLiteOpenHelper {
 		OutputStream out = null;
 		try {
 			in = assetManager.open(databaseName);
+			
+			//make sure the directory exists
+			databaseFile.getParentFile().mkdirs();
+
 			out = new FileOutputStream(databaseFile);
-			byte[] buffer = new byte[1024];
-			int read = 0;
-			while ((read = in.read(buffer)) != -1) {
-				out.write(buffer, 0, read);
-			}
+			IOUtils.copy(in, out);
 		} catch (IOException e) {
+			Logger.w("database", "copyDatabase failed. Exception: %s", Log.getStackTraceString(e));
 		} finally {
 			if (in != null) {
 				try {
 					in.close();
-				} catch (IOException e) {}
+				} catch (IOException e) { Logger.w("database", "copyDatabase failed. Exception: %s", Log.getStackTraceString(e)); }
 			}
 			if (out != null) {
 				try {
 					out.close();
-				} catch (IOException e) {}
+				} catch (IOException e) { Logger.w("database", "copyDatabase failed. Exception: %s", Log.getStackTraceString(e)); }
 			}
 		}
 		setDatabaseVersion();
@@ -200,10 +208,15 @@ public class Repository extends SQLiteOpenHelper {
 	private void setDatabaseVersion() {
 		SQLiteDatabase db = null;
 		try {
-			db = SQLiteDatabase.openDatabase(databaseFile.getAbsolutePath(), null,
-				SQLiteDatabase.OPEN_READWRITE);
+			Logger.d("database", "setDatabaseVersion about to open %s", databaseFile.getAbsolutePath());
+			//db = SQLiteDatabase.openDatabase(databaseFile.getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE);
+			db = getWritableDatabase();
+			
+			Logger.d("database", "setDatabaseVersion opened %s", databaseFile.getAbsolutePath());
 			db.execSQL("PRAGMA user_version = " + VERSION);
 		} catch (SQLiteException e ) {
+			Logger.w("database", "setDatabaseVersion failed. Exception: %s", Log.getStackTraceString(e));
+			
 		} finally {
 			if (db != null && db.isOpen()) {
 		  		db.close();

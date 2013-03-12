@@ -40,7 +40,7 @@ public class DatowniaOfflineAPISync
 		int checkDatowniaInterval = this.configSettings.getCheckChangesFrequency();
 		
 		this.timer = new Timer();
-		timer.schedule(new DatowniaTimerTask(this.applicationContext,this.configSettings), (long) (0.5*1000), checkDatowniaInterval * 1000);
+		timer.schedule(new DatowniaTimerTask(this.applicationContext,this.configSettings), (long) (5*1000), checkDatowniaInterval * 1000);
 		
 		//startSync();                  
 	}

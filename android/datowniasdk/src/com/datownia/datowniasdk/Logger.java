@@ -12,6 +12,12 @@ public class Logger {
 			Log.d(tag, msg);
 		}
 	}
+	
+	public static void d(String tag, String formatString, Object... args) {
+		if (Log.isLoggable(tag, Log.DEBUG)) {
+			Log.d(tag, String.format(formatString, args));
+		}
+	}
 
 	public static void i(String tag, String msg) {
 		if (Log.isLoggable(tag, Log.INFO)) {
@@ -19,9 +25,21 @@ public class Logger {
 		}
 	}
 
+	public static void i(String tag, String formatString, Object... args) {
+		if (Log.isLoggable(tag, Log.INFO)) {
+			Log.i(tag, String.format(formatString, args));
+		}
+	}
+	
 	public static void e(String tag, String msg) {
 		if (Log.isLoggable(tag, Log.ERROR)) {
 			Log.e(tag, msg);
+		}
+	}
+	
+	public static void e(String tag, String formatString, Object... args) {
+		if (Log.isLoggable(tag, Log.ERROR)) {
+			Log.e(tag, String.format(formatString, args));
 		}
 	}
 
@@ -30,10 +48,22 @@ public class Logger {
 			Log.v(tag, msg);
 		}
 	}
+	
+	public static void v(String tag, String formatString, Object... args) {
+		if (Log.isLoggable(tag, Log.VERBOSE)) {
+			Log.v(tag, String.format(formatString, args));
+		}
+	}
 
 	public static void w(String tag, String msg) {
 		if (Log.isLoggable(tag, Log.WARN)) {
 			Log.w(tag, msg);
+		}
+	}
+	
+	public static void w(String tag, String formatString, Object... args) {
+		if (Log.isLoggable(tag, Log.WARN)) {
+			Log.w(tag, String.format(formatString, args));
 		}
 	}
 }

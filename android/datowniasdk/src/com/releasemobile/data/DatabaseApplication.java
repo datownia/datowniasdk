@@ -1,9 +1,14 @@
 package com.releasemobile.data;
 
+import java.io.File;
 import java.util.HashMap;
+
+import com.datownia.datowniasdk.Logger;
 
 import android.app.Application;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 
 public class DatabaseApplication extends Application implements RepositoryStorableContext {
 	
@@ -22,5 +27,43 @@ public class DatabaseApplication extends Application implements RepositoryStorab
 		//attempt to get Repository out of the map
 		return repoMap.get(name);
 	}
+	
+//	private String databasePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "databases";
+//	@Override
+//	public File getDatabasePath(String name) {
+//		// File sdcard = Environment.getExternalStorageDirectory();
+//		// String dbfile = sdcard.getAbsolutePath() + File.separator+
+//		// "databases" + File.separator + name;
+//		String dbfile = databasePath + File.separator + name;
+//		if (!dbfile.endsWith(".db")) {
+//			dbfile += ".db";
+//		}
+//
+//		File result = new File(dbfile);
+//
+//		if (!result.getParentFile().exists()) {
+//			result.getParentFile().mkdirs();
+//		}
+//
+//		
+//		Logger.d("database",
+//				"getDatabasePath(" + name + ") = "
+//						+ result.getAbsolutePath());
+//
+//
+//		return result;
+//	}
+//	
+//	@Override
+//	public SQLiteDatabase openOrCreateDatabase(String name, int mode,
+//			SQLiteDatabase.CursorFactory factory) {
+//		Logger.d("database", "openOrCreateDatabase start(" + name + ",,) = ");
+//		SQLiteDatabase result = SQLiteDatabase.openDatabase(getDatabasePath(name).getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
+//
+//		Logger.d("database", "openOrCreateDatabase done (" + name + ",,) = "
+//				+ result.getPath());
+//
+//		return result;
+//	}
 
 }
