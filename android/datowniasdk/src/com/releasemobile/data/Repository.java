@@ -22,9 +22,6 @@ public class Repository extends SQLiteOpenHelper {
 	private String databaseName;
 	private File databaseFile;
 	
-	// This is an indicator if we need to copy the
-	// database file.
-	private boolean mInvalidDatabaseFile = false;
 	private Context mContext;
 	
 	/**
@@ -88,7 +85,6 @@ public class Repository extends SQLiteOpenHelper {
 		getInstance(context, name);
 	}
 	
-	
 	/**
 	 * creates an instance of a repository for the supplied database name using the default path
 	 * @param context
@@ -136,13 +132,11 @@ public class Repository extends SQLiteOpenHelper {
 	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		mInvalidDatabaseFile = true;
 	}
 	
 	@Override
 	public void onUpgrade(SQLiteDatabase database,
 		int old_version, int new_version) {
-		mInvalidDatabaseFile = true;
 	}
 	
 	@Override
@@ -200,7 +194,6 @@ public class Repository extends SQLiteOpenHelper {
 			}
 		}
 		setDatabaseVersion();
-		mInvalidDatabaseFile = false;
 		
 		
 	}

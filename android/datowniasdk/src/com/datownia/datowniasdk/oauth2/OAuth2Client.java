@@ -8,25 +8,21 @@ import com.datownia.datowniasdk.DatowniaAppConfiguration;
 
 public class OAuth2Client {
 
-	private DatowniaAppConfiguration config;
 	private AccessTokenCache tokenCache;
 	private AccessTokenGenerator accessTokenGenerator;
 
 	public OAuth2Client(Context context, DatowniaAppConfiguration config) {
-		this.config = config;
 		this.tokenCache = new AccessTokenCache(context);
 		this.accessTokenGenerator = new AccessTokenGenerator(config);
 	}
 	
 	public OAuth2Client(DatowniaAppConfiguration config, AccessTokenCache tokenCache, AccessTokenGenerator generator) {
-		this.config = config;
 		this.tokenCache = tokenCache;
 		this.accessTokenGenerator = generator;
 
 	}
 	
 	public OAuth2Client(Context context, DatowniaAppConfiguration config, AccessTokenGenerator generator) {
-		this.config = config;
 		this.tokenCache = new AccessTokenCache(context);;
 		this.accessTokenGenerator = generator;
 

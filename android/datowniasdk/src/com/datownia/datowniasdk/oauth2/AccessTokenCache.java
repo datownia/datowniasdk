@@ -60,16 +60,17 @@ public class AccessTokenCache implements AccessTokenCacheable {
 		{
 			//deserialize it
 			// Read from disk using FileInputStream
+			ObjectInputStream objIn = null;
 			try
 			{
 				FileInputStream fIn = new FileInputStream(cacheFile);
 
 				// Read object using ObjectInputStream
-				ObjectInputStream objIn = new ObjectInputStream (fIn);
+				objIn = new ObjectInputStream (fIn);
 
 				// Read an object
 				Object obj = objIn.readObject();
-				
+
 				if (obj instanceof DatowniaAccessToken)
 				{
 					// Cast object to a DatowniaAccessToken
@@ -90,6 +91,15 @@ public class AccessTokenCache implements AccessTokenCacheable {
 				Logger.w("datownia", String.format("cache file was to of expected type %s. \r\n%s", cacheFile.getAbsolutePath(), Log.getStackTraceString(e)));
 
 			}
+			finally
+			{
+				if (objIn != null)
+					try {
+						objIn.close();
+					} catch (IOException e) {
+						Logger.w("datownia", String.format("Failed to close in stream  %s.", Log.getStackTraceString(e)));
+					}
+			}
 
 		}
 		
@@ -104,12 +114,13 @@ public class AccessTokenCache implements AccessTokenCacheable {
 		
 		//put in InternalStorage
 		File cacheFile = null;
+		ObjectOutputStream objOut = null;
 		try {
 			cacheFile = new File(context.getCacheDir(), getSafeScope(scope));
 
 			FileOutputStream fOut = new FileOutputStream(cacheFile);
 			
-			ObjectOutputStream objOut = new ObjectOutputStream (fOut);
+			objOut = new ObjectOutputStream (fOut);
 			
 			objOut.writeObject ( token );
 		} catch (FileNotFoundException e) {
@@ -118,6 +129,16 @@ public class AccessTokenCache implements AccessTokenCacheable {
 		}
 		catch (IOException e) {
 			Logger.w("datownia", String.format("Failed to create cache file %s. \r\n%s", cacheFile.getAbsolutePath(), Log.getStackTraceString(e)));
+		}
+		finally
+		{
+			if (objOut != null)
+				try {
+					objOut.close();
+				} catch (IOException e) {
+					Logger.w("datownia", String.format("Failed to close out stream file %s.", Log.getStackTraceString(e)));
+
+				}
 		}
 
 		
@@ -128,8 +149,7 @@ public class AccessTokenCache implements AccessTokenCacheable {
 		try {
 			scope = URLEncoder.encode(scope, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.w("datownia", String.format("getSafeScope UnsupportedEncodingException %s.", Log.getStackTraceString(e)));
 		}
 		return scope;
 	}
