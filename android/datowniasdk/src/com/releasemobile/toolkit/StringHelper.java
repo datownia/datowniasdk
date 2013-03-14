@@ -32,4 +32,15 @@ public class StringHelper {
 	    return pattern.matcher(nfdNormalizedString).replaceAll("");
 
 	}
+	
+	/**
+	 * Ensure's that a sql term will be safe when inserted into a sql string
+	 * replaces ' with ''
+	 * @param term
+	 * @return
+	 */
+	public static String safeSqlTerm(String term)
+	{
+		return term.replace("'", "''");
+	}
 }
