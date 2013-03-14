@@ -63,9 +63,8 @@ public class DatowniaManagementDAO
 	}
 	
 	//updates the datownia database 
-	public void updateDatowniaDataBase(String rawSQL)
+	public void updateDatowniaDataBase(String rawSQL, SQLiteDatabase db)
 	{
-		SQLiteDatabase db = getRepository().getWritableDatabase();
 		//if( (!rawSQL.equals("") )
 		//adb shell setprop log.tag.datownia VERBOSE  if not seeing the log
 		
@@ -79,40 +78,8 @@ public class DatowniaManagementDAO
 	public void updateDatabase(BufferedReader buff) throws IOException {
 		SQLiteDatabase db = getRepository().getWritableDatabase();
 		
-		//a valid line must end with ;. if does not end with ; then read next line until it does end in a ;
-		//then we need to make sure that we aren't in the middle of a string e.g. replace into (x) values ('this ;\nis what I want to avoid failed');
 		
-//		
-//		String line = null;
-//		String appendLine = null;
-//		do 
-//	    {
-//			line = buff.readLine();
-//			String sqlToExecute = null;
-//			if (appendLine == null)
-//				sqlToExecute = line;
-//			else
-//				sqlToExecute = appendLine + "\n" + line;
-//			
-//			appendLine = sqlToExecute;
-//			if (sqlToExecute != null && sqlToExecute.endsWith(";"))
-//			{
-//				//now check we aren't inside a string, if we were it would look like this -  replace into (x) values ('this ;
-//				//if we have a case like this we need to read the next line
-//				//certainly there would be an odd number of apostraphes in the string, so count them
-//				int numberOfApostraphes = sqlToExecute.split("'").length - 1;
-//				if (numberOfApostraphes % 2 == 0)
-//				{
-//					this.updateDatowniaDataBase(sqlToExecute);
-//					appendLine = null;
-//				}
-//
-//			}
-//			
-//	    }
-//		while (line != null);
-		
-		//actually a better algorithm would be to read characters until get to ;, then work out if we are in a '', if we are keep reading
+		//read characters until get to ;, then work out if we are in a '', if we are keep reading
 		//this way we don't care about different types of line endings
 		char[] buffer = new char[1];
 		CharArrayWriter sqlBuffer = new CharArrayWriter();
@@ -163,7 +130,7 @@ public class DatowniaManagementDAO
 				
 				String sqlToExecute = new String(sqlBuffer.toCharArray());
 				
-				this.updateDatowniaDataBase(sqlToExecute);
+				this.updateDatowniaDataBase(sqlToExecute, db);
 				
 				sqlBuffer.reset();
 				
@@ -171,9 +138,7 @@ public class DatowniaManagementDAO
 					sqlBuffer.append(overread);
 			}
 		}
-		
-		db.close();
-		
+
 	}
 
 	public Repository getRepository() {

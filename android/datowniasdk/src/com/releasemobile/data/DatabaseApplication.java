@@ -3,6 +3,7 @@ package com.releasemobile.data;
 import java.util.HashMap;
 
 import android.app.Application;
+import android.database.sqlite.SQLiteDatabase;
 
 public class DatabaseApplication extends Application implements RepositoryStorableContext {
 	
@@ -51,13 +52,15 @@ public class DatabaseApplication extends Application implements RepositoryStorab
 //	@Override
 //	public SQLiteDatabase openOrCreateDatabase(String name, int mode,
 //			SQLiteDatabase.CursorFactory factory) {
-//		Logger.d("database", "openOrCreateDatabase start(" + name + ",,) = ");
-//		SQLiteDatabase result = SQLiteDatabase.openDatabase(getDatabasePath(name).getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
-//
-//		Logger.d("database", "openOrCreateDatabase done (" + name + ",,) = "
-//				+ result.getPath());
-//
-//		return result;
+//		
+//		return super.openOrCreateDatabase(name, mode, factory);
+////		Logger.d("database", "openOrCreateDatabase start(" + name + ",,) = ");
+////		SQLiteDatabase result = SQLiteDatabase.openDatabase(getDatabasePath(name).getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
+////
+////		Logger.d("database", "openOrCreateDatabase done (" + name + ",,) = "
+////				+ result.getPath());
+////
+////		return result;
 //	}
 
 }

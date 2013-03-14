@@ -233,7 +233,6 @@ public class DatowniaAppService extends ServiceBase
 
 	    BufferedReader buff = new BufferedReader(in);
 	    
-	    
 	    DatowniaManagementDAO dao = daoFactory.getDatowniaDao(this.applicationContext, this.configurationSettings);
 	    dao.updateDatabase(buff);
 	   
