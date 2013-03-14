@@ -49,11 +49,9 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 		try {
 			appService.downloadDb();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			assertTrue("IOException", false);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			assertTrue("JSONException", false);
 		}

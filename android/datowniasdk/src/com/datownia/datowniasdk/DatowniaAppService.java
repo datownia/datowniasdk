@@ -64,8 +64,8 @@ public class DatowniaAppService extends ServiceBase
 		} 
 		catch (MalformedURLException e) 
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.e("datownia", String.format("failed to download database. \r\n%s", Log.getStackTraceString(e)));
+			return;
 		}
 		
 		
@@ -110,9 +110,6 @@ public class DatowniaAppService extends ServiceBase
 		for (DatowniaTableDef datowniaTableDef : tableDefs) 
 		{
 			String tableName = datowniaTableDef.getTableName();
-			int sequenceNo = datowniaTableDef.getSeqNo();
-			String SQL = null;
-			
 			//the string which is tableName without the publisher name and the "/"
 			String minusPublisherName = null;
 			
@@ -194,7 +191,6 @@ public class DatowniaAppService extends ServiceBase
 
 	private void getDeltaAndUpdateTable(String documentName, String version, int sequenceNumber) throws IOException, JSONException
 	{
-		String result = null;
 		URL url = null;
 		
 		String accessTokenForDelta = this.oauth2Client.getAccessToken(this.getDeltaScope(documentName)).getAccessToken();
@@ -222,7 +218,6 @@ public class DatowniaAppService extends ServiceBase
 		connection.setRequestProperty("scope", this.getDeltaScope(documentName));
 		connection.setRequestProperty("client_id", this.configurationSettings.getAppKey());
 		
-		StringBuffer text = new StringBuffer();
 		int status = connection.getResponseCode();
 		
 		if(status != 200)
@@ -243,9 +238,7 @@ public class DatowniaAppService extends ServiceBase
 	    dao.updateDatabase(buff);
 	   
 	    connection.disconnect();
-		    //result = text.toString();
 
-		//return result;
 	}
 	
 	

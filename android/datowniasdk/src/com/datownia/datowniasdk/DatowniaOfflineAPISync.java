@@ -7,7 +7,6 @@ import com.releasemobile.data.RepositoryStorableContext;
 public class DatowniaOfflineAPISync 
 {
 	private RepositoryStorableContext applicationContext;
-	private DatowniaAppService appService;
 	private DatowniaAppConfiguration configSettings;
 	private Timer timer;
 	

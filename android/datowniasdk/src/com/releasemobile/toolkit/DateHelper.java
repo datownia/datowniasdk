@@ -121,7 +121,7 @@ public class DateHelper {
 		millis *= sign; //ensure it is positive (we will reapply the minus sign later
 		
 		
-		String hoursMinutes = String.format("%s%02d:%02d:%02d", sign < 0 ? "-" : "",
+		String hoursMinutes = String.format(Locale.getDefault(), "%s%02d:%02d:%02d", sign < 0 ? "-" : "",
 			    TimeUnit.MILLISECONDS.toHours(millis),
 			    TimeUnit.MILLISECONDS.toMinutes(millis) - 
 			    TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
