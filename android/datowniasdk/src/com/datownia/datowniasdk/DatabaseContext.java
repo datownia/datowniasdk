@@ -9,8 +9,6 @@ import com.releasemobile.data.RepositoryStore;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
-import android.util.Log;
 
 /**
  * DatabaseContext will override the default database path so that databases may
@@ -45,7 +43,7 @@ public class DatabaseContext extends ContextWrapper implements RepositoryStorabl
 		}
 
 		
-		Logger.w(DEBUG_CONTEXT,
+		Logger.d(DEBUG_CONTEXT,
 				"getDatabasePath(" + name + ") = "
 						+ result.getAbsolutePath());
 
@@ -62,7 +60,7 @@ public class DatabaseContext extends ContextWrapper implements RepositoryStorabl
 		SQLiteDatabase result = SQLiteDatabase.openDatabase(getDatabasePath(name).getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
 		// SQLiteDatabase result = super.openOrCreateDatabase(name, mode,
 		// factory);
-		Logger.w(DEBUG_CONTEXT, "openOrCreateDatabase(" + name + ",,) = "
+		Logger.d(DEBUG_CONTEXT, "openOrCreateDatabase(" + name + ",,) = "
 				+ result.getPath());
 
 		return result;

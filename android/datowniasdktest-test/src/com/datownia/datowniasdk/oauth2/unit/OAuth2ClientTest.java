@@ -11,7 +11,6 @@ import com.datownia.datowniasdk.oauth2.DatowniaAccessToken;
 import com.datownia.datowniasdk.oauth2.OAuth2Client;
 import com.datownia.datowniasdk.testframework.DatowniaTestCase;
 import static org.mockito.Mockito.*;
-import junit.framework.TestCase;
 
 public class OAuth2ClientTest extends DatowniaTestCase {
 

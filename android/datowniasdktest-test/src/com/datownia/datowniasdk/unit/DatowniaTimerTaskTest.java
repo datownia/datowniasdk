@@ -13,9 +13,7 @@ import com.datownia.datowniasdk.testframework.DatowniaTestCase;
 import com.releasemobile.data.Repository;
 import com.releasemobile.data.RepositoryStorableContext;
 
-import android.content.Context;
 import static org.mockito.Mockito.*;
-import android.test.AndroidTestCase;
 
 public class DatowniaTimerTaskTest extends DatowniaTestCase {
 

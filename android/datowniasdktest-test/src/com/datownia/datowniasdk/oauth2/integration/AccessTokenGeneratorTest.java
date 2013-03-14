@@ -9,11 +9,8 @@ import android.util.Log;
 
 import com.datownia.datowniasdk.oauth2.AccessTokenGenerator;
 import com.datownia.datowniasdk.oauth2.DatowniaAccessToken;
-import com.datownia.datowniasdk.oauth2.OAuth2Client;
 import com.datownia.datowniasdk.oauth2.unit.AccessTokenCacheTest;
 import com.datownia.datowniasdk.testframework.DatowniaTestCase;
-
-import junit.framework.TestCase;
 
 public class AccessTokenGeneratorTest extends DatowniaTestCase {
 

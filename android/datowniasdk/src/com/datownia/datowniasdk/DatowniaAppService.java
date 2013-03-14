@@ -10,7 +10,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -19,7 +18,6 @@ import org.json.JSONException;
 import com.datownia.datowniasdk.oauth2.OAuth2Client;
 import com.releasemobile.data.RepositoryStorableContext;
 
-import android.content.Context;
 import android.util.Log;
 
 public class DatowniaAppService extends ServiceBase 

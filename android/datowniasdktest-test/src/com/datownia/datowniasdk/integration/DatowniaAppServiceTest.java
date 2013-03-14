@@ -1,12 +1,12 @@
 package com.datownia.datowniasdk.integration;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import org.json.JSONException;
+
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.datownia.datowniasdk.DatabaseContext;
 import com.datownia.datowniasdk.DatowniaAppConfiguration;
@@ -14,16 +14,6 @@ import com.datownia.datowniasdk.DatowniaAppService;
 import com.datownia.datowniasdk.testframework.DatowniaTestCase;
 import com.datownia.datowniasdk.testframework.TestContext;
 import com.releasemobile.data.Repository;
-import com.releasemobile.data.RepositoryStorableContext;
-
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import static org.mockito.Mockito.*;
-import android.os.Environment;
-import android.test.AndroidTestCase;
-import android.util.Log;
 
 public class DatowniaAppServiceTest extends DatowniaTestCase{
 

@@ -1,6 +1,5 @@
 package com.datownia.datowniasdk;
 
-import com.datownia.datowniasdk.oauth2.AccessTokenCacheable;
 import com.datownia.datowniasdk.oauth2.DatowniaAccessToken;
 
 /*	Class : 	DatowniaAppConfiguration 

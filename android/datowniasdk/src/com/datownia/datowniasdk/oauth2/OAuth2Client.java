@@ -1,13 +1,9 @@
 package com.datownia.datowniasdk.oauth2;
 
 import java.io.IOException;
-import java.net.URI;
-
 import org.json.JSONException;
 
 import android.content.Context;
-import android.net.Uri;
-
 import com.datownia.datowniasdk.DatowniaAppConfiguration;
 
 public class OAuth2Client {

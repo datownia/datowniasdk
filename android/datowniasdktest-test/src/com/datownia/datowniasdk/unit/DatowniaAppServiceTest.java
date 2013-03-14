@@ -24,10 +24,7 @@ import com.datownia.datowniasdk.testframework.TestContext;
 import com.releasemobile.data.Repository;
 import com.releasemobile.data.RepositoryStorableContext;
 
-import android.content.Context;
 import static org.mockito.Mockito.*;
-import android.test.AndroidTestCase;
-import android.test.IsolatedContext;
 import android.util.Log;
 
 public class DatowniaAppServiceTest extends DatowniaTestCase{

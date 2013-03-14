@@ -3,14 +3,12 @@ package com.datownia.datowniasdk;
 import java.io.BufferedReader;
 import java.io.CharArrayWriter;
 import java.io.IOException;
-import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.releasemobile.data.Repository;
 import com.releasemobile.data.RepositoryStorableContext;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 

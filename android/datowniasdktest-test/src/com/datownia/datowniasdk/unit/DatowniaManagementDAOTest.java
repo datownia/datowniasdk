@@ -13,10 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.datownia.datowniasdk.DatowniaManagementDAO;
 import com.datownia.datowniasdk.testframework.DatowniaTestCase;
 import com.releasemobile.data.Repository;
-import com.releasemobile.data.RepositoryStore;
-
 import static org.mockito.Mockito.*;
-import junit.framework.TestCase;
 
 public class DatowniaManagementDAOTest extends DatowniaTestCase {
 

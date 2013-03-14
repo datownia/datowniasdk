@@ -5,11 +5,6 @@ import java.util.TimerTask;
 import com.releasemobile.data.Repository;
 import com.releasemobile.data.RepositoryStorableContext;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
 
 public class DatowniaTimerTask extends TimerTask

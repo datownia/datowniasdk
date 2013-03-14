@@ -8,8 +8,6 @@ import com.datownia.datowniasdk.oauth2.AccessTokenCache;
 import com.datownia.datowniasdk.oauth2.DatowniaAccessToken;
 import com.datownia.datowniasdk.testframework.DatowniaTestCase;
 
-import junit.framework.TestCase;
-
 public class AccessTokenCacheTest extends DatowniaTestCase {
 
 	private static final String scope = "a/scope";

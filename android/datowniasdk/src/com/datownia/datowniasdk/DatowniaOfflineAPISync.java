@@ -4,10 +4,6 @@ import java.util.Timer;
 
 import com.releasemobile.data.RepositoryStorableContext;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-
 public class DatowniaOfflineAPISync 
 {
 	private RepositoryStorableContext applicationContext;

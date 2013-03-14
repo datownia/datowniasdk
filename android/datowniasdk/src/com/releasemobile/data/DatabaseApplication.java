@@ -1,14 +1,8 @@
 package com.releasemobile.data;
 
-import java.io.File;
 import java.util.HashMap;
 
-import com.datownia.datowniasdk.Logger;
-
 import android.app.Application;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
 
 public class DatabaseApplication extends Application implements RepositoryStorableContext {
 	
