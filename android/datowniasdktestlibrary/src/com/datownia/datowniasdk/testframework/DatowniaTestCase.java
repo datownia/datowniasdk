@@ -11,7 +11,7 @@ import android.test.AndroidTestCase;
 public class DatowniaTestCase extends AndroidTestCase {
 	
 	protected void setUp() throws Exception {
-		System.setProperty("dexmaker.dexcache", "/sdcard");
+		System.setProperty("dexmaker.dexcache", Environment.getExternalStorageDirectory().getPath());
 		super.setUp();
 	}
 
