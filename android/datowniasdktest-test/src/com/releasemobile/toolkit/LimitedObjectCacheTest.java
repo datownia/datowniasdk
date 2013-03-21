@@ -1,6 +1,7 @@
 package com.releasemobile.toolkit;
 
 import junit.framework.TestCase;
+import static org.mockito.Mockito.*;
 
 public class LimitedObjectCacheTest extends TestCase {
 
@@ -14,7 +15,9 @@ public class LimitedObjectCacheTest extends TestCase {
 	
 	public void testEldestIsRemoved()
 	{
-		LimitedObjectCache<String, String> cache = new LimitedObjectCache<String, String>(2);
+		@SuppressWarnings("unchecked")
+		CacheListener<String,String> mockListener = mock(CacheListener.class);
+		LimitedObjectCache<String, String> cache = new LimitedObjectCache<String, String>(2, mockListener);
 		
 		cache.put("key1", "value1");
 		assertEquals("value1", cache.get("key1"));
@@ -27,6 +30,8 @@ public class LimitedObjectCacheTest extends TestCase {
 		assertNull(cache.get("key1"));
 		assertEquals("value3", cache.get("key3"));
 		assertEquals("value2", cache.get("key2"));
+		
+		verify(mockListener).willRemoveOldItem("key1", "value1");
 	}
 
 }

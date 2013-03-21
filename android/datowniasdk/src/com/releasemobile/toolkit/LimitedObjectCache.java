@@ -20,6 +20,7 @@ public class LimitedObjectCache<K, V> extends LinkedHashMap<K,V> {
 	 */
 	private static final long serialVersionUID = 8106385969997790597L;
 	private int maximumSize;
+	private CacheListener<K,V> listener;
 
 	public LimitedObjectCache(int maximumSize)
 	{
@@ -28,9 +29,23 @@ public class LimitedObjectCache<K, V> extends LinkedHashMap<K,V> {
 		
 	}
 	
+	public LimitedObjectCache(int maximumSize, CacheListener<K,V> listener)
+	{
+		this.maximumSize = maximumSize;
+		this.listener = listener;
+		
+	}
+	
 	@Override
 	protected boolean removeEldestEntry(Map.Entry<K,V> eldest)
 	{
-		return size() > maximumSize;
+		boolean remove = size() > maximumSize;
+		
+		if (remove && listener != null)
+		{
+			listener.willRemoveOldItem(eldest.getKey(), eldest.getValue());
+		}
+		
+		return remove;
 	}
 }
