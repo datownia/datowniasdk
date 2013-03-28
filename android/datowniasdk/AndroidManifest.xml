@@ -10,7 +10,7 @@
 
     <application
         android:allowBackup="true"
-        android:theme="@style/AppTheme" >
+        >
 
     </application>
 
