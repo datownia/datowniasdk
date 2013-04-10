@@ -67,6 +67,8 @@
 		F38FB0C715FDDB0500B7759F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0BF15FDDB0500B7759F /* FMDatabaseAdditions.m */; };
 		F38FB0C915FDDB0500B7759F /* DLFMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB0C115FDDB0500B7759F /* DLFMResultSet.m */; };
 		F3D423DC163EA99E004C66CB /* DLFMSyncedDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D423DA163EA99E004C66CB /* DLFMSyncedDatabase.m */; };
+		F3FCFD0B1715ED6E00257B6C /* DLSqlParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F3FCFD091715ED6E00257B6C /* DLSqlParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F3FCFD0C1715ED6F00257B6C /* DLSqlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCFD0A1715ED6E00257B6C /* DLSqlParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +136,8 @@
 		F38FB0C115FDDB0500B7759F /* DLFMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLFMResultSet.m; sourceTree = "<group>"; };
 		F3D423D9163EA99E004C66CB /* DLFMSyncedDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLFMSyncedDatabase.h; sourceTree = "<group>"; };
 		F3D423DA163EA99E004C66CB /* DLFMSyncedDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLFMSyncedDatabase.m; sourceTree = "<group>"; };
+		F3FCFD091715ED6E00257B6C /* DLSqlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLSqlParser.h; sourceTree = "<group>"; };
+		F3FCFD0A1715ED6E00257B6C /* DLSqlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLSqlParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +223,8 @@
 				F308A34115FDFD0700B650BE /* macro.h */,
 				F38FB0B215FA342900B7759F /* DLConstants.h */,
 				F38FB0B315FA342900B7759F /* DLConstants.m */,
+				F3FCFD091715ED6E00257B6C /* DLSqlParser.h */,
+				F3FCFD0A1715ED6E00257B6C /* DLSqlParser.m */,
 				F38FAE8A15F8F39100B7759F /* Supporting Files */,
 			);
 			path = datownialibrary;
@@ -312,6 +318,7 @@
 				3299026C16B1590A006DC100 /* DLAppConfiguration.h in Headers */,
 				3299027416B1591A006DC100 /* NSData+Base64.h in Headers */,
 				3299026716B158F7006DC100 /* DLBase64.h in Headers */,
+				F3FCFD0B1715ED6E00257B6C /* DLSqlParser.h in Headers */,
 				3299026516B158F2006DC100 /* DLDocService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +401,7 @@
 				F308A34A15FE08BA00B650BE /* DLDocService.m in Sources */,
 				F308A34E15FE08CD00B650BE /* DLService.m in Sources */,
 				F3D423DC163EA99E004C66CB /* DLFMSyncedDatabase.m in Sources */,
+				F3FCFD0C1715ED6F00257B6C /* DLSqlParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

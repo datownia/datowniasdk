@@ -17,6 +17,7 @@
 #import "JSONKit.h"
 #import "DLDocument.h"
 #import "DLDocService.h"
+#import "DLSqlParser.h"
 
 @interface DLAppService()
 
@@ -149,7 +150,7 @@
     
     }
     
-    NSMutableArray *sqlLines = [NSMutableArray array];
+    NSMutableArray *sqlLines = NULL;
     for (NSArray *tableDefRow in tableDef) {
         DLDocService *docService = [[DLDocService alloc] initWithConfiguration:self.configuration];
         
@@ -182,157 +183,13 @@
         
         if ([sql length] > 0)
         {
+            DLSqlParser *sqlParser = [[DLSqlParser alloc] init];
             
             DLog(@"******");
             DLog(@"sql: %@", sql);
             DLog(@"******");
             
-//            NSMutableArray *lines = [NSMutableArray arrayWithArray:[sql componentsSeparatedByString:@"\n"]];
-//            NSMutableArray *modifiedLines = [NSMutableArray arrayWithCapacity:lines.count];
-            
-//            //split on ;
-//            NSMutableArray *candidatelines = [NSMutableArray arrayWithArray:[sql componentsSeparatedByString:@";"]];
-//            if ([[candidatelines objectAtIndex:0] componentsSeparatedByString:@"'"] % 2 == 0)
-//            {
-//                //merge 0 and 1, replace in array and redo
-//                NSString *merged = [[candidatelines objectAtIndex:0] stringByAppendingString:[candidatelines objectAtIndex:1]];
-//                NSRange range;
-//                range.location = 0;
-//                range.length = 2;
-//                NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
-//                [candidatelines removeObjectsAtIndexes:set];
-//                [candidatelines insertObject:merged atIndex:0];
-//            }
-//
-
-            
-                //find the ; to split on.
-                //i.e. find occurances of ; and split if the number of apostrophes is even.
-            
-            
-                int apostropheCount = 0;
-                int thisLineCharCount = 0;
-                int adjustment = 2;
-                NSMutableArray *lines = [[NSMutableArray alloc] init];
-                NSMutableArray *modifiedLines = [[NSMutableArray alloc] init];
-            
-                for (int i=0;i<[sql length];i++) //loop through every character in the sql.
-                {
-                    unichar ch;
-                    ch = [sql  characterAtIndex:i];
-                    //DLog(@"Processing character: %c", ch);
-                    
-                    if (ch == '\'') //apostrophe
-                    {
-                        apostropheCount++;
-                    }
-                    else
-                    {
-                        if ((ch == ';') && (apostropheCount % 2 == 0))
-                        {
-                            //we found where to split
-                            
-                            //save all the characters so far into a string
-                            //NSString *newLine = [sql substringToIndex:i]
-                            NSString *newLine = [sql substringWithRange:NSMakeRange(i-thisLineCharCount-1, thisLineCharCount+2)];
-                            
-                            
-                            //get last char,
-                            //while last char is /r or /n
-                            //remove it
-                            
-                            unichar firstCh = [newLine characterAtIndex: 0];
-                            unichar lastCh = [newLine characterAtIndex: [newLine length] - 1];
-                            //DLog(@"firstCh: %c", firstCh);
-                            //DLog(@"lastCh: %c", lastCh);
-                            
-                            if (([[NSCharacterSet newlineCharacterSet] characterIsMember:firstCh]) || ([[NSCharacterSet newlineCharacterSet] characterIsMember:lastCh]))
-                            {
-                                
-                                DLog(@"first char - carriage return or new line found!");
-                                //newLine = [string substringToIndex:[string length] - 1];
-                                //newLine = [newLine substringWithRange:NSMakeRange(1, [newLine length]-1)];
-                            }
-                            
-//                            if ([[NSCharacterSet newlineCharacterSet] characterIsMember:lastCh])
-//                            {
-//                                
-//                                DLog(@"last char - carriage return or new line found!");
-//                                //newLine = [string substringToIndex:[string length] - 1];
-//                                //newLine = [newLine substringWithRange:NSMakeRange(1, [newLine length]-1)];
-//                            }
-                            
-                            //[newLine stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-                            [lines addObject:newLine];
-                            //DLog(@"newLine: %@", newLine);
-                            
-                            //reset count for the next line.
-                            thisLineCharCount = 0;
-                            
-                            //i ++; // to skip the newline character
-                            
-                            //remove all the characters so far from the original sql string
-                            //sql = [sql substringWithRange:NSMakeRange(i, [sql length]-i)];
-                            //i += [sql length]; //-i
-                            
-
-//                            while ([[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:ch])
-//                            {
-//                                i++;
-//                                ch = [sql  characterAtIndex:i];
-//                            }
-                        }
-                        else
-                        {
-                            thisLineCharCount++;
-                        }
-                    }
-                }
-
-            DLog(@"lines.count: %i", lines.count);
-            modifiedLines = [NSMutableArray arrayWithCapacity:lines.count];
-
-            
-            for (int i=0; i<lines.count; i++)
-            {
-                
-                NSMutableString *lineString = [[NSMutableString alloc]initWithString:[lines objectAtIndex:i]];
-                
-                if ([lineString rangeOfString:publisherName].location == NSNotFound)
-                {
-                    DLog(@"Publisher name not found!");
-                    
-                    //find the table name and replace it with the publisher name + table name.
-                    if ([lineString rangeOfString:tableName].location != NSNotFound)
-                    {
-                        NSString *stringToInsert = [NSString stringWithFormat:@"%@/%@", publisherName, tableName];
-                        [lineString replaceOccurrencesOfString:tableName withString:stringToInsert options:NSCaseInsensitiveSearch range:(NSRange){0,[lineString length]}];
-                    
-                        //DLog(@"lineString: %@", lineString);
-                        
-                        [modifiedLines addObject:lineString];
-                    }
-                }
-                else
-                {
-                    [modifiedLines addObject:lineString];
-                }
-            
-            }
-            
-            
-//            if (modifiedLines.count > 0)
-//            {
-//                for (int i=0; i<=modifiedLines.count-1; i++)
-//                {
-//                    DLog(@"%@", [modifiedLines objectAtIndex:i]);
-//                }
-//            }
-            
-            if (![modifiedLines lastObject]|| [[modifiedLines lastObject] length] == 0)
-                [modifiedLines removeLastObject];
-            
-            [sqlLines addObjectsFromArray:modifiedLines];
+            sqlLines = [sqlParser parse:sql];
 
 //            DLog(@"%@",sql);
 
@@ -352,7 +209,7 @@
 //    }
     
     
-    if (sqlLines.count > 1) //table_def always included if there were actual changes, so 1 line should never occur - if it does this is due to bug in datownia (fixed but not on live)
+    if (sqlLines.count > 1) //table_def always included if there were actual changes, so 1 line should never occur - if it does this is due to bug in datownia 
     {
         for (NSString *sqlLine in sqlLines) {
             BOOL success = [db executeUpdate:sqlLine];
