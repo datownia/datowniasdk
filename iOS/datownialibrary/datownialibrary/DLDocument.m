@@ -7,7 +7,8 @@
 //
 
 #import "DLDocument.h"
-#import <JSONKit/JSONKit.h>
+//#import <JSONKit/JSONKit.h>
+#import "JSONKit.h"
 #import "DLContentItem.h"
 #import "DLGenericContentItem.h"
 #import "NSString+Extras.h"

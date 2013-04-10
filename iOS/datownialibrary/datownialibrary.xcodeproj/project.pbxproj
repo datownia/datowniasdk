@@ -38,7 +38,6 @@
 		3299028016B15935006DC100 /* DLContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A32F15FDF7CC00B650BE /* DLContentItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3299028116B15936006DC100 /* DLGenericContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A33515FDF82500B650BE /* DLGenericContentItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3299028216B15938006DC100 /* NSString+Extras.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A33A15FDF84E00B650BE /* NSString+Extras.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3299035116B19CAA006DC100 /* libJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3299035016B19CAA006DC100 /* libJSONKit.a */; };
 		F308A33215FDF7CC00B650BE /* DLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A32E15FDF7CC00B650BE /* DLDocument.m */; };
 		F308A33415FDF7CC00B650BE /* DLContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A33015FDF7CC00B650BE /* DLContentItem.m */; };
 		F308A33815FDF82500B650BE /* DLGenericContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A33615FDF82500B650BE /* DLGenericContentItem.m */; };
@@ -71,7 +70,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3299035016B19CAA006DC100 /* libJSONKit.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libJSONKit.a; path = "../JSONKit/build/Release-iphoneos/libJSONKit.a"; sourceTree = "<group>"; };
 		F308A32D15FDF7CC00B650BE /* DLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLDocument.h; sourceTree = "<group>"; };
 		F308A32E15FDF7CC00B650BE /* DLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLDocument.m; sourceTree = "<group>"; };
 		F308A32F15FDF7CC00B650BE /* DLContentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLContentItem.h; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3299035116B19CAA006DC100 /* libJSONKit.a in Frameworks */,
 				F38FAFF415F8F8D500B7759F /* UIKit.framework in Frameworks */,
 				F38FAE8815F8F39100B7759F /* Foundation.framework in Frameworks */,
 			);
@@ -170,7 +167,6 @@
 		F38FAE7915F8F39100B7759F = {
 			isa = PBXGroup;
 			children = (
-				3299035016B19CAA006DC100 /* libJSONKit.a */,
 				F38FAE8915F8F39100B7759F /* datownialibrary */,
 				F38FAE8615F8F39100B7759F /* Frameworks */,
 				F38FAE8515F8F39100B7759F /* Products */,
@@ -346,7 +342,7 @@
 		F38FAE7B15F8F39100B7759F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = datownia;
 			};
 			buildConfigurationList = F38FAE7E15F8F39100B7759F /* Build configuration list for PBXProject "datownialibrary" */;
@@ -411,6 +407,9 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -437,6 +436,9 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

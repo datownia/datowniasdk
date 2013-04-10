@@ -24,6 +24,8 @@
 
 - (id) executeQuery:(NSString*)sql, ...
 {
+    DLog(@"sync execute sql: %@", sql);
+    
     id __block result = NULL;
     
     va_list vl;
