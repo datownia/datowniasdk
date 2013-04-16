@@ -18,6 +18,7 @@
 #import "DLDocument.h"
 #import "DLDocService.h"
 #import "DLSqlParser.h"
+#import "DLSeqExtractor.h"
 
 @interface DLAppService()
 
@@ -150,7 +151,7 @@
     
     }
     
-    NSMutableArray *sqlLines = NULL;
+    NSMutableArray *sqlLines = [NSMutableArray array];
     for (NSArray *tableDefRow in tableDef) {
         DLDocService *docService = [[DLDocService alloc] initWithConfiguration:self.configuration];
         
@@ -178,22 +179,37 @@
         
         NSArray *pathParts = [parts objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]];
         NSString *doc = [pathParts componentsJoinedByString:@"_"];
-                
-        NSString *sql = [docService httpGetDeltaSql:doc version:version seq:seq];
         
-        if ([sql length] > 0)
+        BOOL checkForMoreDeltas = true;
+        DLSeqExtractor *seqExtractor = [[DLSeqExtractor alloc] init];
+        
+        do
         {
-            DLSqlParser *sqlParser = [[DLSqlParser alloc] init];
+            NSString *sql = [docService httpGetDeltaSql:doc version:version seq:seq];
             
-            DLog(@"******");
-            DLog(@"sql: %@", sql);
-            DLog(@"******");
-            
-            sqlLines = [sqlParser parse:sql];
-
-//            DLog(@"%@",sql);
-
-        }
+            if ([sql length] > 0)
+            {
+                DLSqlParser *sqlParser = [[DLSqlParser alloc] init];
+                
+                DLog(@"******");
+                DLog(@"sql: %@", sql);
+                DLog(@"******");
+                
+                NSArray *thisSqlLines = [sqlParser parse:sql];
+                [sqlLines addObjectsFromArray:thisSqlLines];
+                
+                seq = [seqExtractor extract:[thisSqlLines lastObject]];
+                
+                //could not find seq. if we break out then other tables will get updated, though this table might be inconsistent
+                if (seq == NSNotFound)
+                    break;     
+                
+            }
+            else
+            {
+                checkForMoreDeltas = false;
+            }
+        } while (checkForMoreDeltas);
         
         DLog(@"*** sqlLines.count: %i", sqlLines.count);
     }

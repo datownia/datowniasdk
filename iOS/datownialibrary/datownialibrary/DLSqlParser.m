@@ -38,16 +38,19 @@
             NSString *newLine = [sql substringWithRange:NSMakeRange(i-(thisLineCharCount-1), thisLineCharCount)];
             
             //if step over cr lf newline characters
-            unichar nextChar = [sql  characterAtIndex:i+1 ];
-            if (nextChar == '\r')
+            if (i+1 < sqlLen)
             {
-                i++;
-                nextChar = [sql  characterAtIndex:i+1 ];
-            }
-            
-            if (nextChar == '\n')
-            {
-                i++;
+                unichar nextChar = [sql  characterAtIndex:i+1 ];
+                if (nextChar == '\r')
+                {
+                    i++;
+                    nextChar = [sql  characterAtIndex:i+1 ];
+                }
+                
+                if (nextChar == '\n')
+                {
+                    i++;
+                }
             }
 
             [sqlLines addObject:newLine];

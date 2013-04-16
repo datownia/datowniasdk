@@ -38,6 +38,8 @@
 		3299028016B15935006DC100 /* DLContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A32F15FDF7CC00B650BE /* DLContentItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3299028116B15936006DC100 /* DLGenericContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A33515FDF82500B650BE /* DLGenericContentItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3299028216B15938006DC100 /* NSString+Extras.h in Headers */ = {isa = PBXBuildFile; fileRef = F308A33A15FDF84E00B650BE /* NSString+Extras.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32B13A23171D5A000040FF63 /* DLSeqExtractor.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B13A21171D5A000040FF63 /* DLSeqExtractor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32B13A24171D5A000040FF63 /* DLSeqExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B13A22171D5A000040FF63 /* DLSeqExtractor.m */; };
 		F308A33215FDF7CC00B650BE /* DLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A32E15FDF7CC00B650BE /* DLDocument.m */; };
 		F308A33415FDF7CC00B650BE /* DLContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A33015FDF7CC00B650BE /* DLContentItem.m */; };
 		F308A33815FDF82500B650BE /* DLGenericContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F308A33615FDF82500B650BE /* DLGenericContentItem.m */; };
@@ -72,6 +74,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32B13A21171D5A000040FF63 /* DLSeqExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLSeqExtractor.h; sourceTree = "<group>"; };
+		32B13A22171D5A000040FF63 /* DLSeqExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLSeqExtractor.m; sourceTree = "<group>"; };
 		F308A32D15FDF7CC00B650BE /* DLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLDocument.h; sourceTree = "<group>"; };
 		F308A32E15FDF7CC00B650BE /* DLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLDocument.m; sourceTree = "<group>"; };
 		F308A32F15FDF7CC00B650BE /* DLContentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLContentItem.h; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 				F3FCFD091715ED6E00257B6C /* DLSqlParser.h */,
 				F3FCFD0A1715ED6E00257B6C /* DLSqlParser.m */,
 				F38FAE8A15F8F39100B7759F /* Supporting Files */,
+				32B13A21171D5A000040FF63 /* DLSeqExtractor.h */,
+				32B13A22171D5A000040FF63 /* DLSeqExtractor.m */,
 			);
 			path = datownialibrary;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 				3299026C16B1590A006DC100 /* DLAppConfiguration.h in Headers */,
 				3299027416B1591A006DC100 /* NSData+Base64.h in Headers */,
 				3299026716B158F7006DC100 /* DLBase64.h in Headers */,
+				32B13A23171D5A000040FF63 /* DLSeqExtractor.h in Headers */,
 				F3FCFD0B1715ED6E00257B6C /* DLSqlParser.h in Headers */,
 				3299026516B158F2006DC100 /* DLDocService.h in Headers */,
 			);
@@ -402,6 +409,7 @@
 				F308A34E15FE08CD00B650BE /* DLService.m in Sources */,
 				F3D423DC163EA99E004C66CB /* DLFMSyncedDatabase.m in Sources */,
 				F3FCFD0C1715ED6F00257B6C /* DLSqlParser.m in Sources */,
+				32B13A24171D5A000040FF63 /* DLSeqExtractor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

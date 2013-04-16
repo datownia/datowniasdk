@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32B13A27171D5C140040FF63 /* DLSeqExtractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B13A26171D5C140040FF63 /* DLSeqExtractorTests.m */; };
 		F3511CD11715FFDA002F3F28 /* libdatownialibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3511CD01715FFDA002F3F28 /* libdatownialibrary.a */; };
 		F3511CD2171603B3002F3F28 /* sqlLines.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3511CD4171603B3002F3F28 /* sqlLines.strings */; };
 		F38FB04A15FA031400B7759F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FB04915FA031400B7759F /* SenTestingKit.framework */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32B13A25171D5C140040FF63 /* DLSeqExtractorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLSeqExtractorTests.h; sourceTree = "<group>"; };
+		32B13A26171D5C140040FF63 /* DLSeqExtractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLSeqExtractorTests.m; sourceTree = "<group>"; };
 		F3511CD01715FFDA002F3F28 /* libdatownialibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdatownialibrary.a; path = "../../../../../Library/Developer/Xcode/DerivedData/datownialibrarytest-ahsylzltnrclmdeooikobqfavnnj/Build/Products/Debug-iphoneos/libdatownialibrary.a"; sourceTree = "<group>"; };
 		F3511CD3171603B3002F3F28 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/sqlLines.strings; sourceTree = "<group>"; };
 		F38FB03A15FA031400B7759F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +105,8 @@
 			children = (
 				F3FCFD311715F9D900257B6C /* DLSqlParserUnitTests.h */,
 				F3FCFD321715F9D900257B6C /* DLSqlParserUnitTests.m */,
+				32B13A25171D5C140040FF63 /* DLSeqExtractorTests.h */,
+				32B13A26171D5C140040FF63 /* DLSeqExtractorTests.m */,
 			);
 			name = unit;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3FCFD331715F9D900257B6C /* DLSqlParserUnitTests.m in Sources */,
+				32B13A27171D5C140040FF63 /* DLSeqExtractorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
