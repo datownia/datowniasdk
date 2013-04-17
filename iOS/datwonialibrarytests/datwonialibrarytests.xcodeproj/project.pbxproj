@@ -7,44 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32B13A27171D5C140040FF63 /* DLSeqExtractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B13A26171D5C140040FF63 /* DLSeqExtractorTests.m */; };
+		F3511CD11715FFDA002F3F28 /* libdatownialibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3511CD01715FFDA002F3F28 /* libdatownialibrary.a */; };
+		F3511CD2171603B3002F3F28 /* sqlLines.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3511CD4171603B3002F3F28 /* sqlLines.strings */; };
 		F38FB04A15FA031400B7759F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FB04915FA031400B7759F /* SenTestingKit.framework */; };
 		F38FB04C15FA031400B7759F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FB04B15FA031400B7759F /* UIKit.framework */; };
 		F38FB04D15FA031400B7759F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FB03A15FA031400B7759F /* Foundation.framework */; };
 		F38FB05615FA031400B7759F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F38FB05415FA031400B7759F /* InfoPlist.strings */; };
-		F38FB07115FA040B00B7759F /* datownialibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F38FB07015FA040B00B7759F /* datownialibraryTests.m */; };
-		F38FB0A515FA048C00B7759F /* libdatownialibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F38FB0A015FA047C00B7759F /* libdatownialibrary.a */; };
 		F3CF2E2615FDF2BA009BE218 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3CF2E2515FDF2BA009BE218 /* libsqlite3.dylib */; };
+		F3FCFD331715F9D900257B6C /* DLSqlParserUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCFD321715F9D900257B6C /* DLSqlParserUnitTests.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F38FB09F15FA047C00B7759F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F38FB09A15FA047B00B7759F /* datownialibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F38FAE8415F8F39100B7759F;
-			remoteInfo = datownialibrary;
-		};
-		F38FB0A315FA048600B7759F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F38FB09A15FA047B00B7759F /* datownialibrary.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F38FAE8315F8F39100B7759F;
-			remoteInfo = datownialibrary;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		32B13A25171D5C140040FF63 /* DLSeqExtractorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLSeqExtractorTests.h; sourceTree = "<group>"; };
+		32B13A26171D5C140040FF63 /* DLSeqExtractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLSeqExtractorTests.m; sourceTree = "<group>"; };
+		F3511CD01715FFDA002F3F28 /* libdatownialibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdatownialibrary.a; path = "../../../../../Library/Developer/Xcode/DerivedData/datownialibrarytest-ahsylzltnrclmdeooikobqfavnnj/Build/Products/Debug-iphoneos/libdatownialibrary.a"; sourceTree = "<group>"; };
+		F3511CD3171603B3002F3F28 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/sqlLines.strings; sourceTree = "<group>"; };
 		F38FB03A15FA031400B7759F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F38FB03E15FA031400B7759F /* datwonialibrarytests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "datwonialibrarytests-Prefix.pch"; sourceTree = "<group>"; };
-		F38FB04815FA031400B7759F /* datwonialibrarytestsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = datwonialibrarytestsTests.octest; path = datwonialibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F38FB04815FA031400B7759F /* datwonialibraryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = datwonialibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38FB04915FA031400B7759F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F38FB04B15FA031400B7759F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		F38FB05315FA031400B7759F /* datwonialibrarytestsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "datwonialibrarytestsTests-Info.plist"; path = "datwonialibrarytestsTests/datwonialibrarytestsTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F38FB05515FA031400B7759F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F38FB06F15FA040B00B7759F /* datownialibraryTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datownialibraryTests.h; sourceTree = "<group>"; };
-		F38FB07015FA040B00B7759F /* datownialibraryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = datownialibraryTests.m; sourceTree = "<group>"; };
-		F38FB09A15FA047B00B7759F /* datownialibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = datownialibrary.xcodeproj; path = ../datownialibrary/datownialibrary.xcodeproj; sourceTree = "<group>"; };
 		F3CF2E2515FDF2BA009BE218 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F3FCFD311715F9D900257B6C /* DLSqlParserUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLSqlParserUnitTests.h; sourceTree = "<group>"; };
+		F3FCFD321715F9D900257B6C /* DLSqlParserUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLSqlParserUnitTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3511CD11715FFDA002F3F28 /* libdatownialibrary.a in Frameworks */,
 				F3CF2E2615FDF2BA009BE218 /* libsqlite3.dylib in Frameworks */,
-				F38FB0A515FA048C00B7759F /* libdatownialibrary.a in Frameworks */,
 				F38FB04A15FA031400B7759F /* SenTestingKit.framework in Frameworks */,
 				F38FB04C15FA031400B7759F /* UIKit.framework in Frameworks */,
 				F38FB04D15FA031400B7759F /* Foundation.framework in Frameworks */,
@@ -66,8 +54,8 @@
 		F38FB02C15FA031400B7759F = {
 			isa = PBXGroup;
 			children = (
+				F3511CD01715FFDA002F3F28 /* libdatownialibrary.a */,
 				F3CF2E2515FDF2BA009BE218 /* libsqlite3.dylib */,
-				F38FB09A15FA047B00B7759F /* datownialibrary.xcodeproj */,
 				F38FB03C15FA031400B7759F /* datwonialibrarytests */,
 				F38FB03915FA031400B7759F /* Frameworks */,
 				F38FB03815FA031400B7759F /* Products */,
@@ -77,7 +65,7 @@
 		F38FB03815FA031400B7759F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F38FB04815FA031400B7759F /* datwonialibrarytestsTests.octest */,
+				F38FB04815FA031400B7759F /* datwonialibraryTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,8 +83,7 @@
 		F38FB03C15FA031400B7759F /* datwonialibrarytests */ = {
 			isa = PBXGroup;
 			children = (
-				F38FB06F15FA040B00B7759F /* datownialibraryTests.h */,
-				F38FB07015FA040B00B7759F /* datownialibraryTests.m */,
+				F3FCFD2F1715F9B100257B6C /* unit */,
 				F38FB03D15FA031400B7759F /* Supporting Files */,
 			);
 			path = datwonialibrarytests;
@@ -105,6 +92,7 @@
 		F38FB03D15FA031400B7759F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3511CD4171603B3002F3F28 /* sqlLines.strings */,
 				F38FB05415FA031400B7759F /* InfoPlist.strings */,
 				F38FB05315FA031400B7759F /* datwonialibrarytestsTests-Info.plist */,
 				F38FB03E15FA031400B7759F /* datwonialibrarytests-Prefix.pch */,
@@ -112,12 +100,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F38FB09B15FA047B00B7759F /* Products */ = {
+		F3FCFD2F1715F9B100257B6C /* unit */ = {
 			isa = PBXGroup;
 			children = (
-				F38FB0A015FA047C00B7759F /* libdatownialibrary.a */,
+				F3FCFD311715F9D900257B6C /* DLSqlParserUnitTests.h */,
+				F3FCFD321715F9D900257B6C /* DLSqlParserUnitTests.m */,
+				32B13A25171D5C140040FF63 /* DLSeqExtractorTests.h */,
+				32B13A26171D5C140040FF63 /* DLSeqExtractorTests.m */,
 			);
-			name = Products;
+			name = unit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,11 +126,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				F38FB0A415FA048600B7759F /* PBXTargetDependency */,
 			);
 			name = datwonialibraryTests;
 			productName = datwonialibrarytestsTests;
-			productReference = F38FB04815FA031400B7759F /* datwonialibrarytestsTests.octest */;
+			productReference = F38FB04815FA031400B7759F /* datwonialibraryTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -161,12 +151,6 @@
 			mainGroup = F38FB02C15FA031400B7759F;
 			productRefGroup = F38FB03815FA031400B7759F /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F38FB09B15FA047B00B7759F /* Products */;
-					ProjectRef = F38FB09A15FA047B00B7759F /* datownialibrary.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F38FB04715FA031400B7759F /* datwonialibraryTests */,
@@ -174,22 +158,13 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		F38FB0A015FA047C00B7759F /* libdatownialibrary.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libdatownialibrary.a;
-			remoteRef = F38FB09F15FA047C00B7759F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		F38FB04515FA031400B7759F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F38FB05615FA031400B7759F /* InfoPlist.strings in Resources */,
+				F3511CD2171603B3002F3F28 /* sqlLines.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,21 +191,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F38FB07115FA040B00B7759F /* datownialibraryTests.m in Sources */,
+				F3FCFD331715F9D900257B6C /* DLSqlParserUnitTests.m in Sources */,
+				32B13A27171D5C140040FF63 /* DLSeqExtractorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		F38FB0A415FA048600B7759F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = datownialibrary;
-			targetProxy = F38FB0A315FA048600B7759F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
+		F3511CD4171603B3002F3F28 /* sqlLines.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3511CD3171603B3002F3F28 /* en */,
+			);
+			name = sqlLines.strings;
+			sourceTree = "<group>";
+		};
 		F38FB05415FA031400B7759F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,6 +268,7 @@
 		F38FB06015FA031400B7759F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -301,10 +278,16 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 					"\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../include\"",
 				);
 				INFOPLIST_FILE = "datwonialibrarytestsTests/datwonialibrarytestsTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/datownialibrarytest-ahsylzltnrclmdeooikobqfavnnj/Build/Products/Debug-iphoneos\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -312,6 +295,7 @@
 		F38FB06115FA031400B7759F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -321,10 +305,16 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 					"\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../include\"",
 				);
 				INFOPLIST_FILE = "datwonialibrarytestsTests/datwonialibrarytestsTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/datownialibrarytest-ahsylzltnrclmdeooikobqfavnnj/Build/Products/Debug-iphoneos\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;

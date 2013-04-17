@@ -450,7 +450,7 @@
     int queryCount = sqlite3_bind_parameter_count(pStmt);
     
     while (idx < queryCount) {
-        
+    
         if (arrayArgs) {
             obj = [arrayArgs objectAtIndex:idx];
         }
@@ -545,6 +545,9 @@
 
 
 - (BOOL) executeUpdate:(NSString*)sql, ... {
+    
+    DLog(@"execute sql: %@", sql);
+    
     va_list args;
     va_start(args, sql);
     

@@ -18,30 +18,34 @@
     [super setUp];
     
     
-    NSArray *arguments = [[NSProcessInfo processInfo] arguments];
-    int numArgs = arguments.count;
-    
-    for (int i = 0; i <numArgs; i++) {
-        NSString *arg = [arguments objectAtIndex:i];
-        if ([arg isEqualToString:@"TESTAPP"])
-        {
-            testApp = [arguments objectAtIndex:i+1];
-        }
-        
-        if ([arg isEqualToString:@"TESTAPPKEY"])
-        {
-            testAppKey = [arguments objectAtIndex:i+1];
-        }
-        
-        if ([arg isEqualToString:@"TESTAPPSECRET"])
-        {
-            testAppSecret = [arguments objectAtIndex:i+1];
-        }
-    }
-    
+//    NSArray *arguments = [[NSProcessInfo processInfo] arguments];
+//    int numArgs = arguments.count;
+//    
+//    for (int i = 0; i <numArgs; i++) {
+//        NSString *arg = [arguments objectAtIndex:i];
+//        if ([arg isEqualToString:@"TESTAPP"])
+//        {
+//            testApp = [arguments objectAtIndex:i+1];
+//        }
+//        
+//        if ([arg isEqualToString:@"TESTAPPKEY"])
+//        {
+//            testAppKey = [arguments objectAtIndex:i+1];
+//        }
+//        
+//        if ([arg isEqualToString:@"TESTAPPSECRET"])
+//        {
+//            testAppSecret = [arguments objectAtIndex:i+1];
+//        }
+//    }
+//    
+//
+//    STAssertFalse(!testApp || !testAppKey || !testAppSecret, @"Must specify args TESTAPP, TESTAPPKEY, TESTAPPSECRET when running test");
 
-    STAssertFalse(!testApp || !testAppKey || !testAppSecret, @"Must specify args TESTAPP, TESTAPPKEY, TESTAPPSECRET when running test");
 
+    testAppKey = @"b317eac00b";
+    testAppSecret = @"5156a8e80e";
+    testApp = @"example";
 }
 
 - (void)tearDown

@@ -13,9 +13,12 @@
 #import "DLFileDownloader.h"
 #import "DLDbManager.h"
 #import "DLTextDownloader.h"
-#import <JSONKit/JSONKit.h>
+//#import <JSONKit/JSONKit.h>
+#import "JSONKit.h"
 #import "DLDocument.h"
 #import "DLDocService.h"
+#import "DLSqlParser.h"
+#import "DLSeqExtractor.h"
 
 @interface DLAppService()
 
@@ -176,60 +179,53 @@
         
         NSArray *pathParts = [parts objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]];
         NSString *doc = [pathParts componentsJoinedByString:@"_"];
-                
-        NSString *sql = [docService httpGetDeltaSql:doc version:version seq:seq];
-        //DLog(@"sql: %@", sql);
         
-        if ([sql length] > 0)
+        BOOL checkForMoreDeltas = true;
+        DLSeqExtractor *seqExtractor = [[DLSeqExtractor alloc] init];
+        
+        do
         {
-            NSMutableArray *lines = [NSMutableArray arrayWithArray:[sql componentsSeparatedByString:@"\n"]];
-            NSMutableArray *modifiedLines = [NSMutableArray arrayWithCapacity:lines.count];
+            NSString *sql = [docService httpGetDeltaSql:doc version:version seq:seq];
             
-        
-            
-            //////////
-            for (int i=0; i<lines.count; i++)
+            if ([sql length] > 0)
             {
+                DLSqlParser *sqlParser = [[DLSqlParser alloc] init];
                 
-                NSMutableString *lineString = [[NSMutableString alloc]initWithString:[lines objectAtIndex:i]];
+                DLog(@"******");
+                DLog(@"sql: %@", sql);
+                DLog(@"******");
                 
-                if ([lineString rangeOfString:publisherName].location == NSNotFound)
-                {
-//                    DLog(@"*****");
-//                    DLog(@"Publisher name not found!");
-//                    DLog(@"*****");
-                    
-                    //find the table name and replace it with the publisher name + table name.
-                    if ([lineString rangeOfString:tableName].location != NSNotFound)
-                    {
-                        NSString *stringToInsert = [NSString stringWithFormat:@"%@/%@", publisherName, tableName];
-                        [lineString replaceOccurrencesOfString:tableName withString:stringToInsert options:NSCaseInsensitiveSearch range:(NSRange){0,[lineString length]}];
-                    
-                        //DLog(@"lineString: %@", lineString);
-                        
-                        //[lines removeObjectAtIndex:0];
-                        //[lines insertObject:lineString atIndex:0];
-                        [modifiedLines addObject:lineString];
-                    }
-                }
-                else
-                {
-                    [modifiedLines addObject:lineString];
-                }
-            
+                NSArray *thisSqlLines = [sqlParser parse:sql];
+                [sqlLines addObjectsFromArray:thisSqlLines];
+                
+                seq = [seqExtractor extract:[thisSqlLines lastObject]];
+                
+                //could not find seq. if we break out then other tables will get updated, though this table might be inconsistent
+                if (seq == NSNotFound)
+                    break;     
+                
             }
-            /////////
-            
-            if (![modifiedLines lastObject]|| [[modifiedLines lastObject] length] == 0)
-                [modifiedLines removeLastObject];
-            [sqlLines addObjectsFromArray:modifiedLines];
-//            DLog(@"-----");
-//            DLog(@"%@",sql);
-//            DLog(@"-----");
-        }
+            else
+            {
+                checkForMoreDeltas = false;
+            }
+        } while (checkForMoreDeltas);
+        
+        DLog(@"*** sqlLines.count: %i", sqlLines.count);
     }
 
-    if (sqlLines.count > 1) //table_def always included if there were actual changes, so 1 line should never occur - if it does this is due to bug in datownia (fixed but not on live)
+    
+
+//    if (sqlLines.count > 0)
+//    {
+//        for (int i=0; i<sqlLines.count; i++)
+//        {
+//            DLog(@"** %@", [sqlLines objectAtIndex:i]);
+//        }
+//    }
+    
+    
+    if (sqlLines.count > 1) //table_def always included if there were actual changes, so 1 line should never occur - if it does this is due to bug in datownia 
     {
         for (NSString *sqlLine in sqlLines) {
             BOOL success = [db executeUpdate:sqlLine];
@@ -244,7 +240,6 @@
                 DLog(@"update failed %@", [db lastErrorMessage]);
                 
             }
-            
         }
     }
     
