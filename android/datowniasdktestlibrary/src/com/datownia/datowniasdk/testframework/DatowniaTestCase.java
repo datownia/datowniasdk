@@ -20,16 +20,17 @@ public class DatowniaTestCase extends AndroidTestCase {
 	}
 
 	protected DatowniaAppConfiguration getConfig(Context context) {
-		DatowniaAppConfiguration config = new DatowniaAppConfiguration();
+		DatowniaAppConfiguration config = new DatowniaAppConfiguration(context);
 		config.setPublisher("example");
-		config.setAppKey("b317eac00b");
-		config.setAppSecret("5156a8e80e");
+		config.setAppKey("04686c430e");
+		config.setAppSecret("812e890302");
 		config.setHost("www.datownia.com");
 		config.setCheckChangesFrequency(300);
 		config.setDatabaseName("exampledatownia.db");
+		config.setLimit(3);
 		//config.setPhoneDatabasePath(context.getApplicationInfo().dataDir);
 		//we use sdcard for the tests so that we can inspect the sqlite file more easily when debugging
-		config.setDatabasePath(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "databases");
+		//config.setDatabasePath(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "databases");
 		return config;
 	}
 	

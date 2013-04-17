@@ -39,7 +39,7 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 		DatowniaAppConfiguration config = getConfig(getTestContext());
 		doDownloadDb(config);
 
-		doValidateDb(3, config);
+		doValidateDb(5, config);
 	}
 
 	public void doDownloadDb(DatowniaAppConfiguration config) {
@@ -67,9 +67,9 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 
 	protected void doValidateDb(int expectedNumberOfTable, DatowniaAppConfiguration config) {
 		//check it is a db by opening it and doing a query
-    	DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
+    	//DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
 	    //means we can use sdcard and then it is easy to grab a copy for inspection
-    	Repository repository = Repository.getInstance(dbContext, config.getDatabaseName(), config.getFullDatabasePath());
+    	Repository repository = Repository.getInstance(getTestContext(), config.getDatabaseName(), config.getFullDatabasePath());
 
 	    SQLiteDatabase db = repository.getWritableDatabase();
 	    Cursor queryCursor = db.query("[table_def]", new String[]{"tablename","seq"} , null, null, null, null, null);
@@ -101,8 +101,8 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 	
 	protected void doSynchronizeDb(DatowniaAppConfiguration config) {
 		
-		DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder());
-		DatowniaAppService appService = new DatowniaAppService(dbContext, config);
+		//DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder());
+		DatowniaAppService appService = new DatowniaAppService(getTestContext(), config);
 		
 		try {
 			appService.synchroniseDb();
@@ -114,6 +114,7 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 			assertTrue(String.format("%s. \r\n%s", e.toString(), Log.getStackTraceString(e)), false);
 		}
 		
+		//TODO: check that 6 deltas were sent
 		
 		
 	}
@@ -121,9 +122,9 @@ public class DatowniaAppServiceTest extends DatowniaTestCase{
 
 	void resetSeqNumbers(DatowniaAppConfiguration config) {
 		//check it is a db by opening it and doing a query
-    	DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
+    	//DatabaseContext dbContext = new DatabaseContext(getTestContext(), config.getDatabaseFolder()); //DatabaseContext allow us to use non-standard folder for database
 	    //means we can use sdcard and then it is easy to grab a copy for inspection
-    	Repository repository = Repository.getInstance(dbContext, config.getDatabaseName(), config.getFullDatabasePath());
+    	Repository repository = Repository.getInstance(getTestContext(), config.getDatabaseName(), config.getFullDatabasePath());
 
 	    SQLiteDatabase db = repository.getWritableDatabase();
 	    db.execSQL("update [table_def]  set seq=0");
