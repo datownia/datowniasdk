@@ -1,5 +1,7 @@
 package com.datownia.datowniasdk;
 
+import android.content.Context;
+
 import com.datownia.datowniasdk.oauth2.DatowniaAccessToken;
 
 /*	Class : 	DatowniaAppConfiguration 
@@ -20,8 +22,16 @@ public class DatowniaAppConfiguration
 	private String host;
 	private String phoneDatabasePath;
 	private String phoneDatabaseName;
-
+	private Context context;
+	private int limit = 200;
+		
 	//methods
+	
+	public DatowniaAppConfiguration(Context context)
+	{
+		this.context = context;
+		
+	}
 	
 	public String getAppKey() {
 		return appKey;
@@ -65,6 +75,9 @@ public class DatowniaAppConfiguration
 	 * @return path to store database files. trailing slash
 	 */
 	public String getDatabaseFolder() {
+		if (phoneDatabasePath == null)
+			return context.getDatabasePath(phoneDatabaseName).getParent().concat("/");
+		
 		return phoneDatabasePath;
 	}
 	
@@ -77,7 +90,7 @@ public class DatowniaAppConfiguration
 		this.phoneDatabasePath = phoneDatabasePath;
 	}
 	public String getFullDatabasePath() {
-		return phoneDatabasePath + phoneDatabaseName;
+			return getDatabaseFolder() + phoneDatabaseName;
 	}
 
 	public String getDatabaseName() {
@@ -85,6 +98,14 @@ public class DatowniaAppConfiguration
 	}
 	public void setDatabaseName(String phoneDatabaseName) {
 		this.phoneDatabaseName = phoneDatabaseName;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
 	}
 
 }

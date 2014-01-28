@@ -4,7 +4,7 @@ To get going really quickly you can use HTTP basic authentication and the [CURL]
 
 ### Get first 5 records in a dataset:
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue?offset=0&limit=5"
+curl "https://04686c430e:812e890302@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue?offset=0&limit=5"
 ```
 
 returns
@@ -118,13 +118,13 @@ returns
 }
 ```
 
-Note: in this example app key = b317eac00b and app secret = 5156a8e80e . In a real world use you will have your own app key and secret
+Note: in this example app key = 04686c430e and app secret = 812e890302 . In a real world use you will have your own app key and secret
 
 You may also use OAuth 2 authentication with a client credentials grant, using your app key and secret.
 
 ### Search a dataset:
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue" -G --data-urlencode "q=price:[10.99 TO 20.00] AND address\ of\ store:oakland&offset=0&limit=5"
+curl "https://04686c430e:812e890302@www.datownia.com/api/doc/example/v1/willstoyscatalogue/catalogue" -G --data-urlencode "q=price:[10.99 TO 20.00] AND address\ of\ store:oakland&offset=0&limit=5"
 ```
 
 returns
@@ -216,7 +216,7 @@ returns
 
 ### Get entire dataset as a sqlite database
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/willstoyscatalogue/catalogue.sqlite" > test.sqlite
+curl "https://04686c430e:812e890302@www.datownia.com/api/doc/example/v2/willstoyscatalogue/catalogue.sqlite" > test.sqlite
 ```
 This will create a sqlite db file with two tables.
 1. example/willstoyscatalogue/catalogue_2.0. This contains your dataset
@@ -224,7 +224,7 @@ This will create a sqlite db file with two tables.
 
 ### Keep your database up to date with the delta api
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue?seq=0"
+curl "https://04686c430e:812e890302@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue?seq=0"
 ```
 
 returns
@@ -323,7 +323,7 @@ Note: The ```seq``` field is a unique point in the datasets history. Use the ```
 
 OR, you can get the sql statements you need to apply to your database direcly:
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue.sql?seq=0"
+curl "https://04686c430e:812e890302@www.datownia.com/api/doc/example/v2/delta/willstoyscatalogue/catalogue.sql?seq=0"
 ```
 ```sql
 replace into [example/willstoyscatalogue/catalogue_2.0] ([addressOfStore],[availableForPickup],[description],[geocodeOfStore],[imageUrl],[name],[price],[stockLevel],[upc], [_id]) values ('373 Vineyard Drive, Mayfield Heights, OH 44124','yes','Five activation points start the excitement all over the Batcave','41.475136, -81.369677','http://www.wills-toys.com/images/abd.jpg','Fisher-Price Imaginext Bat Cave','50.99','10','2311835075','950739696db9aa48dfd37c06cbfe3c46');
@@ -342,7 +342,7 @@ Developers subscriptions are placed into an app. This app is where the app key a
 If you have multiple subscriptions you may download all your datasets as one database by use the App Api.
 
 ```
-curl "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b.sqlite" > testapp.sqlite
+curl "https://04686c430e:812e890302@www.datownia.com/api/app/example/04686c430e.sqlite" > testapp.sqlite
 ```
 
 Here example is the developers "my api tag" rather than the publishers tag. i.e. the account to which the app belongs.
@@ -351,13 +351,13 @@ You can then use the above Delta API to synchronise each table in the database
 
 In this example all versions of the data apis will be included. You can restrict to certain version by using the v parameter where the value is a json array of document,version pairs
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b" -G --data-urlencode "v=[[\"willstoyscatalogue/catalogue\",2]]"
+curl -k "https://04686c430e:812e890302@www.datownia.com/api/app/example/04686c430e" -G --data-urlencode "v=[[\"willstoyscatalogue/catalogue\",2]]"
 ```
 Note that here we downloaded the data as json rather than a sqlite db.
 
 You can also add v=max which will return you just the newest api versions
 ```
-curl -k "https://b317eac00b:5156a8e80e@www.datownia.com/api/app/example/b317eac00b?v=max"
+curl -k "https://04686c430e:812e890302@www.datownia.com/api/app/example/04686c430e?v=max"
 ```
 
 ##API Information Guide

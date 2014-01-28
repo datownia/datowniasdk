@@ -102,7 +102,7 @@ public class Repository extends SQLiteOpenHelper {
 				copyDatabase();
 			}
 			
-			db = getReadableDatabase();
+			db =  getReadableDatabase();
 			if (db != null) {
 		  		db.close();
 			}

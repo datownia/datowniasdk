@@ -62,6 +62,25 @@ public class DatowniaManagementDAO
 		return tableDefs;
 	}
 	
+	public DatowniaTableDef getTableDefRecord(String tablename)
+	{
+		SQLiteDatabase db = getRepository().getReadableDatabase();
+		Cursor cursor = db.query(this.TABLE_DEF_TABLE, this.tabledef_tableColumns, "tablename=?", new String[]{tablename}, null, null, null, null);
+		cursor.moveToFirst();
+		DatowniaTableDef tableDef = null;
+		while (!cursor.isAfterLast()) 
+		{
+			tableDef = new DatowniaTableDef(cursor);
+
+			cursor.moveToNext();
+		}
+		
+		//close the cursor
+		cursor.close();
+		
+		return tableDef;
+	}
+	
 	//updates the datownia database 
 	public void updateDatowniaDataBase(String rawSQL, SQLiteDatabase db)
 	{
@@ -75,7 +94,7 @@ public class DatowniaManagementDAO
 		}
 	}
 
-	public void updateDatabase(BufferedReader buff) throws IOException {
+	public Boolean updateDatabase(BufferedReader buff) throws IOException {
 		SQLiteDatabase db = getRepository().getWritableDatabase();
 		
 		
@@ -84,6 +103,8 @@ public class DatowniaManagementDAO
 		char[] buffer = new char[1];
 		CharArrayWriter sqlBuffer = new CharArrayWriter();
 		int numApostrophes = 0;
+		Boolean foundUpdates = false;
+		
 		while(buff.read(buffer, 0, 1) > -1)
 		{
 			sqlBuffer.append(buffer[0]);
@@ -132,12 +153,15 @@ public class DatowniaManagementDAO
 				
 				this.updateDatowniaDataBase(sqlToExecute, db);
 				
+				foundUpdates = true;
 				sqlBuffer.reset();
 				
 				if (wasOverread)
 					sqlBuffer.append(overread);
 			}
 		}
+		
+		return foundUpdates;
 
 	}
 

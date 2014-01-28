@@ -128,8 +128,14 @@ public class DatowniaAppService extends ServiceBase
 			versionNumberStr = minusPublisherName.substring(underScorePoint + 1);
 			
 			//retrieve the delta update SQL string
-			this.getDeltaAndUpdateTable(docName, versionNumberStr, datowniaTableDef.getSeqNo());
+			Boolean foundDeltas = true;
+			while(foundDeltas)
+			{
+				foundDeltas = this.getDeltaAndUpdateTable(docName, versionNumberStr, datowniaTableDef.getSeqNo());
 
+				datowniaTableDef = dao.getTableDefRecord(tableName);
+			}
+			
 		}
 	}
 	
@@ -189,26 +195,27 @@ public class DatowniaAppService extends ServiceBase
 		
 	}
 
-	private void getDeltaAndUpdateTable(String documentName, String version, int sequenceNumber) throws IOException, JSONException
+	private Boolean getDeltaAndUpdateTable(String documentName, String version, int sequenceNumber) throws IOException, JSONException
 	{
 		URL url = null;
 		
 		String accessTokenForDelta = this.oauth2Client.getAccessToken(this.getDeltaScope(documentName)).getAccessToken();
 		
 
-		url = new URL(String.format("https://%s/api/doc/%s/v%s/delta/%s.sql?seq=%d",
+		url = new URL(String.format("https://%s/api/doc/%s/v%s/delta/%s.sql?seq=%d&limit=%d",
 				this.configurationSettings.getHost(),
 				this.configurationSettings.getPublisher(),
 				version,
 				documentName,
-				sequenceNumber));
+				sequenceNumber,
+				this.configurationSettings.getLimit()));
 
 		HttpURLConnection connection = connectionFactory.getConnection(url);
 		
 		if (connection == null) 
 		{
 			Logger.w("datownia", String.format("delta failed. could not get connection"));
-			return;
+			return false;
 		}
 			
 				
@@ -223,7 +230,7 @@ public class DatowniaAppService extends ServiceBase
 		if(status != 200)
 		{
 			Logger.w("datownia", String.format("delta failed. http status was %d. response: %s", status, IOUtils.toString(connection.getErrorStream())));
-			return;
+			return false;
 		}
 		
 		InputStream resultInputStream = connection.getInputStream();
@@ -234,10 +241,11 @@ public class DatowniaAppService extends ServiceBase
 	    BufferedReader buff = new BufferedReader(in);
 	    
 	    DatowniaManagementDAO dao = daoFactory.getDatowniaDao(this.applicationContext, this.configurationSettings);
-	    dao.updateDatabase(buff);
+	    Boolean hadUpdates = dao.updateDatabase(buff);
 	   
 	    connection.disconnect();
 
+	    return hadUpdates;
 	}
 	
 	
